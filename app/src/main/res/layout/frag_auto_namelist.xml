@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout0"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/frag_AutoName_RadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/frag_AutoName_ownerCommittee"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/frag_picdetail_checktextview_selector"
+                    android:button="@null"
+
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="业委会"
+                    android:textColor="@color/color_group_selector" />
+
+
+                <RadioButton
+                    android:id="@+id/frag_AutoName_ownerRepresent"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/frag_picdetail_checktextview_selector"
+                    android:button="@null"
+
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="业主代表"
+                    android:textColor="@color/color_group_selector" />
+
+                <RadioButton
+                    android:id="@+id/frag_AutoName_owner"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/frag_picdetail_checktextview_selector"
+                    android:button="@null"
+
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="业主"
+                    android:textColor="@color/color_group_selector"
+                    android:visibility="gone" />
+            </RadioGroup>
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/frag_AutoName_fragContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tv_Autonotice_Nodata"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="暂无数据"
+                android:visibility="gone" />
+
+            <ListView
+                android:id="@+id/frag_AutoName_list_CO"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:visibility="gone"></ListView>
+
+            <ListView
+                android:id="@+id/frag_AutoName_list_Re"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:visibility="gone"></ListView>
+
+
+
+            <LinearLayout
+                android:id="@+id/namelist_Owner_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <cn.hi028.android.highcommunity.view.SearchView
+                    android:id="@+id/search_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray">
+
+                </cn.hi028.android.highcommunity.view.SearchView>
+                <ListView
+                    android:id="@+id/lv_search_results"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:visibility="gone">
+
+                </ListView>
+                <ListView
+                    android:id="@+id/frag_AutoName_list_Owner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:visibility="gone"></ListView>
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_create"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_autonamelist_search"
+                android:clickable="true"
+                android:visibility="gone"
+              />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainact"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_secondTitle_Hight"
+        layout="@layout/title_status_height" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/Defult_Color_AppGreen">
+
+        <ImageView
+            android:id="@+id/commitAct_img_back"
+            android:layout_width="@dimen/title_height"
+            android:layout_height="@dimen/title_height"
+            android:layout_gravity="start"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:onClick="onBack"
+            android:scaleType="center"
+            android:src="@drawable/img_back_selector" />
+
+        <TextView
+            android:id="@+id/tv_commit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="业主认证"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+        <!-- android:textSize="@dimen/font_extra_large" -->
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/commit_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="该小区暂未开通自治大厅！"
+        android:visibility="gone" />
+
+
+
+    <LinearLayout
+        android:id="@+id/commit_commitData"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#aaa"
+        android:orientation="vertical"
+        android:visibility="gone"
+
+        ></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/commit_checking"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+<ImageView
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:src="@drawable/ic_refreshanim"/>
+        <TextView
+            android:id="@+id/commit_tv_checking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="资料审核中……请耐心等待" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/commit_checkFail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="2">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_tag_shape"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/commit_tv_checkFail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                       android:layout_centerInParent="true"
+                        android:textSize="16sp"
+                        android:text="原因" />
+                    <TextView
+                        android:id="@+id/commit_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="17sp"
+                        android:layout_above="@id/commit_tv_checkFail"
+                        android:layout_marginBottom="8dp"
+                        android:textColor="@color/red"
+                        android:text="认证失败！" />
+                    <Button
+                        android:id="@+id/commit_but_checkAgain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_coner_button_selector"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:textSize="15sp"
+                        android:layout_below="@id/commit_tv_checkFail"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                     android:layout_marginTop="10dp"
+                        android:text="  重新认证  "/>
+
+
+                </RelativeLayout>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/ic_tag_pin"
+                    android:layout_marginRight="-5dp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            />
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

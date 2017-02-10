@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/ll_cerFailed_Progress"
+        layout="@layout/progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tv_cerFailed_noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="暂无数据"
+
+        android:visibility="gone" />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cerFailed_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@color/white"
+        android:dividerHeight="15dp"
+
+
+        android:background="@color/white"
+        android:listSelector="@android:color/transparent"
+        ptr:ptrMode="both"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+</RelativeLayout>

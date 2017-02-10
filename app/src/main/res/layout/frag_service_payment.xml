@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.25dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/Defult_Color_LineGrey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0.25dp"
+            android:layout_height="match_parent"
+            android:background="@color/Defult_Color_LineGrey" />
+
+        <RelativeLayout
+
+            android:id="@+id/tv_payment_service_water"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:background="@drawable/bg_third_service_selector">
+
+            <ImageView
+                style="@style/jf_tag_img"
+                android:src="@mipmap/img_jf_water" />
+
+            <LinearLayout style="@style/autoact_tag_layou">
+
+                <View style="@style/autoact_tag_view" />
+
+                <TextView
+                    style="@style/jf_tag_text"
+                    android:text="水" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tv_payment_service_dian"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:background="@drawable/bg_third_service_selector">
+
+            <ImageView
+                style="@style/jf_tag_img"
+                android:src="@mipmap/img_jf_dian" />
+
+            <LinearLayout style="@style/autoact_tag_layou">
+
+                <View style="@style/autoact_tag_view" />
+
+                <TextView
+                    style="@style/jf_tag_text"
+                    android:text="电" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tv_payment_service_qi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:background="@drawable/bg_third_service_selector">
+
+            <ImageView
+                style="@style/jf_tag_img"
+                android:src="@mipmap/img_jf_gas" />
+
+            <LinearLayout style="@style/autoact_tag_layou">
+
+                <View style="@style/autoact_tag_view" />
+
+                <TextView
+                    style="@style/jf_tag_text"
+                    android:text="气" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.25dp"
+            android:layout_height="match_parent"
+            android:background="@color/Defult_Color_LineGrey" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0.25dp"
+            android:layout_height="match_parent"
+            android:background="@color/Defult_Color_LineGrey" />
+
+        <RelativeLayout
+
+            android:id="@+id/img_seri_repairr_jj"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:background="@drawable/bg_third_service_selector">
+
+            <ImageView
+                style="@style/jf_tag_img"
+                android:src="@mipmap/img_jf_jinjibx" />
+
+            <LinearLayout style="@style/autoact_tag_layou">
+
+                <View style="@style/autoact_tag_view" />
+
+                <TextView
+                    style="@style/jf_tag_text"
+                    android:text="紧急报修" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/img_seri_repair_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:background="@drawable/bg_third_service_selector">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.25dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <ImageView
+                style="@style/jf_tag_img"
+                android:src="@mipmap/img_jf_yuyuebx" />
+
+            <LinearLayout style="@style/autoact_tag_layou">
+
+                <View style="@style/autoact_tag_view" />
+
+                <TextView
+                    style="@style/jf_tag_text"
+                    android:text="预约报修" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/img_seri_repair_record"
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_third_service_selector">
+
+            <ImageView
+                style="@style/jf_tag_img"
+                android:src="@mipmap/img_jf_bx_record" />
+
+            <LinearLayout style="@style/autoact_tag_layou">
+
+                <View style="@style/autoact_tag_view" />
+
+                <TextView
+                    style="@style/jf_tag_text"
+                    android:text="报修记录" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.25dp"
+            android:layout_height="match_parent"
+            android:background="@color/Defult_Color_LineGrey" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0.25dp"
+            android:layout_height="match_parent"
+            android:background="@color/Defult_Color_LineGrey" />
+
+        <RelativeLayout
+
+            android:id="@+id/tv_payment_service_wuguan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_third_service_selector">
+
+
+            <ImageView
+                style="@style/jf_tag_img"
+                android:src="@mipmap/img_jf_wuyefei" />
+
+            <LinearLayout
+                android:id="@+id/layout12" style="@style/autoact_tag_layou">
+
+                <View style="@style/autoact_tag_view" />
+
+                <TextView
+                    style="@style/jf_tag_text"
+                    android:text="物业费" />
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.25dp"
+               android:layout_below="@id/layout12"
+                android:background="@color/Defult_Color_LineGrey" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.25dp"
+            android:layout_height="match_parent"
+            android:background="@color/Defult_Color_LineGrey" />
+
+        <View
+
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0.25dp"
+            android:background="@color/Defult_Color_LineGrey"
+            android:layout_weight="1">
+
+
+        </View>
+
+        <View
+
+            android:id="@+id/view3"
+            android:layout_width="0dp"
+            android:layout_height="0.25dp"
+            android:background="@color/Defult_Color_LineGrey"
+            android:layout_weight="1">
+
+
+        </View>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dip"
+        android:src="@mipmap/tag_service_bg" />
+
+</LinearLayout>

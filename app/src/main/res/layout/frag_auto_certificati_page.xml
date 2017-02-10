@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/frag_Certification_RadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/frag_Certification_success"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/frag_picdetail_checktextview_selector"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="已认证"
+                android:textColor="@color/color_group_selector" />
+            <RadioButton
+                android:id="@+id/frag_Certification_checking"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/frag_picdetail_checktextview_selector"
+                android:button="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="认证中"
+                android:textColor="@color/color_group_selector" />
+
+            <RadioButton
+                android:id="@+id/frag_Certification_failed"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/frag_picdetail_checktextview_selector"
+                android:button="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="认证失败"
+                android:textColor="@color/color_group_selector" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <cn.hi028.android.highcommunity.view.MyCustomViewPager
+        android:id="@+id/frag_Certification_ViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:flipInterval="30"
+
+        android:scrollbars="none"
+        android:persistentDrawingCache="animation" />
+
+
+</LinearLayout>

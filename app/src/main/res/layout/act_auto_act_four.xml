@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_secondTitle_Hight"
+        layout="@layout/title_status_height" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/Defult_Color_AppGreen">
+
+        <ImageView
+            android:id="@+id/auto_four_img_back"
+            android:layout_width="@dimen/title_height"
+            android:layout_height="@dimen/title_height"
+            android:layout_gravity="start"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:onClick="onBack"
+            android:scaleType="center"
+            android:src="@drawable/img_back_selector" />
+
+        <TextView
+            android:id="@+id/auto_four_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="投票结果"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+        <!-- android:textSize="@dimen/font_extra_large" -->
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="投票结果："
+        android:visibility="gone"
+        android:textColor="@color/Defult_Color_AppGreen"
+        android:textSize="18sp"
+        android:textStyle="bold"
+
+
+        />
+
+    <TextView
+        android:id="@+id/four_content_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="   "
+        android:textColor="@color/Defult_Color_AppGreen"
+        android:textSize="16sp"
+
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <cn.hi028.android.highcommunity.view.LinearForVoteResult
+                android:id="@+id/four_listiew"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+               ></cn.hi028.android.highcommunity.view.LinearForVoteResult>
+
+            <Button
+                android:id="@+id/four_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_coner_button_selector"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="  返回  "
+                android:visibility="gone"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

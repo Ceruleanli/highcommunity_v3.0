@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/ptrsv_leftmenu_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_leftmenu_grandient">
+
+                <TextView
+                    android:id="@+id/myinfor_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="8dp"
+                    android:text="编辑"
+                    android:textColor="@color/white"
+
+                    android:textSize="14dp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_leftmenu_userinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/padding_15"
+                    android:clickable="true"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="@dimen/padding_24"
+                    android:paddingRight="@dimen/padding_8"
+                    android:paddingTop="10dp">
+
+                    <com.don.view.CircleImageView
+                        android:id="@+id/img_LeftFrag_Avatar"
+                        style="@style/civ_avatar_type1"
+                        android:gravity="center" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/img_LeftFrag_Avatar">
+
+                        <TextView
+                            android:id="@+id/tx_LeftFrag_userName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginLeft="@dimen/padding_12"
+                            android:layout_marginTop="@dimen/padding_8"
+                            android:text="name"
+                            android:textColor="@color/defult_color_white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tx_LeftFrag_userSex"
+                            style="@style/cb_community_sex"
+
+                            android:layout_marginTop="@dimen/padding_8"
+
+                            android:layout_toRightOf="@id/tx_LeftFrag_userName"
+                            android:text="未知" />
+
+                        <LinearLayout
+                            android:id="@+id/tx_LeftFrag_userlocation_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@+id/tx_LeftFrag_userName"
+                            android:layout_marginLeft="@dimen/padding_12"
+                            android:background="@drawable/ll_leftmenu_bg_selector"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            android:paddingBottom="6dp"
+
+                            android:paddingTop="6dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:padding="@dimen/padding_4"
+                                android:src="@mipmap/img_label_location" />
+
+                            <TextView
+                                android:id="@+id/tx_LeftFrag_userlocation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="3dp"
+                                android:text="所在小区:"
+                                android:textColor="@color/Defult_Color_ShallowGrey"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_Order"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_order"
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="我的订单"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+
+                    android:id="@+id/tv_leftMenu_Order_Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dip"
+                    android:layout_marginRight="20dip"
+                    android:background="@drawable/bg_leftmenu_num"
+                    android:paddingBottom="@dimen/margin_2"
+                    android:paddingLeft="@dimen/padding_8"
+                    android:paddingRight="@dimen/padding_8"
+                    android:paddingTop="@dimen/margin_2"
+
+                    android:textColor="@color/defult_text_color"
+                    android:textSize="@dimen/font_extra_small_half"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/ll_leftMenu_order_all"
+                    style="@style/ll_leftmenu_style_weight1"
+                    android:clickable="true">
+
+                    <com.don.view.DrawableCenterTextView
+                        android:id="@+id/tv_leftMenu_order_all_tv"
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawablePadding="8dp"
+                        android:drawableTop="@drawable/frag_my_order_all"
+                        android:text="全部订单"
+
+                        android:textColor="@color/colorselector_myfrag_text"
+                        android:textSize="@dimen/font_middle" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dip"
+
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_leftMenu_order_all_Num"
+                        style="@style/mycenter_order_num"
+                        android:text="10"
+                        android:layout_toRightOf="@id/tv_leftMenu_order_all_tv"
+                        android:layout_alignTop="@id/tv_leftMenu_order_all_tv"
+                        android:layout_marginLeft="-5dp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_leftMenu_order_topay"
+                    style="@style/ll_leftmenu_style_weight1"
+                    android:clickable="true">
+
+                    <com.don.view.DrawableCenterTextView
+                        android:id="@+id/tv_leftMenu_order_topay_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawablePadding="8dp"
+                        android:drawableTop="@drawable/frag_my_order_topay"
+                        android:text="待付款"
+                        android:textColor="@color/colorselector_myfrag_text"
+
+                        android:textSize="@dimen/font_middle" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dip"
+
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_leftMenu_order_topay_Num"
+                        style="@style/mycenter_order_num"
+                        android:layout_toRightOf="@id/tv_leftMenu_order_topay_tv"
+                        android:layout_alignTop="@id/tv_leftMenu_order_topay_tv"
+                        android:text="5"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_leftMenu_order_torec"
+                    style="@style/ll_leftmenu_style_weight1"
+                    android:clickable="true">
+
+                    <com.don.view.DrawableCenterTextView
+                        android:id="@+id/tv_leftMenu_order_torec_tv"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawablePadding="8dp"
+                        android:drawableTop="@drawable/frag_my_order_torec"
+                        android:text="待收货"
+                        android:textColor="@color/colorselector_myfrag_text"
+
+                        android:textSize="@dimen/font_middle" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dip"
+
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_leftMenu_order_torec_Num"
+                        style="@style/mycenter_order_num"
+                        android:layout_toRightOf="@id/tv_leftMenu_order_torec_tv"
+                        android:layout_alignTop="@id/tv_leftMenu_order_torec_tv"
+                        android:text="5"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_leftMenu_order_com"
+                    style="@style/ll_leftmenu_style_weight1"
+                    android:clickable="true">
+
+                    <com.don.view.DrawableCenterTextView
+                        android:id="@+id/tv_leftMenu_order_all_com_tv"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawablePadding="8dp"
+                        android:drawableTop="@drawable/frag_my_order_com"
+                        android:text="待评价"
+                        android:textColor="@color/colorselector_myfrag_text"
+
+                        android:textSize="@dimen/font_middle" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dip"
+
+                        android:layout_weight="1" />
+
+                    android:textSize="@dimen/font_extra_small_half"
+
+                    <TextView
+                        android:id="@+id/tv_leftMenu_order_all_com_num"
+                        style="@style/mycenter_order_num"
+                        android:layout_toRightOf="@id/tv_leftMenu_order_all_com_tv"
+                        android:layout_alignTop="@id/tv_leftMenu_order_all_com_tv"
+                        android:text="5"
+                        android:visibility="gone" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_topic"
+                style="@style/ll_leftmenu_style_padinglitter"
+
+
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_topic"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="话题"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_topic_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_collection"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_star"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="我的收藏"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_collection_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_cart"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_cart"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="购物车"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_Cart_Num"
+                    style="@style/mycenter_item_num"
+
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_bill"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:visibility="gone"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_wyorder"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="物业账单"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_bill_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:visibility="gone"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_myAddress"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_address"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="收货地址"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_myAddress_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_wallet"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:visibility="visible"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_money"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="我的钱包"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_wallet_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_ZhongCou"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_chips"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="我的众筹"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_ZhongCou_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_Carft"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_skill"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="我的手艺"
+                    android:textColor="@color/colorselector_myfrag_text"
+
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_Carft_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_MyMsg"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_mymsg"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="与我相关"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_MyMsg_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_SysMsg"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_sysmsg"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:text="系统消息"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_SysMsg_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <LinearLayout
+                android:id="@+id/ll_leftMenu_setting"
+                style="@style/ll_leftmenu_style_padinglitter"
+                android:clickable="true">
+
+                <com.don.view.DrawableCenterTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/frag_my_seting"
+
+                    android:drawablePadding="@dimen/padding_12"
+                    android:gravity="center_vertical"
+                    android:text="设置"
+                    android:textColor="@color/colorselector_myfrag_text"
+                    android:textSize="@dimen/font_middle" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_leftMenu_setting_Num"
+                    style="@style/mycenter_item_num"
+                    android:text="10"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/Defult_Color_LineGrey" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dip" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

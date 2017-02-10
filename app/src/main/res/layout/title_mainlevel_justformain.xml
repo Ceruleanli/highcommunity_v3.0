@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Defult_Color_AppGreen"
+    android:orientation="vertical"
+    android:visibility="gone"
+  >
+
+    <!--<include layout="@layout/title_status_height" />-->
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+
+        <ImageView
+            android:id="@+id/tv_mainlevel_LeftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:paddingLeft="@dimen/padding_12"
+            android:paddingRight="42dp"
+            android:src="@mipmap/img_title_left"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_mainlevel_LeftNewMessage"
+            android:layout_width="5dip"
+            android:layout_height="5dip"
+            android:layout_marginLeft="-40dp"
+            android:layout_marginTop="14dip"
+            android:layout_toRightOf="@id/tv_mainlevel_LeftButton"
+            android:clickable="true"
+            android:src="@mipmap/img_title_new_message"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_mainlevel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@color/defult_color_white"
+            android:textSize="@dimen/font_extra_large"
+            android:visibility="gone" />
+        <!--            android:background="@drawable/bg_maintitle_radiogroup"
+        -->
+        <RadioGroup
+            android:id="@+id/rg_maintitle_group"
+            android:layout_width="wrap_content"
+            android:layout_height="25dip"
+            android:layout_centerInParent="true"
+
+            android:background="@drawable/bg_maintitle_rg_huilife"
+            android:orientation="horizontal"
+            android:visibility="visible">
+            <!-- style="@style/My_RadioButton_Style"-->
+            <RadioButton
+                android:id="@+id/rb_maintitle_leftbutton"
+                style="@style/My_RadioButton_Style2"
+                android:background="@drawable/maintitle_rbut_selector_newlife_supply"
+                android:checked="true"
+                android:text="社区" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_maintitle_rightbutton"
+                style="@style/My_RadioButton_Style2"
+                android:background="@drawable/maintitle_rbut_selector_newlife_middle"
+
+                android:text="群组" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_maintitle_rightbutton_right"
+                style="@style/My_RadioButton_Style2"
+                android:background="@drawable/maintitle_rbut_selector_newlife_chips"
+
+                android:text="活动" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rg_title_newHuilifegroup"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_maintitle_rg_huilife"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/rb_title_supply"
+                style="@style/My_RadioButton_Style2"
+                android:background="@drawable/maintitle_rbut_selector_newlife_supply"
+                android:checked="true"
+                android:text="直供"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_title_chips"
+                style="@style/My_RadioButton_Style2"
+                android:background="@drawable/maintitle_rbut_selector_newlife_chips"
+                android:checked="false"
+                android:text="众筹"
+                android:visibility="gone" />
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/iv_mainlevel_RightButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/padding_12"
+            android:clickable="true"
+            android:src="@mipmap/img_title_message"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_mainlevel_RightNewMessage"
+            android:layout_width="5dip"
+            android:layout_height="5dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="11dip"
+            android:layout_marginTop="@dimen/padding_12"
+            android:clickable="true"
+            android:src="@mipmap/img_title_new_message"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_mainlevel_RightnMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingRight="@dimen/padding_12"
+            android:text="注册"
+            android:textColor="@color/defult_color_white"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>
