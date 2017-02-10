@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
 
-    <include layout="@layout/title_secondlevel" />
+
 
     <include
         android:id="@+id/title"
