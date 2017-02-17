@@ -58,10 +58,11 @@ import cn.hi028.android.highcommunity.view.ECListDialog;
  * @功能：自治大厅 提交资料界面<br>
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
+ * 备注：焦点有bug
  */
 
 public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchListener {
-    public static final String Tag = "~~~AutoCommit~~~";
+    public static final String Tag = "AutoCommitDataFrag：";
     public static final String FRAGMENTTAG = "AutoCommitDataFrag";
     @Bind(R.id.autoAct_ed_name)
     EditText ed_Name;
@@ -90,7 +91,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
     @Bind(R.id.commitLayout)
     LinearLayout activityMain;
     private onCounter mCounter;
-
     View contentView;
     Context context;
 
@@ -118,7 +118,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
         Bundle bundle = getArguments();
         bundle.setClassLoader(getClass().getClassLoader());
         mData = bundle.getParcelable("data");
-        Log.e(Tag, "STATUS--->" + mData.getStatus());
         Log.e(Tag, "mData--->" + mData.toString());
         username = HighCommunityApplication.mUserInfo.getUsername();
         Log.d(Tag, "用户名：" + username);
@@ -127,7 +126,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
     }
 
     String village_id;
-
     private void initView() {
         ed_QuName.setText(mData.getVillage().getVillage_name());
         village_id = mData.getVillage().getVillage_id();
@@ -135,7 +133,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
         ed_LouNum.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Log.d(Tag, "是否有焦点" + hasFocus);
                 if (hasFocus) {
                     mmBuildingNums.clear();
                     setBuildingNum();
@@ -154,7 +151,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
         ed_MenNum.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Log.d(Tag, "是否有焦点" + hasFocus);
                 if (hasFocus) {
                     mDoorNumList.clear();
                     setDoorNum();
@@ -225,9 +221,7 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
      */
     private void setDoorNum() {
         if (mUnitID == "" || mUnitList == null) {
-            Log.d(Tag, "menpai case2 ");
             Toast.makeText(getActivity(), "请先选择单元号", Toast.LENGTH_SHORT).show();
-
         } else {
             for (int i = 0; i < mDoorList.size(); i++) {
                 mDoorNumList.add(i, mDoorList.get(i).getDoor_name());
@@ -254,7 +248,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
      */
     private void setUnitNum() {
         if (mBuildingID == "" || mUnitList == null) {
-            Log.d(Tag, "danyuan  case2 ");
             Toast.makeText(getActivity(), "请先选择楼栋号", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < mUnitList.size(); i++) {
@@ -278,7 +271,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
     List<String> mmBuildingNums = new ArrayList<String>();
     ECListDialog mBuildingChoice;
     String mBuildingID = "";
-
     /**
      * 获取楼栋list 设置用户选择的楼栋号
      */
@@ -818,22 +810,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
         }
     }
 
-    /**
-     * 裁剪
-     **/
-    private void RequestCropImage(Uri uri) {
-        final Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(uri, "image/*");
-        intent.putExtra("outputX", 300);
-        intent.putExtra("outputY", 300);
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("scale", true);
-        intent.putExtra("noFaceDetection", true);
-        intent.putExtra("circleCrop", new String(""));
-        mPhotoUri = Uri.fromFile(new File(SaveBitmap.getTheNewUrl()));
-        intent.putExtra("output", mPhotoUri);
-    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -849,18 +825,6 @@ public class AutoCommitDataFrag extends BaseFragment implements View.OnTouchList
     }
 
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.d(Tag + "onPause");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtil.d(Tag + "onResume");
-
-    }
 
     @Override
     public void onDestroyView() {

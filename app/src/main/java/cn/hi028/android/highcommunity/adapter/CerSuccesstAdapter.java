@@ -27,8 +27,7 @@ import cn.hi028.android.highcommunity.utils.MBitmapHolder;
  * @时间：2016/10/28<br>
  */
 public class CerSuccesstAdapter extends BaseFragmentAdapter {
-
-    final String Tag = "-CerSuccesstAdapter->";
+    final String Tag = "CerSuccesstAdapter->";
     List<Auto_CertificationInitBean.CertificationInitDataEntity> mList = new ArrayList<Auto_CertificationInitBean.CertificationInitDataEntity>();
     private Context context;
     private LayoutInflater layoutInflater;

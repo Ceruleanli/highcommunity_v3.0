@@ -38,7 +38,6 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2016/1/12<br>
  */
 public class MyActivityAdapter extends BaseFragmentAdapter {
-
     Context mContext;
     List<ActiveBean> mList = new ArrayList<ActiveBean>();
 

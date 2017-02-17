@@ -223,19 +223,7 @@ public class CreateGroupFrag extends BaseFragment {
         } else if (requestCode == requestFile) {
             // 图库返回
             if (data != null) {
-                // 取得返回的Uri,基本上选择照片的时候返回的是以Uri形式，但是在拍照中有得机子呢Uri是空的，所以要特别注意
-//                Uri mImageCaptureUri = data.getData();
-//                if (mImageCaptureUri != null) {
-//                } else {
-//                    // 这里是有些拍照后的图片是直接存放到Bundle中的所以我们可以从这里面获取Bitmap图片
-//                    Bundle extras = data.getExtras();
-//                    if (extras != null) {
-//                        Bitmap image = extras.getParcelable("data");
-//                        if (image != null) {
-//                mImageCaptureUri = SaveBitmap.SaveBitmap(image);
-//                        }
-//                    }
-//                }
+
                 Uri uri = Uri.fromFile(new File(PhotoUtils.resolvePhotoFromIntent(getActivity(),
                         data)));
                 if (uri != null)

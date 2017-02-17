@@ -20,7 +20,7 @@ import cn.hi028.android.highcommunity.view.DownHint;
 /**
  * 联盟商家 商品详情
  * @author Administrator
- *
+ *@version v1.0
  */
 public class ShopDetailActivity extends Activity {
 	private WebView webView;
@@ -35,8 +35,6 @@ public class ShopDetailActivity extends Activity {
 		down.showProgress("正在努力加载…");
 		url = getIntent().getStringExtra("url");
 		Log.e("url", url);
-		// 修改ua使得web端正确判断
-		// showProgress();
 		setSettings();
 	}
 

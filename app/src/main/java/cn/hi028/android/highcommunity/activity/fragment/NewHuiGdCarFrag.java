@@ -66,16 +66,12 @@ public class NewHuiGdCarFrag extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
         view = inflater.inflate(R.layout.frag_huisupp_gdcar, null);
         ButterKnife.bind(this, view);
         initView();
         return view;
     }
-
-
     public void initView() {
-        Log.d(Tag, "initView");
         mProgress.setVisibility(View.VISIBLE);
         mListView.setAdapter(adapter);
         mListView.setEmptyView(mNodata);
@@ -84,10 +80,8 @@ public class NewHuiGdCarFrag extends BaseFragment {
         mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-
                 new GetDataTask2().execute();
             }
-
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
 

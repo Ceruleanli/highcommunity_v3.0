@@ -24,8 +24,13 @@ import cn.hi028.android.highcommunity.utils.HTTPHelper;
 import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 import cn.hi028.android.highcommunity.view.LinearForVoteResult;
 
+/**
+ * 需求变动： 投票结果的显示2
+ * @author Lee_yting
+ * @version v2.0
+ */
 public class Auto_Five extends BaseFragmentActivity {
-    String Tag = "~~~ Auto_Five";
+    String Tag = "Auto_Five：";
     public static final String ACTIVITYTAG = "Auto_Five";
     public static final String INTENTTAG = "Auto_Five";
     String title_id;

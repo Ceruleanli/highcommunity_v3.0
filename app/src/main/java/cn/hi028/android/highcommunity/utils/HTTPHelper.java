@@ -903,8 +903,6 @@ public class HTTPHelper {
         String url = HTTPPOSTURL + "raise/order-detail.html";
         HashMap<String, String> mParamMap = getBaseParamMap();
         mParamMap.put("order_id", order_id);
-//		Log.e("renk", url);
-//		Log.e("renk", mParamMap.toString());
         post(mParamMap, mIbpi, url);
 
     }
@@ -1242,7 +1240,7 @@ public class HTTPHelper {
      **/
     public static void getAddressDistrist(BpiHttpHandler.IBpiHttpHandler mIbpi,
                                           String city_code) {
-        String url = HTTPPOSTURL + "http://028hi.cn/api/api/get-districts-by-city.html";
+        String url = HTTPPOSTURL + "api/get-districts-by-city.html";
         HashMap<String, String> mParamMap = getBaseParamMap();
         mParamMap.put("city_code", city_code);
         post(mParamMap, mIbpi, url);
@@ -1296,30 +1294,6 @@ public class HTTPHelper {
         post(mParamMap, mIbpi, url);
     }
 
-//    /**
-//     * 新增收货地址接口
-//     **/
-//    public static void CreateAddress(BpiHttpHandler.IBpiHttpHandler mIbpi,
-//                                     String real_name, String tel, String city_code,
-//                                     String district_code, String vid, String building, String unit,
-//                                     String doorNum, String isDefault, String uid) {
-//        String url = HTTPPOSTURL + "api/create-address.html";
-//        HashMap<String, String> mParamMap = getBaseParamMap();
-//        mParamMap.put("real_name", real_name);
-//        mParamMap.put("tel", tel);
-//        mParamMap.put("city_code", city_code);
-//        mParamMap.put("district_code", district_code);
-//        mParamMap.put("vid", vid);
-//        mParamMap.put("building", building);
-//        mParamMap.put("unit", unit);
-//        mParamMap.put("doorNum", doorNum);
-//        mParamMap.put("isDefault", isDefault);
-//        mParamMap.put("uid", uid);
-//        Log.d(Tag,"~~~~新增收货地址传递的参数：" + mParamMap.toString());
-//
-//
-//        post(mParamMap, mIbpi, url);
-//    }
     /**
      * 新增收货地址接口-新版本2.0
      **/
@@ -1993,7 +1967,6 @@ public class HTTPHelper {
                 Log.d(Tag,"mArray2.lenght: "+mArray2.length());
 
                 List<Auto_SuperViseBean.SuperViseDataEntity> mList_Inner=new ArrayList<Auto_SuperViseBean.SuperViseDataEntity>();
-//                List<Auto_SuperViseBean.SuperViseDataEntity> mlistOuterbean=gson.fromJson(mArray2.getString(i),T);
                 for (int j = 0; j <mArray2.length() ; j++) {
 
                     Auto_SuperViseBean.SuperViseDataEntity mBean = gson.fromJson(mArray2.getString(j),
@@ -2361,25 +2334,6 @@ public class HTTPHelper {
         return gson.fromJson(result, Auto_InitBean.Auto_Init_DataEntity.class);
     }
 
-//    public static void CommentReportDetail2(BpiHttpHandler.IBpiHttpHandler mIbpi,
-//                                           String from_id, String to_id,  String watch_id, String parentId,
-//                                           String reply_content) {
-//        String url = HTTPPOSTURL + "ywatch/comment.html";
-//
-//        HashMap<String, Object> mParamMap = new HashMap<String, Object>();
-////        HashMap<String, String> mParamMap = getBaseParamMap();
-//        mParamMap.put("from_id", from_id);
-//        mParamMap.put("watch_id", watch_id);
-//        if (!TextUtils.isEmpty(to_id))
-//            mParamMap.put("to_id", to_id);
-//        if (!TextUtils.isEmpty(parentId))
-//            mParamMap.put("parentId", parentId);
-//        mParamMap.put("reply_content", reply_content);
-//        Log.d(Tag,"汇报详情-提交评论:参数--->"+url+",from_id"+from_id+",to_id"+to_id+",watch_id"+watch_id+",parentId"+parentId+",reply_content"+reply_content);
-//        post(mParamMap, mIbpi, url);
-//    }
-
-
 
     /**
      * 自治大厅-业主认证-获取验证码
@@ -2691,18 +2645,6 @@ public class HTTPHelper {
         Log.d(Tag,"------HashMap<String, String> mParamMap---2：" + mParamMap.toString());
         post(mParamMap, mIbpi, url);
     }
-
-//	public static void getChipOrderDetail(BpiHttpHandler.IBpiHttpHandler mIbpi,
-//			String order_id) {
-//		Log.d(Tag,"获取众筹订单信息详情");
-//		String url = HTTPPOSTURL + "raise/order-detail.html";
-//		HashMap<String, String> mParamMap = getBaseParamMap();
-//		mParamMap.put("order_id", order_id);
-////		Log.e("renk", url);
-////		Log.e("renk", mParamMap.toString());
-//		post(mParamMap, mIbpi, url);
-//
-//	}
 
 
     /**
@@ -4118,13 +4060,6 @@ public class HTTPHelper {
                              BpiHttpHandler.IBpiHttpHandler imh, String URL) {
         BpiHttpClient.post(URL, params, imh);
     }
-//    /**
-//     * post请求
-//     **/
-//    private static void post(HashMap<String, Object> params,
-//                             BpiHttpHandler.IBpiHttpHandler imh, String URL) {
-//        BpiHttpClient.post(URL, params, imh);
-//    }
     /**
      * 请求
      **/
@@ -4164,8 +4099,6 @@ public class HTTPHelper {
         HashMap<String, String> mParamMap = getBaseParamMap();
         post(mParamMap, mIbpi, url);
     }
-
-
 
     /**
      * 解析融云

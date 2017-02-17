@@ -1,7 +1,6 @@
 package cn.hi028.android.highcommunity.activity.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +27,8 @@ import cn.hi028.android.highcommunity.bean.Autonomous.Auto_CertificationInitBean
  */
 
 public class AutoFrag_CerChecking extends BaseFragment {
-    public static final String Tag = "~~~CerChecking~~~";
+    public static final String Tag = "AutoFrag_CerChecking：";
     public static final String FRAGMENTTAG = "AutoFrag_CerChecking";
-
     List<Auto_CertificationInitBean.CertificationInitDataEntity> mList = new ArrayList<Auto_CertificationInitBean.CertificationInitDataEntity>();
     CerSuccesstAdapter mAdapter;
     @Bind(R.id.pg_progress)
@@ -42,7 +40,6 @@ public class AutoFrag_CerChecking extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
         View view = inflater.inflate(R.layout.frag_cer_checking, null);
         ButterKnife.bind(this, view);
         initView();
@@ -50,23 +47,11 @@ public class AutoFrag_CerChecking extends BaseFragment {
     }
 
     void initView() {
-        Log.d(Tag, "initView");
         mProgress.setVisibility(View.VISIBLE);
         mAdapter = new CerSuccesstAdapter(mList, getActivity());
         mListView.setEmptyView(mNoData);
         mListView.setAdapter(mAdapter);
         mListView.setPullToRefreshEnabled(false);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(Tag, "onPause");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(Tag, "onResume");
     }
 
     @Override

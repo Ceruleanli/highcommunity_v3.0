@@ -96,8 +96,6 @@ public class NewHuiBuyAdapter extends BaseFragmentAdapter {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layout.setLayoutParams(layoutParams);
         for (int i = 0; i < mInfoList.size(); i++) {
-            Log.e(Tag, "mInfoList.i :" + i);
-
             SupplyPayInfoEntity mInfoBean = mInfoList.get(i);
             View mListView = inflater.inflate(R.layout.item_newsupp_showpay, null);
             TextView tv_goods_name = (TextView) mListView.findViewById(R.id.tv_goods_name);

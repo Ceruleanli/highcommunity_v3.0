@@ -80,96 +80,66 @@ public class NewSupplyFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
         view = inflater.inflate(R.layout.fragment_newsupply, null);
         ButterKnife.bind(this, view);
         initData();
         return view;
     }
-
     Handler mHandler = new Handler();
     Runnable mRunable = new Runnable() {
         @Override
         public void run() {
             if (mWatingWindow != null) {
-
                 mWatingWindow.dismiss();
             }
         }
     };
-
     public class MyStringCallback extends StringCallback {
         @Override
         public void onBefore(Request request, int id) {
-
-            Log.e(Tag, "onBefore");
         }
 
         @Override
         public void onAfter(int id) {
 
-
-            Log.e(Tag, "onAfter");
         }
 
         @Override
         public void onError(Call call, Exception e, int id) {
             e.printStackTrace();
-            Log.e(Tag, "onResponse：onError");
 
         }
-
         @Override
         public void onResponse(String response, int id) {
             Log.e(Tag, "onResponse：complete" + response);
             NewSupplyBean mNewSupplyBean = new Gson().fromJson(response, NewSupplyBean.class);
-            Log.e(Tag, "onSuccess");
-
             containerNewsupply.setVisibility(View.VISIBLE);
-//            progress_layout.setVisibility(View.GONE);
             layout_hasdata.setVisibility(View.VISIBLE);
-            Log.e(Tag, "onSuccess  1");
-
-//            mProgress.setVisibility(View.GONE);
-            Log.e(Tag, "onSuccess  2");
-
             mNodata.setVisibility(View.GONE);
-            Log.e(Tag, "onSuccess  3");
-
             if (null == mNewSupplyBean) {
-                Log.e(Tag, "onSuccess  4");
-
                 return;
             }
-            Log.e(Tag, "onSuccess  5");
-
-            mBean = (NewSupplyBean.NewSupplyDataEntity) mNewSupplyBean.getData();
-            Log.e(Tag, "onSuccess  6");
-
+            mBean = mNewSupplyBean.getData();
             initCategoryList(mBean);
             if (mWatingWindow != null) {
-
                 mWatingWindow.dismiss();
             }
 
 
         }
-
         @Override
         public void inProgress(float progress, long total, int id) {
-            Log.e(Tag, "inProgress:" + progress);
         }
     }
 
     private void initData() {
+        Log.e(Tag, "   initData");
         if (getActivity().hasWindowFocus()) {
-
             mWatingWindow = HighCommunityUtils.GetInstantiation().ShowWaittingPopupWindow(getActivity(), view, Gravity.CENTER);
         }
         layout_hasdata.setVisibility(View.GONE);
         HTTPHelper.GetNewSupplyGoods(mIbpi);
-        Log.e(Tag, "   initData");
-        String url = "http://028hi.cn/api/sgoods/home.html";
+//        String url = "http://028hi.cn/api/sgoods/home.html";
 //        OkHttpUtils.post().url(url).build().execute(new MyStringCallback());
     }
 
@@ -178,7 +148,6 @@ public class NewSupplyFragment extends BaseFragment {
         @Override
         public void onError(int id, String message) {
             if (mWatingWindow != null) {
-
                 mWatingWindow.dismiss();
             }
             layout_hasdata.setVisibility(View.GONE);
@@ -204,10 +173,8 @@ public class NewSupplyFragment extends BaseFragment {
             if (mBean != null) {
                 Log.e(Tag, "onSuccess  6");
                 if (mBean.getCategory() != null && mBean.getCategory().size() > 0) {
-
                     initCategoryList(mBean);
                 } else {
-
                 }
                 if (mBean.getPurchase() != null && mBean.getPurchase().size() > 0) {
                     initPurchaseList(mBean);
@@ -215,12 +182,10 @@ public class NewSupplyFragment extends BaseFragment {
                     layout_splashTV.setVisibility(View.GONE);
                 }
                 layout_merchantTV.setVisibility(View.GONE);
-
             }
             if (isFistRequest) {
                 isFistRequest = false;
             } else {
-
             }
 
         }
@@ -238,7 +203,6 @@ public class NewSupplyFragment extends BaseFragment {
         @Override
         public void cancleAsyncTask() {
             if (mWatingWindow != null) {
-
                 mWatingWindow.dismiss();
             }
         }
@@ -252,7 +216,6 @@ public class NewSupplyFragment extends BaseFragment {
         @Override
         public void shouldLoginAgain(boolean isShouldLogin, String msg) {
             if (mWatingWindow != null) {
-
                 mWatingWindow.dismiss();
             }
             if (isShouldLogin) {
@@ -274,7 +237,6 @@ public class NewSupplyFragment extends BaseFragment {
             imgUrlList.add(i, Constacts.IMAGEHTTP + mBean.getMerchant().get(i).getLogo());
             idList.add(i, mBean.getMerchant().get(i).getId());
         }
-        Log.e(Tag, "imgUrlList-----" + imgUrlList.size());
         piclistView.setUrlList(imgUrlList, idList);
 
     }
@@ -323,31 +285,10 @@ public class NewSupplyFragment extends BaseFragment {
         super.onResume();
     }
 
-
-    @Override
-    public void onPause() {
-        Log.e(Tag, "---onPause ");
-        super.onPause();
-    }
-
-
-    @Override
-    public void onStop() {
-        Log.e(Tag, "---onStop ");
-        super.onStop();
-    }
-
-    @Override
-    public void onDetach() {
-        Log.e(Tag, "---onDetach ");
-        super.onDetach();
-    }
-
     /****
-     * 与网络状态相关
+     * 网络状态  弃用
      */
     private BroadcastReceiver receiver;
-
     private void registNetworkReceiver() {
         if (receiver == null) {
             receiver = new NetworkReceiver();
@@ -382,7 +323,6 @@ public class NewSupplyFragment extends BaseFragment {
                     isNoNetwork = false;
                 } else {
                     //没有网络
-                    Log.e(Tag, "没有网络");
                     Toast.makeText(getActivity(), "没有网络", Toast.LENGTH_SHORT).show();
                     isNoNetwork = true;
                 }

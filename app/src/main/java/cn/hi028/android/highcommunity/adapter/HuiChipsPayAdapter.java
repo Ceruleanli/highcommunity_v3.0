@@ -19,7 +19,6 @@ import java.util.List;
 
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.activity.fragment.HuiChipsPayFrag;
-import cn.hi028.android.highcommunity.activity.fragment.HuiSuppPayFrag;
 import cn.hi028.android.highcommunity.bean.ChipsOrderBean;
 import cn.hi028.android.highcommunity.utils.Constacts;
 
@@ -31,11 +30,9 @@ import cn.hi028.android.highcommunity.utils.Constacts;
  */
 public class HuiChipsPayAdapter extends BaseAdapter {
     HuiChipsPayFrag frag;
-
     public List<ChipsOrderBean> getData() {
         return data;
     }
-
     public void setData(ChipsOrderBean data) {
         this.data.clear();
         this.data.add(data);

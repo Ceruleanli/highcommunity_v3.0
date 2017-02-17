@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,9 +42,8 @@ import cn.hi028.android.highcommunity.utils.TimeUtil;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoDetail_Report extends BaseFragment {
-    public static final String Tag = "~~~AutoDetail_Report~~~";
+    public static final String Tag = "AutoDetail_Report：";
     public static final String FRAGMENTTAG = "AutoDetail_Report";
     @Bind(R.id.reportdetail_spokerImage)
     CircleImageView mSpeakerImage;
@@ -81,22 +79,18 @@ public class AutoDetail_Report extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LogUtil.d(Tag + "onCreateView");
         View view = inflater.inflate(R.layout.frag_auto_detail_report, null);
         ButterKnife.bind(this, view);
         Bundle bundle = getArguments();
         watch_id = bundle.getString("reportDetail_id");
-        Log.d(Tag, "reportDetail_id:" + watch_id);
         initView();
         return view;
     }
 
     Auto_ReportDetailAdapter mAdapter;
-
     String content;
 
     private void initView() {
-        LogUtil.d(Tag + "initView");
         mProgress.setVisibility(View.VISIBLE);
         mCommentListview.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         mList = new ArrayList<Auto_ReportDetailBean.ReportDetailDataEntity.ReportDetailReplyEntity>();
@@ -139,7 +133,6 @@ public class AutoDetail_Report extends BaseFragment {
 
     TextView mTitle, mReportorName, mReportTime, mContent;
     LinearLayout mInforLayout;
-
 
     public void setText(String text, String to_id, String parentId, boolean isReplay) {
         this.isReplay = isReplay;
@@ -277,25 +270,9 @@ public class AutoDetail_Report extends BaseFragment {
     private void initSpoker() {
         this.isReplay = false;
         mSpeakerContent.setHint("");
-//对监督的评论
         toid = "0";
         ParentId = "0";
         mSpeakerContent.setText("");
-    }
-
-    public void finish() {
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.d(Tag + "onPause");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtil.d(Tag + "onResume");
     }
 
 

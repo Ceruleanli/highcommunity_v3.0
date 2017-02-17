@@ -42,9 +42,8 @@ import cn.hi028.android.highcommunity.utils.TimeUtil;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoDetail_Inquiry extends BaseFragment {
-    public static final String Tag = "~~~AutoDetail_Inquiry~~~";
+    public static final String Tag = "AutoDetail_Inquiry:";
     public static final String FRAGMENTTAG = "AutoDetail_Inquiry";
     @Bind(R.id.inquirydetail_spokerImage)
     CircleImageView mSpeakerImage;
@@ -279,20 +278,6 @@ public class AutoDetail_Inquiry extends BaseFragment {
         mSpeakerContent.setText("");
     }
 
-    public void finish() {
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.d(Tag + "onPause");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtil.d(Tag + "onResume");
-    }
 
     @Override
     public void onDestroyView() {

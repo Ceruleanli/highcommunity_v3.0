@@ -3,12 +3,10 @@ package cn.hi028.android.highcommunity.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +31,7 @@ import cn.hi028.android.highcommunity.utils.TimeUtil;
  */
 public class AutoMoitionAdapter extends BaseFragmentAdapter {
     BpiHttpHandler.IBpiHttpHandler mIbpi;
-    public static final String TAG = "~~~AutoMoitionAdapter";
+    public static final String TAG = "AutoMoitionAdapter";
     public static final int TAG_MOTION_DETAIL = 2;
     List<Auto_MotionBean.MotionDataEntity> mList = new ArrayList<Auto_MotionBean.MotionDataEntity>();
     private Context context;
@@ -117,14 +115,11 @@ public class AutoMoitionAdapter extends BaseFragmentAdapter {
         mIbpi = new BpiHttpHandler.IBpiHttpHandler() {
             @Override
             public void onError(int id, String message) {
-                Log.e(TAG, "onError");
                 HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
-
             }
 
             @Override
             public void onSuccess(Object message) {
-                Log.e(TAG, "onSuccess");
                 if (message == null) return;
                 mResultData = (Auto_SupportedResultBean.SupportedResultDataEntity) message;
                 Toast.makeText(context, "已支持", Toast.LENGTH_SHORT).show();
@@ -152,7 +147,6 @@ public class AutoMoitionAdapter extends BaseFragmentAdapter {
             public void shouldLogin(boolean isShouldLogin) {
 
             }
-
             @Override
             public void shouldLoginAgain(boolean isShouldLogin, String msg) {
                 if (isShouldLogin){
@@ -161,14 +155,8 @@ public class AutoMoitionAdapter extends BaseFragmentAdapter {
                 }
             }
         };
-
-
         return convertView;
     }
-
-
-    private PopupWindow mWatingWindow;
-
     @Override
     public void AddNewData(Object mObject) {
         if (mObject instanceof List<?>) {
@@ -182,16 +170,10 @@ public class AutoMoitionAdapter extends BaseFragmentAdapter {
         mList.clear();
         notifyDataSetChanged();
     }
-
-
     class ViewHolder {
         TextView mTitle;
         TextView mTime;
         TextView mTv_Support;
         CheckedTextView mBut_Support;
-
-
     }
-
-
 }

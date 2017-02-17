@@ -10,14 +10,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.don.tools.BpiHttpHandler;
@@ -34,7 +32,6 @@ import com.lidroid.xutils.http.client.HttpRequest;
 
 import net.duohuo.dhroid.activity.BaseFragment;
 import net.duohuo.dhroid.activity.BrowseActivity;
-import net.duohuo.dhroid.util.LogUtil;
 import net.duohuo.dhroid.view.AutoScrollViewPager;
 import net.duohuo.dhroid.view.CirclePageIndicator;
 
@@ -63,7 +60,6 @@ import cn.hi028.android.highcommunity.view.LoadingView.OnLoadingViewListener;
  * @版本：1.0<br>
  * @时间：2015-12-08<br>
  */
-
 public class ServiceFrag extends BaseFragment implements OnClickListener {
     public static final String Tag = "ServiceFrag--->";
     public static final String FRAGMENTTAG = "ServiceFrag";
@@ -84,14 +80,9 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
         View view = inflater.inflate(R.layout.frag_service, null);
         findView(view);
         registerListener();
-
-        if (mLoadingView == null) {
-            Log.e("test", "11111");
-        }
         initView();
         return view;
     }
@@ -135,7 +126,6 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
     void initView() {
         mHttpUtils = MHttpHolder.getHttpUtils();
         mLoadingView.setOnLoadingViewListener(onLoadingViewListener);
-        //		Log.d(Tag," initView   startLoading");
         mScrollview.setMode(PullToRefreshBase.Mode.DISABLED);
         initPager();
         mIntent = new Intent(getActivity(),
@@ -146,15 +136,12 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
         initDatas();
     }
 
-    boolean isFirstShowGuid = true;
-
     private void initDatas() {
         Log.d(Tag, "initDatas");
         mLoadingView.startLoading();
         HTTPHelper.GetThirdService(mIbpi);
         viewPager.startAutoScroll();
     }
-
     /****
      * 初始化头部viewpager
      */
@@ -193,7 +180,6 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
     BpiHttpHandler.IBpiHttpHandler mIbpi = new BpiHttpHandler.IBpiHttpHandler() {
         @Override
         public void onError(int id, String message) {
-            Log.d(Tag, "---~~~onError");
             HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
             if (!isNoNetwork) {
                 mLoadingView.loadFailed();
@@ -217,7 +203,6 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
 
         @Override
         public Object onResolve(String result) {
-            Log.e("renk", result);
             return HTTPHelper.ResolveThirdService(result);
         }
 
@@ -250,7 +235,6 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
                                 long l) {
             ServiceBean mServie = mAdapter.getItem(i);
             Log.d(Tag, "mServie.getUrl() :" + mServie.getUrl());
-
             BrowseActivity.toBrowseActivity(getActivity(), mServie.getName(), mServie.getUrl());
 //            if (mServie.getName().equals("连锁") ) {
 //                Log.d(Tag, "---连锁");
@@ -271,7 +255,6 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
         Log.e(Tag, "单独展示生鲜界面");
         String url = mServie.getEdata().getApi_url();
         RequestParams params = new RequestParams();
-//        params.addBodyParameter("uid", HighCommunityApplication.mUserInfo.getId()+"");
         params.addBodyParameter("id", mServie.getEdata().getId());
         params.addBodyParameter("logo", mServie.getEdata().getLogo());
         params.addBodyParameter("openid", mServie.getEdata().getOpenid());
@@ -279,14 +262,12 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
         mHttpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
             @Override
             public void onFailure(HttpException arg0, String arg1) {
-                Log.e(Tag, "http 访问失败的 arg1--->" + arg1.toString());
                 Toast.makeText(getActivity(), arg1.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(ResponseInfo<String> arg0) {
                 String content = arg0.result;
-                Log.e(Tag, "http 访问success的 content--->" + content);
                 BrowseActivity.toBrowseActivity(getActivity(), mServie.getName(),
                         mServie.getUrl());
             }
@@ -385,7 +366,6 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
                 startActivity(i3);
                 break;
             case R.id.ll_service_voluntary:
-                LogUtil.d("~~~~~~点击了志愿服务");
                 Intent i4 = new Intent(getActivity(), Service_VoluntaryActivity.class);
                 startActivity(i4);
                 break;
@@ -413,24 +393,5 @@ public class ServiceFrag extends BaseFragment implements OnClickListener {
 
     GuideView guideView1;
 
-    private void showGuid() {
 
-        TextView tv = new TextView(getContext());
-        tv.setText("新增业主大厅");
-        tv.setTextColor(getResources().getColor(R.color.white));
-        tv.setTextSize(30);
-        tv.setGravity(Gravity.CENTER);
-
-        guideView1 = GuideView.Builder.newInstance(getContext()).setTargetView(tatalLayout).setCustomGuideView(tv)
-                .setDirction(GuideView.Direction.RIGHT_TOP).setShape(GuideView.MyShape.RECTANGULAR)
-                .setBgColor(getResources().getColor(R.color.shadow)).setOnclickListener(new GuideView.OnClickCallback() {
-                    @Override
-                    public void onClickedGuideView() {
-                        guideView1.hide();
-                    }
-                }).build();
-        guideView1.show();
-
-
-    }
 }

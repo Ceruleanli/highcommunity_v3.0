@@ -35,7 +35,7 @@ import cn.hi028.android.highcommunity.R;
  * 说明：版本更新工具类
  */
 public class UpdateUtil implements View.OnClickListener {
-    final String Tag = "UpdateUtil--->:";
+    final String Tag = "UpdateUtil->:";
     int nowVersionName;
     static boolean isUpdate;
     HashMap<String, String> mHashMap;
@@ -43,7 +43,6 @@ public class UpdateUtil implements View.OnClickListener {
     Activity act;
     private static final int NO_UPDATE = 0;
     private static final int UPDATE = 1;
-    //TODO 去掉toast
     private Handler mUpdateHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -54,7 +53,6 @@ public class UpdateUtil implements View.OnClickListener {
                         showNoticeDialog();
 
                     } else {
-                        Log.d(Tag,"~~~~~~act null ");
                     }
 //                    安装APK
 //                        installApk();
@@ -75,7 +73,7 @@ public class UpdateUtil implements View.OnClickListener {
      * 弹出更新提示框
      */
     private void showNoticeDialog() {
-        Log.d(Tag,"showNoticeDialog");
+        Log.d(Tag, "showNoticeDialog");
         if (dialog == null) {
             dialog = new Dialog(act);
             dialog.setContentView(R.layout.umeng_update_dialog);
@@ -93,61 +91,58 @@ public class UpdateUtil implements View.OnClickListener {
             mUpdateCancelBtn.setOnClickListener(this);
             updateContentTv = (TextView) window.findViewById(R.id.umeng_update_content);
         }
-        Log.d(Tag," dialog.show(); 前");
         String updateContent;
         //如果文件存在且文件md5值正确
         if (isLoaded) {
-//TODO 更新  判断是否已下载
-                updateContent = "暂时还没有下载";
+            //TODO 更新  判断是否已下载
+            updateContent = "暂时还没有下载";
+        } else {
+            updateContent = String.format(context.getString(R.string.Update_Content2), getAppVersionName(context), mHashMap.get("version"), mHashMap.get("content"));
+        }
+        updateContentTv.setText(updateContent.replace("\\n", "\n").replace("\\r", "\r"));
+        dialog.show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mUpdateCancelBtn) {
+            dialog.dismiss();
+        } else if (v == mUpdateOkBtn) {
+            dialog.dismiss();
+            if (isLoaded) {
             } else {
-            updateContent = String.format(context.getString(R.string.Update_Content2), getAppVersionName(context), mHashMap.get("version"),mHashMap.get("content"));
-            }
-            updateContentTv.setText(updateContent.replace("\\n", "\n").replace("\\r", "\r"));
-            dialog.show();
-        }
-
-        @Override
-        public void onClick (View v){
-            if (v == mUpdateCancelBtn) {
-                dialog.dismiss();
-            } else if (v == mUpdateOkBtn) {
-                dialog.dismiss();
-                if (isLoaded) {
-                } else {
-                    //下载新版本
-                    Intent intent = new Intent(context, UpdateService.class);
-                    intent.putExtra("update_url", "http://028hi.cn:8080/" + mHashMap.get("filepath"));
-                    intent.putExtra("App_Name", "嗨社区");
-                    context.startService(intent);
-                    Toast.makeText(context, "新版本正在后台下载", Toast.LENGTH_LONG).show();
-                }
+                //下载新版本
+                Intent intent = new Intent(context, UpdateService.class);
+                intent.putExtra("update_url", "http://028hi.cn:8080/" + mHashMap.get("filepath"));
+                intent.putExtra("App_Name", "嗨社区");
+                context.startService(intent);
+                Toast.makeText(context, "新版本正在后台下载", Toast.LENGTH_LONG).show();
             }
         }
+    }
 
 
-        public UpdateUtil(Activity act, Context context) {
-            Log.d(Tag,"UpdateUtil");
-            this.act = act;
-            this.context = context;
-        }
+    public UpdateUtil(Activity act, Context context) {
+        Log.d(Tag, "UpdateUtil");
+        this.act = act;
+        this.context = context;
+    }
 
 
-        /**
-         * 获取应用版本号
-         *
-         * @param context
-         * @return
-         */
-
+    /**
+     * 获取应用版本号
+     *
+     * @param context
+     * @return
+     */
     private int getVersionCode(Context context) {
-
         int versionCode = 0;
         try {
             versionCode = context.getPackageManager().getPackageInfo("cn.hi028.android.highcommunity", 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        Log.d(Tag,"~~~~~~获取现在的应用版本号：+" + versionCode);
+        Log.d(Tag, "现在的版本号：+" + versionCode);
         return versionCode;
     }
 
@@ -177,23 +172,18 @@ public class UpdateUtil implements View.OnClickListener {
      * @throws Exception
      */
     public HashMap<String, String> parseXml(InputStream inStream) throws Exception {
-
-        Log.d(Tag,"~~~~~~解析xml---");
         HashMap<String, String> hashMap = new HashMap<String, String>();
-        Log.d(Tag,"~~~~~~解析xml---1");
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(inStream);
         Element root = document.getDocumentElement();
         NodeList childNodes = root.getChildNodes();
-        Log.d(Tag,"~~~~~~解析xml---2");
         for (int j = 0; j < childNodes.getLength(); j++) {
-            Log.d(Tag,"~~~~~~解析xml---childNodes.getLength()"+childNodes.getLength());
-            Log.d(Tag,"~~~~~~解析xml---3");
+            Log.d(Tag, "解析xml---childNodes.getLength()" + childNodes.getLength());
             Node childNode = (Node) childNodes.item(j);
             if (childNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element childElement = (Element) childNode;
-                Log.d(Tag,"~~~~~~解析xml---4 childElement.getNodeName()"+childElement.getNodeName());
+                Log.d(Tag, "解析xml---4 childElement.getNodeName()" + childElement.getNodeName());
                 if ("version".equals(childElement.getNodeName())) {
                     hashMap.put("version", childElement.getFirstChild().getNodeValue());
                 } else if (("content".equals(childElement.getNodeName()))) {
@@ -203,10 +193,7 @@ public class UpdateUtil implements View.OnClickListener {
                 }
             }
         }
-        Log.d(Tag,"~~~~~~解析xml---5");
-        Log.d(Tag,"从服务器上下来的map：" + hashMap.toString());
-
-        Log.d(Tag,"~~~~~~解析xml---6");
+        Log.d(Tag, "从服务器上下来的map：" + hashMap.toString());
         return hashMap;
     }
 
@@ -215,40 +202,24 @@ public class UpdateUtil implements View.OnClickListener {
      *
      * @return
      */
-    public boolean checkIsToUpdate(){
+    public boolean checkIsToUpdate() {
         String appVersionName = getAppVersionName(context);
-
         String mVersionName = appVersionName.replace(".", "");
-
         nowVersionName = Integer.valueOf(mVersionName);
         thread22.start();
         return isUpdate;
     }
+
     /**
      * 检测是否需要更新
      *
      * @return
      */
     public void checkUpdate() {
-
-        Log.d(Tag,"~~~~~~checkUpdate---");
-
-//        versionCode = getVersionCode(getApplicationContext());
         String appVersionName = getAppVersionName(context);
-
         String mVersionName = appVersionName.replace(".", "");
-
         nowVersionName = Integer.valueOf(mVersionName);
-        Log.d(Tag,"---1");
         thread2.start();
-        //本地的XML更新
-        // InputStream inStream = ParseXmlService.class
-        //
-        // .getResourceAsStream("version.xml");
-        // InputStream inStream = ParseXmlService.class
-        // .getClassLoader()
-        // .getResourceAsStream(
-        // "version1.xml");
     }
 
     Thread thread2 = new Thread(new Runnable() {
@@ -257,27 +228,17 @@ public class UpdateUtil implements View.OnClickListener {
             URL url;
             HttpURLConnection conn;
             InputStream is;
-            Log.d(Tag,"---2");
             try {
-                Log.d(Tag,"---3");
                 url = new URL("http://028hi.cn:8080/Apk/version.xml");
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(5000);
                 is = conn.getInputStream();
                 mHashMap = parseXml(is);
-                Log.d(Tag,"---4");
-//                parseObject.setVersion(mHashMap.get("version"));
-//                parseObject.setContent(mHashMap.get("content"));
-//                parseObject.setFilepath(mHashMap.get("filepath"));
-                Log.d(Tag,"---5");
-//                Log.d(Tag, "从服务器上下来的obj：" + parseObject.toString());
-                Log.d(Tag,"parseXml 1");
             } catch (Exception e) {
                 e.printStackTrace();
             }
             Message message = new Message();
             message.obj = mHashMap;
-            Log.d(Tag,"parseXml 2");
             mHandler.sendMessage(message);
         }
     });
@@ -287,22 +248,17 @@ public class UpdateUtil implements View.OnClickListener {
             URL url;
             HttpURLConnection conn;
             InputStream is;
-            Log.d(Tag,"---2");
             try {
-                Log.d(Tag,"---3");
                 url = new URL("http://028hi.cn:8080/Apk/version.xml");
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(5000);
                 is = conn.getInputStream();
                 mHashMap = parseXml(is);
-//                Log.d(Tag, "从服务器上下来的obj：" + parseObject.toString());
-                Log.d(Tag,"parseXml 1");
             } catch (Exception e) {
                 e.printStackTrace();
             }
             Message message = new Message();
             message.obj = mHashMap;
-            Log.d(Tag,"parseXml 2");
             mHandler2.sendMessage(message);
 
         }
@@ -311,22 +267,18 @@ public class UpdateUtil implements View.OnClickListener {
         public void handleMessage(Message msg) {
             HashMap<String, String> mMap = (HashMap<String, String>) msg.obj;
             if (null != mMap) {
-                Log.d(Tag,"mHandler 1");
                 String versionStr = mMap.get("version");
                 String mVersionStr = versionStr.replace(".", "");
                 int serviceCode = Integer.valueOf(mVersionStr);
-//                Toast.makeText(context, "~~~~~~现在的版本号：" + nowVersionName + ",从服务器下来的版本号：" + serviceCode + "---", Toast.LENGTH_SHORT).show();
-                Log.d(Tag,"~~~~~~现在的版本号：" + nowVersionName + ",从服务器下来的版本号：" + serviceCode + "---");
+                Log.d(Tag, "现在的版本号：" + nowVersionName + ",从服务器下来的版本号：" + serviceCode + "---");
                 if (serviceCode > nowVersionName) {
                     isUpdate = true;
                     mUpdateHandler.sendEmptyMessage(UPDATE);
-                    Log.d(Tag,"~~~~~~!!!是否需要更新：" + isUpdate);
-//                    Toast.makeText(context, "是否需要更新：" + isUpdate, Toast.LENGTH_SHORT).show();
+                    Log.d(Tag, "!!!是否需要更新：" + isUpdate);
                 } else {
                     isUpdate = false;
-                    Log.d(Tag,"~~~~~~!!!是否需要更新：" + isUpdate);
+                    Log.d(Tag, "!!!是否需要更新：" + isUpdate);
                     mUpdateHandler.sendEmptyMessage(NO_UPDATE);
-//                    Toast.makeText(context, "是否需要更新：" + isUpdate, Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -336,30 +288,27 @@ public class UpdateUtil implements View.OnClickListener {
         public void handleMessage(Message msg) {
             HashMap<String, String> mMap = (HashMap<String, String>) msg.obj;
             if (null != mMap) {
-                Log.d(Tag,"mHandler 1");
                 String versionStr = mMap.get("version");
                 String mVersionStr = versionStr.replace(".", "");
                 int serviceCode = Integer.valueOf(mVersionStr);
-//                Toast.makeText(context, "~~~~~~现在的版本号：" + nowVersionName + ",从服务器下来的版本号：" + serviceCode + "---", Toast.LENGTH_SHORT).show();
-                Log.d(Tag,"~~~~~~现在的版本号：" + nowVersionName + ",从服务器下来的版本号：" + serviceCode + "---");
+                Log.d(Tag, "现在的版本号：" + nowVersionName + ",从服务器下来的版本号：" + serviceCode + "---");
                 if (serviceCode > nowVersionName) {
                     isUpdate = true;
-                    Log.d(Tag,"~~~~~~!!!是否需要更新：" + isUpdate);
-//                    Toast.makeText(context, "是否需要更新：" + isUpdate, Toast.LENGTH_SHORT).show();
+                    Log.d(Tag, "!!!是否需要更新：" + isUpdate);
                 } else {
                     isUpdate = false;
-                    Log.d(Tag,"~~~~~~!!!是否需要更新：" + isUpdate);
-//                    Toast.makeText(context, "是否需要更新：" + isUpdate, Toast.LENGTH_SHORT).show();
+                    Log.d(Tag, "!!!是否需要更新：" + isUpdate);
                 }
             }
         }
 
     };
+
     /**
      * 初始化更新   主要用于mainAct 判断是否更新
      */
-    public  void initUpdate(){
+    public void initUpdate() {
         checkUpdate();
-}
+    }
 
 }

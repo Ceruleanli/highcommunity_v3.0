@@ -31,9 +31,6 @@ import cn.hi028.android.highcommunity.activity.fragment.ShakeFrag;
 import cn.hi028.android.highcommunity.activity.fragment.ShakeFrag_;
 import cn.hi028.android.highcommunity.utils.Constacts;
 
-//import cn.hi028.android.highcommunity.activity.fragment.ServiceRepairFrag;
-//import cn.hi028.android.highcommunity.activity.fragment.ServiceRepairFrag_;
-
 /**
  * @功能：服务的二级页面统统都在这里<br>
  * @作者： 李凌云<br>
@@ -44,7 +41,6 @@ import cn.hi028.android.highcommunity.utils.Constacts;
 public class ServiceAct extends BaseFragmentActivity {
     public static final String ACTIVITYTAG = "ServiceAct";
     public static final String INTENTTAG = "ServiceActIntent";
-
     @ViewById(R.id.tv_secondtitle_name)
     TextView mTitle;
     @ViewById(R.id.img_right)

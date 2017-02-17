@@ -38,8 +38,13 @@ import cn.hi028.android.highcommunity.view.ECAlertDialog;
 import cn.hi028.android.highcommunity.wxapi.WXPayEntryActivity;
 import sun.misc.BASE64Decoder;
 
+/**
+ * @author Lee_yting
+ * @version v2.0
+ *          说明：展示二维码扫描界面，即活动商品界面
+ */
 public class ShowCaptureActivity extends BaseFragmentActivity {
-static final String Tag="ShowCaptureActivity:";
+    static final String Tag = "ShowCaptureActivity:";
     @Bind(R.id.tv)
     TextView tv;
     String captureStr;
@@ -71,7 +76,6 @@ static final String Tag="ShowCaptureActivity:";
     RadioGroup rgHuilIfe;
     int payType = -1;
     PopupWindow waitPop = null;
-
     static Activity act;
 
     @Override
@@ -79,31 +83,17 @@ static final String Tag="ShowCaptureActivity:";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showcapture);
         ButterKnife.bind(this);
-        act=this;
+        act = this;
         captureStr = getIntent().getStringExtra("result");
         tv.setVisibility(View.GONE);
-        Log.e(Tag,"captureStr---"+captureStr.toString());
-        String s=decode(captureStr);
-        Log.e(Tag,"decode---"+s.toString());
+        Log.e(Tag, "captureStr---" + captureStr.toString());
+        String s = decode(captureStr);
         mTitle.setText("订单支付");
         tv.setText(s);
         WchatPayUtils.getInstance().init(ShowCaptureActivity.this);
         handlerCaptureStr(s);
-        initView();
-
     }
 
-    public static String getFromBASE64(String s) {
-        if (s == null) return null;
-        sun.misc.BASE64Decoder decoder = new BASE64Decoder();
-        try {
-            byte[] b = decoder.decodeBuffer(s);
-            return new String(b);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-    // 解密
     public String decode(String s) {
         byte[] b = null;
         String result = null;
@@ -119,47 +109,45 @@ static final String Tag="ShowCaptureActivity:";
         }
         return result;
     }
+
     Map mMap;
+
     private void handlerCaptureStr(String captureStr) {
-        if (!captureStr.contains("&")){
-          return;
+        if (!captureStr.contains("&")) {
+            return;
         }
-        mMap=new HashMap();
+        mMap = new HashMap();
         String[] split2 = captureStr.split("&");
-        Log.e(Tag,"2---"+split2.toString()+"---"+split2.length);
+        Log.e(Tag, "2---" + split2.toString() + "---" + split2.length);
         for (int i = 0; i < split2.length; i++) {
             String[] split3 = split2[i].split("=");
-            mMap.put(split3[0],split3[1]);
+            mMap.put(split3[0], split3[1]);
         }
-setView(mMap);
-
+        setView(mMap);
     }
 
     private void setView(Map mMap) {
-        tvGoodsName.setText(mMap.get("name")+"");
-        tvGoodsPrice.setText("小计：￥"+mMap.get("price"));
-        finaltotalPrice=Float.parseFloat(mMap.get("price").toString());
-        tvGoodsTotal.setText("合计金额￥"+mMap.get("price"));
+        tvGoodsName.setText(mMap.get("name") + "");
+        tvGoodsPrice.setText("小计：￥" + mMap.get("price"));
+        finaltotalPrice = Float.parseFloat(mMap.get("price").toString());
+        tvGoodsTotal.setText("合计金额￥" + mMap.get("price"));
         if (mMap.get("pic") == null || mMap.get("pic").toString().equals("")) {
             BpiUniveralImage.displayImage("drawable://" + R.mipmap.default_no_pic, imgGoodsPic);
         } else {
             BpiUniveralImage.displayImage(mMap.get("pic").toString(), imgGoodsPic);
         }
-        if (mMap.get("limit").toString()!=null&&mMap.get("limit").toString()!=""){
-
-            limit=Integer.parseInt(mMap.get("limit").toString());
+        if (mMap.get("limit").toString() != null && mMap.get("limit").toString() != "") {
+            limit = Integer.parseInt(mMap.get("limit").toString());
         }
     }
 
-    private void initView() {
+    /**
+     * 限购数量
+     */
+    int limit = -1;
+    float finaltotalPrice = 0;
+    int finalnum = 1;
 
-
-
-
-    }
-int limit=-1;
-
-float finaltotalPrice=0;int finalnum=1;
     @OnClick({R.id.img_back, R.id.tv_goods_reduce, R.id.tv_goods_add, R.id.rb_pay_wx, R.id.rb_pay_ipay})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -167,33 +155,33 @@ float finaltotalPrice=0;int finalnum=1;
                 this.finish();
                 break;
             case R.id.tv_goods_reduce:
-                Log.e(Tag,"Text().toString():"+tvGoodsNum.getText().toString()+",parseInt:"+Integer.parseInt(tvGoodsNum.getText().toString()));
+                Log.e(Tag, "Text().toString():" + tvGoodsNum.getText().toString() + ",parseInt:" + Integer.parseInt(tvGoodsNum.getText().toString()));
                 if (Integer.parseInt(tvGoodsNum.getText().toString()) > 1) {
-                    int nowNUm=Integer.parseInt(tvGoodsNum.getText().toString())- 1;
-                    finalnum=nowNUm;
-                    tvGoodsNum.setText(nowNUm+"");
-             float nowTotalPrice=(float)Math.round(nowNUm*Float.parseFloat(mMap.get("price").toString())*100)/100;
-                    finaltotalPrice=nowTotalPrice;
-                    tvGoodsTotal.setText("合计金额￥"+nowTotalPrice);
+                    int nowNUm = Integer.parseInt(tvGoodsNum.getText().toString()) - 1;
+                    finalnum = nowNUm;
+                    tvGoodsNum.setText(nowNUm + "");
+                    float nowTotalPrice = (float) Math.round(nowNUm * Float.parseFloat(mMap.get("price").toString()) * 100) / 100;
+                    finaltotalPrice = nowTotalPrice;
+                    tvGoodsTotal.setText("合计金额￥" + nowTotalPrice);
                 } else {
                     HighCommunityUtils.GetInstantiation().ShowToast("数目不能为0", 0);
                 }
                 break;
             case R.id.tv_goods_add:
-                Log.e(Tag,"Text().toString():"+tvGoodsNum.getText().toString()+",parseInt:"+Integer.parseInt(tvGoodsNum.getText().toString()));
-               if (limit==-1){
-                   Log.e(Tag,"limit"+limit);
-                   limit=3;
-               }
-                if (Integer.parseInt(tvGoodsNum.getText().toString()) < limit||limit==0) {
-                    int nowNUm=Integer.parseInt(tvGoodsNum.getText().toString())+1;
-                    finalnum=nowNUm;
-                    tvGoodsNum.setText(nowNUm+"");
-                    float nowTotalPrice=(float)Math.round(nowNUm*Float.parseFloat(mMap.get("price").toString())*100)/100;
-                    finaltotalPrice=nowTotalPrice;
-                    tvGoodsTotal.setText("合计金额￥"+nowTotalPrice);
+                Log.e(Tag, "Text().toString():" + tvGoodsNum.getText().toString() + ",parseInt:" + Integer.parseInt(tvGoodsNum.getText().toString()));
+                if (limit == -1) {
+                    Log.e(Tag, "limit" + limit);
+                    limit = 3;
+                }
+                if (Integer.parseInt(tvGoodsNum.getText().toString()) < limit || limit == 0) {
+                    int nowNUm = Integer.parseInt(tvGoodsNum.getText().toString()) + 1;
+                    finalnum = nowNUm;
+                    tvGoodsNum.setText(nowNUm + "");
+                    float nowTotalPrice = (float) Math.round(nowNUm * Float.parseFloat(mMap.get("price").toString()) * 100) / 100;
+                    finaltotalPrice = nowTotalPrice;
+                    tvGoodsTotal.setText("合计金额￥" + nowTotalPrice);
                 } else {
-                    HighCommunityUtils.GetInstantiation().ShowToast("活动商品限购"+limit+"件", 0);
+                    HighCommunityUtils.GetInstantiation().ShowToast("活动商品限购" + limit + "件", 0);
                 }
                 break;
             case R.id.rb_pay_wx:
@@ -201,19 +189,23 @@ float finaltotalPrice=0;int finalnum=1;
                 rbPayIpay.setChecked(false);
                 rbPayWx.setChecked(true);
                 waitPop = HighCommunityUtils.GetInstantiation().ShowWaittingPopupWindow(ShowCaptureActivity.this, rbPayWx, Gravity.CENTER);
-               Log.e(Tag,"rb_pay_wx");
-                HTTPHelper.submitBuyHotGoodsWX(mIbpiWPaySubOrder,mMap.get("gid").toString(),finalnum+"", finaltotalPrice+"",payType+"");
+                Log.e(Tag, "rb_pay_wx");
+                HTTPHelper.submitBuyHotGoodsWX(mIbpiWPaySubOrder, mMap.get("gid").toString(), finalnum + "", finaltotalPrice + "", payType + "");
                 break;
             case R.id.rb_pay_ipay:
                 payType = 0;
                 rbPayIpay.setChecked(true);
                 rbPayWx.setChecked(false);
                 waitPop = HighCommunityUtils.GetInstantiation().ShowWaittingPopupWindow(ShowCaptureActivity.this, rbPayIpay, Gravity.CENTER);
-                HTTPHelper.submitBuyHotGoods(mIbpiOrder,mMap.get("gid").toString(),finalnum+"", finaltotalPrice+"",payType+"");
+                HTTPHelper.submitBuyHotGoods(mIbpiOrder, mMap.get("gid").toString(), finalnum + "", finaltotalPrice + "", payType + "");
 
                 break;
         }
     }
+
+    /**
+     * 支付宝回调
+     */
     BpiHttpHandler.IBpiHttpHandler mIbpiOrder = new BpiHttpHandler.IBpiHttpHandler() {
         @Override
         public void onError(int id, String message) {
@@ -227,35 +219,30 @@ float finaltotalPrice=0;int finalnum=1;
             if (null == message)
                 return;
             ActGoodsBean.ActGoodsDataEntity mBean = (ActGoodsBean.ActGoodsDataEntity) message;
-            if (payType==-1)return;
+            if (payType == -1) return;
             if (payType == 0) {
-                AlipayUtils.getInstance().payGoods(ShowCaptureActivity.this, "活动商品","   ", mBean.getTotal_fee(), mBean.getOut_trade_no(), "0",
-                        mBean.getTicket_value()+"", mBean.getNotify_url(), new AlipayUtils.onPayListener() {
+                AlipayUtils.getInstance().payGoods(ShowCaptureActivity.this, "活动商品", "   ", mBean.getTotal_fee(), mBean.getOut_trade_no(), "0",
+                        mBean.getTicket_value() + "", mBean.getNotify_url(), new AlipayUtils.onPayListener() {
 
                             @Override
                             public void onPay(PayResult result) {
 
                                 String resultStatus = result.getResultStatus();
-                                Log.e(Tag,"resultStatus:"+resultStatus);
+                                Log.e(Tag, "resultStatus:" + resultStatus);
                                 // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                                 if (TextUtils.equals(resultStatus, "9000")) {
                                     Toast.makeText(ShowCaptureActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                                     showMsgDialog(1);
                                 } else {
-                                    // 判断resultStatus 为非"9000"则代表可能支付失败
-                                    // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                                     if (TextUtils.equals(resultStatus, "8000")) {
                                         Toast.makeText(ShowCaptureActivity.this, "支付结果确认中", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-//                                        showMsgDialog(2);
-                                            Toast.makeText(ShowCaptureActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ShowCaptureActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }
                         });
             } else if (payType == 1) {
-
 
             }
         }
@@ -283,18 +270,22 @@ float finaltotalPrice=0;int finalnum=1;
         @Override
         public void shouldLoginAgain(boolean isShouldLogin, String msg) {
 
-            if (isShouldLogin){
+            if (isShouldLogin) {
                 HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
                 HighCommunityApplication.toLoginAgain(ShowCaptureActivity.this);
             }
         }
     };
+    /**
+     * 微信支付回调
+     */
     BpiHttpHandler.IBpiHttpHandler mIbpiWPaySubOrder = new BpiHttpHandler.IBpiHttpHandler() {
         @Override
         public void onError(int id, String message) {
             waitPop.dismiss();
             HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
         }
+
         @Override
         public void onSuccess(Object message) {
             waitPop.dismiss();
@@ -303,9 +294,7 @@ float finaltotalPrice=0;int finalnum=1;
             }
             WXPayEntryActivity.toFrag = 3;
             WpayBean mBean = (WpayBean) message;
-            Log.e(Tag,"WpayBean:"+mBean.toString());
             WchatPayUtils.getInstance().apay(ShowCaptureActivity.this, mBean.getAppid(), mBean.getPartnerid(), mBean.getPrepayid(), mBean.getNoncestr(), mBean.getPackages(), mBean.getSign(), mBean.getTimestamp());
-
         }
 
         @Override
@@ -330,29 +319,31 @@ float finaltotalPrice=0;int finalnum=1;
 
         @Override
         public void shouldLoginAgain(boolean isShouldLogin, String msg) {
-            if (isShouldLogin){
+            if (isShouldLogin) {
                 HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
                 HighCommunityApplication.toLoginAgain(ShowCaptureActivity.this);
             }
         }
     };
+
     public void showMsgDialog(int x) {
         String msg;
-        if (x==1){
-            msg="支付成功";
-        }else {
-            msg="支付失败";
+        if (x == 1) {
+            msg = "支付成功";
+        } else {
+            msg = "支付失败";
         }
-        ECAlertDialog dialog2 = ECAlertDialog.buildAlert(ShowCaptureActivity.this, msg,"我知道了", new DialogInterface.OnClickListener() {
+        ECAlertDialog dialog2 = ECAlertDialog.buildAlert(ShowCaptureActivity.this, msg, "我知道了", new DialogInterface.OnClickListener() {
 
-                @Override
-                public void onClick(DialogInterface arg0, int arg1) {
-                    ShowCaptureActivity.this.finish();
-                }
-            });
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                ShowCaptureActivity.this.finish();
+            }
+        });
         dialog2.setTitle("提示");
         dialog2.show();
     }
+
     public static void finishThisAct() {
         act.finish();
     }

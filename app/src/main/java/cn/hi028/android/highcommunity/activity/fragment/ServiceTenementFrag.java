@@ -41,10 +41,10 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 public class ServiceTenementFrag extends BaseFragment {
     public static final String FRAGMENTTAG = "ServiceTenementFrag";
     @ViewById(R.id.lv_tenement)
-    public ListView lv_tenement;//
+    public ListView lv_tenement;
     SeriTenementAdapter adapter;
     @ViewById(R.id.tv_Nodata)
-    public TextView tv_Nodata;//
+    public TextView tv_Nodata;
     @ViewById(R.id.ll_NoticeDetails_Progress)
     View mProgress;
     String vid;

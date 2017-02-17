@@ -95,9 +95,6 @@ public class AutoFrag_NameList extends BaseFragment {
      * 默认提示框显示项的个数
      */
     private static int DEFAULT_HINT_SIZE = 7;
-    /**
-     * 提示框显示项的个数
-     */
     private static int hintSize = DEFAULT_HINT_SIZE;
 
     @Override
@@ -115,6 +112,7 @@ public class AutoFrag_NameList extends BaseFragment {
         mYZDBadapter = new AutoNamelist_YZDBAdapter(mYWDBList, getActivity());
         mListCO.setEmptyView(tv_Autonotice_Nodata);
         mListRe.setEmptyView(tv_Autonotice_Nodata);
+        //TODO 后面优化
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -165,16 +163,12 @@ public class AutoFrag_NameList extends BaseFragment {
      * 初始化搜索数据
      */
     private void initSearchData() {
-        Log.d(Tag, "initSearchData");
-
         if (mYZList != null && mYZList.size() != 0) {
             //初始化自动补全数据
             getAutoCompleteData(null);
-            //初始化搜索结果数据
             getResultData(null);
             initSearchView();
         } else {
-            Log.e(Tag, "mYZList  =null|| mYZList.size()=0");
             mSearchResultsListview.setVisibility(View.GONE);
         }
     }
@@ -183,15 +177,13 @@ public class AutoFrag_NameList extends BaseFragment {
      * 初始化搜索视图
      */
     private void initSearchView() {
-        //设置监听
         mSearchView.setSearchViewListener(new SearchView.SearchViewListener() {
             /**
-             * 当搜索框 文本改变时 触发的回调 ,更新自动补全数据
+             * 自动补全数据
              * @param text
              */
             @Override
             public void onRefreshAutoComplete(String text) {
-                Log.e(Tag, "text.length():" + text.length());
                 if (text.length() == 0) {
                     mListOwner.setVisibility(View.VISIBLE);
                 } else {
@@ -199,10 +191,8 @@ public class AutoFrag_NameList extends BaseFragment {
                 }
                 getAutoCompleteData(text);
             }
-
             /**
              * 点击搜索键时edit text触发的回调
-             *
              * @param text
              */
             @Override
@@ -251,7 +241,6 @@ public class AutoFrag_NameList extends BaseFragment {
      */
     private void getAutoCompleteData(String text) {
         if (autoCompleteData == null) {
-            //初始化
             autoCompleteData = new ArrayList<>();
         } else {
             // 根据text 获取auto data

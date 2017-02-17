@@ -47,14 +47,11 @@ public class CerFailedAdapter extends BaseFragmentAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
     BitmapUtils mBitmapUtils;
-    // 屏幕宽度,由于我们用的是HorizontalScrollView,所以按钮选项应该在屏幕外
     private int mScreentWidth;
     private View view2, view3;
     private ListView listView;
     private HttpUtils mHttpUtils, mSupportHttpUtils;
-    View clickView;
     private boolean isClose = true;
-    int clickPosition = -1;
 
     public CerFailedAdapter(List<Auto_CertificationInitBean.CertificationInitDataEntity> list, Context context, int screenWidth) {
         super();
@@ -110,7 +107,6 @@ public class CerFailedAdapter extends BaseFragmentAdapter {
             mViewHolder.mImgTag = (ImageView) convertView.findViewById(R.id.img_cer_Tag);
             mViewHolder.action = convertView.findViewById(R.id.ll_action);
             mViewHolder.but_delete = (Button) convertView.findViewById(R.id.item_aotumotion_but_delete);
-            // 设置内容view的大小为屏幕宽度,这样按钮就正好被挤出屏幕外
             ViewGroup.LayoutParams lp = mViewHolder.mContentLayout.getLayoutParams();
             lp.width = mScreentWidth;
             convertView.setTag(mViewHolder);
@@ -173,17 +169,11 @@ public class CerFailedAdapter extends BaseFragmentAdapter {
 
 
         if (mBean.getStatus().equals("-1")){
-
-
-
             if (mBean.getReason() != null) {
                 mViewHolder.mReason.setText("失败原因：" + mBean.getReason());
-
-
             } else {
                 mViewHolder.mReason.setVisibility(View.GONE);
             }
-            //位置放到view里   方便知道点击的是那一条item
             mViewHolder.but_delete.setTag(position);
             convertView.setOnTouchListener(new View.OnTouchListener() {
                 private int x, y;
@@ -210,9 +200,7 @@ public class CerFailedAdapter extends BaseFragmentAdapter {
                         case MotionEvent.ACTION_UP:
                             ViewHolder viewHolder2 = (ViewHolder) v.getTag();
                             view2 = v;
-                            // 获得HorizontalScrollView滑动的水平方向值.
                             int scrollX = viewHolder2.mHSView.getScrollX();
-                            // 获得操作区域的长度
                             int actionW = viewHolder2.action.getWidth();
                             // 注意使用smoothScrollTo,这样效果看起来比较圆滑,不生硬
                             // 如果水平方向的移动值<操作区域的长度的一半,就复原
@@ -299,14 +287,12 @@ public class CerFailedAdapter extends BaseFragmentAdapter {
         mHttpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
             @Override
             public void onFailure(HttpException arg0, String arg1) {
-                Log.e(Tag, "http 访问失败的 arg1--->" + arg1.toString());
                 Toast.makeText(context, arg1.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(ResponseInfo<String> arg0) {
                 String content = arg0.result;
-                Log.e(Tag, "http 访问success的 content--->" + content);
                 CommonHttpResultBean mInitBean = new Gson().fromJson(content, CommonHttpResultBean.class);
                 if (mInitBean != null) {
                     Toast.makeText(context, mInitBean.getMsg(), Toast.LENGTH_SHORT).show();

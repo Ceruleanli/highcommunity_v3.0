@@ -15,7 +15,7 @@ import cn.hi028.android.highcommunity.R;
 
 /**
  * 根据宽高比例计算ImageView   用于九宫格  还有bug
- * Created by lee_yting on 2016/7/30.
+ * Created by lee_yting on 2016/9/15.
  */
 public class RatioImageView extends ImageView {
 

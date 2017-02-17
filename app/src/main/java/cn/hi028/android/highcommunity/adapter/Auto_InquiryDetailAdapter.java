@@ -129,7 +129,6 @@ public class Auto_InquiryDetailAdapter extends BaseFragmentAdapter {
                     }
                     @Override
                     public void onClick(View view) {
-                        Log.d(Tag, "点击了：" + From_name + ",hostId" + From_id + ",mBean.getId()评论id " + mBean.getId());
                         mFrag.setText("回复:" + From_name, From_id, mBean.getId() + "", true);
                         mTempReplies = mBean;
                         avoidHintColor(view);
@@ -137,7 +136,6 @@ public class Auto_InquiryDetailAdapter extends BaseFragmentAdapter {
                         mTempReply.setFrom_id(HighCommunityApplication.mUserInfo.getId());
                         mTempReply.setFrom_name(HighCommunityApplication.mUserInfo.getNick());
                         mTempReply.setTo_name(From_name);
-                        Log.d(Tag, "点击结束的小回复bean+" + mTempReply.toString());
                     }
                 }, 0, fromNameLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 mSpan.setSpan(new ClickableSpan() {
@@ -151,8 +149,6 @@ public class Auto_InquiryDetailAdapter extends BaseFragmentAdapter {
                     @Override
                     public void onClick(View view) {
                         avoidHintColor(view);
-                        Log.d(Tag, "点击了：" + To_name + ",To_id" + To_id + ",mBean.getId()评论id " + mBean.getId());
-
                         mFrag.setText("回复:" + To_name, To_id, mBean.getId() + "", true);
                         mTempReplies = mBean;
                         mTempReply = new Auto_InquiryDetailBean.InquiryDetailDataEntity.InquiryDetailReplyEntity.InquiryDetailSubReplyEntity();
@@ -203,7 +199,6 @@ public class Auto_InquiryDetailAdapter extends BaseFragmentAdapter {
             mTempBean.setPic(HighCommunityApplication.mUserInfo.getHead_pic());
             mTempBean.setFrom_id(HighCommunityApplication.mUserInfo.getId());
             mTempBean.setFrom_name(HighCommunityApplication.mUserInfo.getNick());
-//            mTempBean.setReply_time(System.currentTimeMillis() / 1000);
             mTempBean.setContent(content);
             mTempBean.setSub_reply(new ArrayList<Auto_InquiryDetailBean.InquiryDetailDataEntity.InquiryDetailReplyEntity.InquiryDetailSubReplyEntity>());
             mList.add(mTempBean);

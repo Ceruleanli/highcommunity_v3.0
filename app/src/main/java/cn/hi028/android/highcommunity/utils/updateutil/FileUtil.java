@@ -1,7 +1,6 @@
 package cn.hi028.android.highcommunity.utils.updateutil;
 
 import android.os.Environment;
-import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +28,6 @@ public class FileUtil {
             isCreateFileSucess = true;
             updateDir = new File(Environment.getExternalStorageDirectory()+ "/" + AppDir +"/");
             updateFile = new File(updateDir + "/" + app_name + ".apk");
-            Log.d("~~~~~~","创建的文件名："+updateFile);
             if (!updateDir.exists()) {
                 updateDir.mkdirs();
             }

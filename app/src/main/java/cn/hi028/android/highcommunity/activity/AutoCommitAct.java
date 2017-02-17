@@ -60,13 +60,12 @@ public class AutoCommitAct extends BaseFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e(Tag, "oncreat");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_autcommit);
         ButterKnife.bind(this);
         getIntent().setExtrasClassLoader(getClass().getClassLoader());
         tag_creatCer = getIntent().getIntExtra("tag_creatCer", -1);
-//初始化HttpUtils
+        //换HttpUtils
         mHttpUtils = new HttpUtils();
         mHttpUtils.configCurrentHttpCacheExpiry(0);
         mHttpUtils.configSoTimeout(4000);
@@ -77,30 +76,25 @@ public class AutoCommitAct extends BaseFragmentActivity {
             initHttp();
         }
     }
-
     private HttpUtils mHttpUtils;
-
     private void initDatas() {
-        Log.e(Tag, "initDatas ");
         HTTPHelper.AutoGetVillage(mIbpi);
     }
-
     private void initHttp() {
-        Log.e(Tag, "进入初始化网络");
         String url = "http://028hi.cn/api/yinit/index.html";
         RequestParams params = new RequestParams();
         params.addBodyParameter("token", HighCommunityApplication.mUserInfo.getToken());
         mHttpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
             @Override
             public void onFailure(HttpException arg0, String arg1) {
-                Log.e(Tag, "http 访问失败的 arg1--->" + arg1.toString());
+                Log.e(Tag, "onFailure：" + arg1.toString());
                 HighCommunityUtils.GetInstantiation().ShowToast(arg1.toString(), 0);
             }
 
             @Override
             public void onSuccess(ResponseInfo<String> arg0) {
                 String content = arg0.result;
-                Log.e(Tag, "http 访问success的 content--->" + content);
+                Log.e(Tag, "onSuccess：" + content);
                 Auto_InitBean mInitBean = new Gson().fromJson(content, Auto_InitBean.class);
                 if (mInitBean != null) {
                     mData = mInitBean.getData();
@@ -109,20 +103,17 @@ public class AutoCommitAct extends BaseFragmentActivity {
                 }
             }
 
-
-
         });
     }
 
     private void initView() {
-        Log.e(Tag, "initView");
         if (mData.getStatus() == 2) {
             Log.e(Tag, "mStatus 2");
             //填写资料
             toCommitData();
         } else if (mData.getStatus() == 0) {
             Log.e(Tag, "mStatus 0");
-//正在审核
+            //正在审核
             layout_Checking.setVisibility(View.VISIBLE);
             layout_CommitData.setVisibility(View.GONE);
             layout_CheckFail.setVisibility(View.GONE);
@@ -146,13 +137,11 @@ public class AutoCommitAct extends BaseFragmentActivity {
         @Override
         public void onSuccess(Object message) {
             if (null == message) {
-                Log.e(Tag, "onSuccess message null");
                 return;
             }
             mData = (Auto_InitBean.Auto_Init_DataEntity) message;
             if (mData != null) {
                 toCommitData();
-                Log.e(Tag, "onSuccess message toCommitData!!!!!!");
             }
         }
 
@@ -199,13 +188,11 @@ public class AutoCommitAct extends BaseFragmentActivity {
      * 进入提交资料页
      */
     private void toCommitData() {
-        Log.e(Tag, "toCommitData");
         FragmentManager fm2 = getSupportFragmentManager();
         FragmentTransaction ft2 = fm2.beginTransaction();
         AutoCommitDataFrag mCommitFrag = new AutoCommitDataFrag();
         Bundle mBundle = new Bundle();
         if (mData != null) {
-            Log.e(Tag, "toCommitData mData no null");
             Log.e(Tag, "mData " + mData.toString());
             mBundle.setClassLoader(getClass().getClassLoader());
             mBundle.putParcelable("data", mData);
@@ -213,7 +200,6 @@ public class AutoCommitAct extends BaseFragmentActivity {
             ft2.replace(R.id.commit_commitData, mCommitFrag, AutoCommitDataFrag.FRAGMENTTAG);
             ft2.commit();
         }
-        Log.e(Tag, "toCommitData mData null");
         layout_CommitData.setVisibility(View.VISIBLE);
         layout_Checking.setVisibility(View.GONE);
         layout_CheckFail.setVisibility(View.GONE);
@@ -226,7 +212,6 @@ public class AutoCommitAct extends BaseFragmentActivity {
         AutoFrag_CerFailedMsg mFailedMsgFrag = new AutoFrag_CerFailedMsg();
         Bundle mBundle = new Bundle();
         if (mData != null) {
-            Log.e(Tag, "toCommitData mData no null");
             Log.e(Tag, "mData " + mData.toString());
             mBundle.setClassLoader(getClass().getClassLoader());
             mBundle.putParcelable("data", mData);

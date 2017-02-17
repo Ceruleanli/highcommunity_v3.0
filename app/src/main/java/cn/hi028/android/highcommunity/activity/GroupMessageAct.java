@@ -40,7 +40,6 @@ public class GroupMessageAct extends BaseFragmentActivity {
     View mHight;
     @ViewById(R.id.img_second_GoupHead)
     CircleImageView mAvatar;
-
     String gid = "";
     String mHeadPic = "";
 
@@ -54,7 +53,7 @@ public class GroupMessageAct extends BaseFragmentActivity {
         mTitle.setText("群消息");
         gid = getIntent().getStringExtra(INTENTTAG);
         mHeadPic = getIntent().getStringExtra(ACTIVITYTAG);
-        GroupMessageFrag mGroupMessage = (GroupMessageFrag) new GroupMessageFrag();
+        GroupMessageFrag mGroupMessage = new GroupMessageFrag();
         ft.replace(R.id.ll_groupmessage_layout, mGroupMessage, GroupMessageFrag.FRAGMENTTAG);
         ft.commit();
         mAvatar.setVisibility(View.VISIBLE);

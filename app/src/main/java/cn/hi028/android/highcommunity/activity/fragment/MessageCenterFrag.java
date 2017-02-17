@@ -52,15 +52,15 @@ public class MessageCenterFrag extends BaseFragment {
     public static final String TAG = "~MsgCenterFrag->";
     public static final String FRAGMENTTAG = "MessageCenterFrag";
     @ViewById(R.id.vp_MessageCenter_ViewPager)
-    MyCustomViewPager mPager;// 页卡内容
+    MyCustomViewPager mPager;
     @ViewById(R.id.rg_Message_Center)
     RadioGroup rg;//
     /**当前页**/
     int currentPo = 0;
-    public List<ListView> listViewList; // Tab页面列表
-    public List<View> proPressList; // Tab页面列表
-    public List<TextView> noDataList; // Tab页面列表
-    private List<BaseAdapter> adapterList; // Tab页面列表
+    public List<ListView> listViewList;
+    public List<View> proPressList;
+    public List<TextView> noDataList;
+    private List<BaseAdapter> adapterList;
 
     @AfterViews
     void initView() {
@@ -81,9 +81,8 @@ public class MessageCenterFrag extends BaseFragment {
         noDataList = new ArrayList<TextView>();
         listViewList = new ArrayList<ListView>();
         adapterList = new ArrayList<BaseAdapter>();
-        HuiOrderAdapter adapter = new HuiOrderAdapter();//与我相关用
+        HuiOrderAdapter adapter = new HuiOrderAdapter();
         List<View> viewList = new ArrayList<View>();
-        //将与我相关和系统消息添加进viewlist
         viewList.add(getRelatedList());
         viewList.add(getPageView());
         mPager.setAdapter(adapter);
@@ -92,7 +91,6 @@ public class MessageCenterFrag extends BaseFragment {
             public void onPageScrolled(int i, float v, int i1) {
 
             }
-
             @Override
             public void onPageSelected(int i) {
                 currentPo = i;

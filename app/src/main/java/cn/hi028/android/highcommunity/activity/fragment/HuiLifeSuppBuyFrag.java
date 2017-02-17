@@ -23,7 +23,6 @@ import com.don.tools.GeneratedClassUtils;
 
 import net.duohuo.dhroid.activity.BaseFragment;
 import net.duohuo.dhroid.util.ListUtils;
-import net.duohuo.dhroid.util.LogUtil;
 import net.duohuo.dhroid.view.CustomListView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -64,7 +63,7 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  */
 @EFragment(resName = "frag_huilife_suppbuy")
 public class HuiLifeSuppBuyFrag extends BaseFragment {
-    static final String Tag = "HuiLifeSuppBuyFrag--->";
+    static final String Tag = "HuiLifeSuppBuyFrag->";
     @ViewById(R.id.cl_goods)
     CustomListView cl_goods;
     @ViewById(R.id.tv_reserve_name)
@@ -350,7 +349,6 @@ public class HuiLifeSuppBuyFrag extends BaseFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LogUtil.d("------onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null && requestCode == 0x21 && resultCode == 0x22) {
             AddressBean address = (AddressBean) data.getSerializableExtra("address");

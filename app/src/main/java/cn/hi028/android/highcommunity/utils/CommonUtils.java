@@ -1,10 +1,5 @@
-/***************************************************************************
- * Copyright (c) by raythinks.com, Inc. All Rights Reserved
- **************************************************************************/
-
 package cn.hi028.android.highcommunity.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
-import android.util.DisplayMetrics;
 
 import net.duohuo.dhroid.util.LogUtil;
 
@@ -89,8 +83,7 @@ public class CommonUtils {
     public static String resolvePhotoFromIntent(Context context, Intent intent) {
         String appPath=IMESSAGE_IMAGE;
         if (context == null || intent == null || appPath == null) {
-            LogUtil.e(TAG,
-                    "resolvePhotoFromIntent fail, invalid argument");
+            LogUtil.e(TAG, "resolvePhotoFromIntent fail, invalid argument");
             return null;
         }
         Uri uri = Uri.parse(intent.toURI());

@@ -9,7 +9,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 
 public class BitmapHandler {
-
 	public static Bitmap createCircleBitmap(Bitmap srcBitmap){
 		if(srcBitmap == null){
 			return srcBitmap;

@@ -1,29 +1,15 @@
 package cn.hi028.android.highcommunity.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.os.Handler;
-import android.os.Message;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-
-import com.don.tools.BpiUniveralImage;
 
 import net.duohuo.dhroid.util.ImageLoaderUtil;
 
-import photo.activity.GalleryActivity;
-import photo.util.Bimp;
-
-import java.util.List;
-
 import cn.hi028.android.highcommunity.R;
-import cn.hi028.android.highcommunity.utils.Constacts;
+import photo.util.Bimp;
 import photo.util.PublicWay;
 
 /**
@@ -34,12 +20,10 @@ public class GridAdapter extends BaseFragmentAdapter {
 	Context mConstext;
 	private LayoutInflater inflater;
 	private int selectedPosition = -1;
-
 	public GridAdapter(Context context) {
 		mConstext = context;
 		inflater = LayoutInflater.from(context);
 	}
-
 	public int getCount() {
 		if (Bimp.tempSelectBitmap.size() > PublicWay.num) {
 			return PublicWay.num;
@@ -76,7 +60,6 @@ public class GridAdapter extends BaseFragmentAdapter {
 		}
 		return convertView;
 	}
-
 	public class ViewHolder {
 		public ImageView image;
 	}

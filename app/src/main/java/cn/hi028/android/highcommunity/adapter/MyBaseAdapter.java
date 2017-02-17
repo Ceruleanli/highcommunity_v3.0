@@ -17,7 +17,6 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 	protected List<T> data;
 	private boolean isAnimation = true;
 	private Random random;
-	private int lastPosition = -1;
 	private int animationid[] = { 0, 0 };
 	private int numCount;
 	public float density;
@@ -96,7 +95,6 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 		public ViewHolder(View convertView) {
 			this.convertView = convertView;
 		}
-
 		@SuppressWarnings("unchecked")
 		public <T extends View> T getView(int resId) {
 			View v = views.get(resId);

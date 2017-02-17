@@ -75,26 +75,27 @@ public class AutoVoteList_V_Adapter extends BaseFragmentAdapter {
         final Auto_VoteList_Vote.VoteVVDataEntity mBean = mList.get(position);
         mViewHolder.mTitle.setText(mBean.getTitle());
         mViewHolder.mTime.setText(TimeUtil.getYearMonthDay(Long.parseLong(mBean.getCreate_time())));
-        mViewHolder.mVBuilding.setText("适用于："+mBean.getBuilding());
-        if (mBean.getIs_voted()==1){
+        mViewHolder.mVBuilding.setText("适用于：" + mBean.getBuilding());
+        if (mBean.getIs_voted() == 1) {
             mViewHolder.mIsJoin.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mViewHolder.mIsJoin.setVisibility(View.GONE);
         }
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //这里写反了  跳去了问询详情
-                Intent mIntent_report=new Intent(context, AutonomousAct_Third.class);
-                mIntent_report.putExtra("title",TAG_QUESTION_DETAIL);
-                mIntent_report.putExtra("question_id",mBean.getId());
-                mIntent_report.putExtra("is_voted",mBean.getIs_voted());
-                mIntent_report.putExtra("type",2);
+                Intent mIntent_report = new Intent(context, AutonomousAct_Third.class);
+                mIntent_report.putExtra("title", TAG_QUESTION_DETAIL);
+                mIntent_report.putExtra("question_id", mBean.getId());
+                mIntent_report.putExtra("is_voted", mBean.getIs_voted());
+                mIntent_report.putExtra("type", 2);
                 context.startActivity(mIntent_report);
             }
         });
         return convertView;
     }
+
     @Override
     public void AddNewData(Object mObject) {
         if (mObject instanceof List<?>) {
@@ -108,9 +109,10 @@ public class AutoVoteList_V_Adapter extends BaseFragmentAdapter {
         mList.clear();
         notifyDataSetChanged();
     }
+
     static class ViewHolder {
         TextView mTitle;
         TextView mTime;
-        TextView mVBuilding,mIsJoin;
+        TextView mVBuilding, mIsJoin;
     }
 }

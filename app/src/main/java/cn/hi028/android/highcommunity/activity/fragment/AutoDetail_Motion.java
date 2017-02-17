@@ -33,9 +33,8 @@ import cn.hi028.android.highcommunity.utils.TimeUtil;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoDetail_Motion extends BaseFragment {
-    public static final String Tag = "~~~AutoDetail_Motion~~~";
+    public static final String Tag = "AutoDetail_Motion：";
     public static final String FRAGMENTTAG = "AutoDetail_Motion";
     @Bind(R.id.item_aotumotion_but_support)
     CheckedTextView but_Support;
@@ -58,7 +57,6 @@ public class AutoDetail_Motion extends BaseFragment {
     @Bind(R.id.motiondetail_vote_percent)
     TextView mVotePercent;
     View rootView;
-
     Auto_SupportedResultBean.SupportedResultDataEntity mResultData;
 
     @Override
@@ -72,9 +70,7 @@ public class AutoDetail_Motion extends BaseFragment {
         return rootView;
     }
 
-
     private void initView() {
-        LogUtil.d(Tag + "initView");
         mProgress.setVisibility(View.VISIBLE);
     }
 
@@ -88,7 +84,6 @@ public class AutoDetail_Motion extends BaseFragment {
         public void onError(int id, String message) {
             HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
         }
-
         @Override
         public void onSuccess(Object message) {
             if (message == null) {

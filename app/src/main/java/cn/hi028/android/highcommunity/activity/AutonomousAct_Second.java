@@ -20,8 +20,7 @@ import cn.hi028.android.highcommunity.activity.fragment.AutoFrag_SuperVise;
 import cn.hi028.android.highcommunity.activity.fragment.AutoFrag_Vote;
 
 /**
- * * @功能：自治大厅 6个模块二级Act<br>
- *
+ * @功能：自治大厅 6个模块二级Act<br>
  * @作者： Lee_yting<br>
  * @时间：2016/10/9<br>
  */
@@ -32,14 +31,14 @@ public class AutonomousAct_Second extends BaseFragmentActivity {
     public static final int TAG_MOTION = 3;
     public static final int TAG_SUPERVISE = 4;
     public static final int TAG_CERTIFICATION = 5;
-
     @Bind(R.id.auto_sec_img_back)
     ImageView img_Back;
     @Bind(R.id.auto_sec_tv_title)
     TextView tv_Title;
     @Bind(R.id.auto_sec_fraglayout)
     LinearLayout auto_Fraglayout;
-int owner_id;
+    int owner_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +50,7 @@ int owner_id;
 
     private void initView() {
         int tag = getIntent().getIntExtra("title", -1);
-        owner_id = getIntent().getIntExtra("owner_id",-1);
+        owner_id = getIntent().getIntExtra("owner_id", -1);
         if (tag == -1) return;
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -79,9 +78,9 @@ int owner_id;
             case TAG_SUPERVISE:
                 tv_Title.setText("监督");
                 AutoFrag_SuperVise mSuperVise = new AutoFrag_SuperVise();
-                Bundle mBundle=new Bundle();
-                if (owner_id!=-1){
-                    mBundle.putInt("owner_id",owner_id);
+                Bundle mBundle = new Bundle();
+                if (owner_id != -1) {
+                    mBundle.putInt("owner_id", owner_id);
                     mSuperVise.setArguments(mBundle);
                     ft.replace(R.id.auto_sec_fraglayout, mSuperVise, AutoFrag_SuperVise.FRAGMENTTAG);
                 }
@@ -100,6 +99,7 @@ int owner_id;
         super.onActivityResult(requestCode, resultCode, data);
 
     }
+
     @OnClick(R.id.auto_sec_img_back)
     public void onClick() {
         onBackPressed();

@@ -8,7 +8,6 @@ import cn.hi028.android.highcommunity.view.NoScroolGridView;
 
 
 public class GridViewUtils {
-
 	/**
 	 * 存储宽度
 	 */

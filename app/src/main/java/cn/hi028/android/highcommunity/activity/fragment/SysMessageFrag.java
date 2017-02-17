@@ -9,14 +9,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.don.tools.BpiHttpHandler;
 
 import net.duohuo.dhroid.activity.BaseFragment;
-import net.duohuo.dhroid.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,17 +33,11 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2016-01-30<br>
  */
 public class SysMessageFrag extends BaseFragment {
-    public static final String TAG = "~MsgCenterFrag->";
-    public static final String Tag = "~MsgCenterFrag->";
+    public static final String TAG = "SysMessageFrag->";
     public static final String FRAGMENTTAG = "SysMessageFrag";
-    public List<ListView> listViewList;
-    public List<View> proPressList;
-    public List<TextView> noDataList;
-    private List<BaseAdapter> adapterList;
     List<SystemMessageBean.SystemMsgDataEntity> mSystemMsgList=new ArrayList<SystemMessageBean.SystemMsgDataEntity>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LogUtil.d(Tag + "onCreateView");
         View view = inflater.inflate(R.layout.frag_system_message2, null);
         getPageView2(view);
         initView();
@@ -55,7 +47,6 @@ public class SysMessageFrag extends BaseFragment {
     public SystemMsgAdapter adapter ;
     ListView ptfl;
     View mProgress;
-    ListView lv_list;
     void getPageView2(View view) {
         adapter = new SystemMsgAdapter(getActivity(),mSystemMsgList);
         ptfl = (ListView) view.findViewById(R.id.sysMsg_listView);

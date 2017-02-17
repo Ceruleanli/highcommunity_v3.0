@@ -67,7 +67,7 @@ import cn.hi028.android.highcommunity.utils.TimeUtil;
 public class CommunityDetilsFrag extends BaseFragment {
 
 	public static final String FRAGMENTTAG = "CommunityDetilsFrag";
-	final String  Tag="CommunityDetilsFrag--->";
+	final String  Tag="CommunityDetilsFrag->";
 	CircleImageView mAvatar;
 	TextView mName;
 	TextView mSex;
@@ -371,17 +371,13 @@ public class CommunityDetilsFrag extends BaseFragment {
 		}
 		Log.e(Tag,"getSite"+mBean.getSite());
 		if (mBean.getSite()!=null&&!mBean.getSite().equals("null")&&!mBean.getSite().equals("")){
-			Log.e(Tag,"getSite"+1);
 
 			mLocation.setText(mBean.getSite());
 		}else if (mBean.getVillage_name()!=null&&!mBean.getVillage_name().equals("null")&&!mBean.getVillage_name().equals("")){
-			Log.e(Tag,"getSite"+2);
 
 			mLocation.setText(mBean.getVillage_name());
 
 		}else{
-			Log.e(Tag,"getSite"+3);
-
 			mLocation.setVisibility(View.GONE);
 		}
 

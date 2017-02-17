@@ -157,7 +157,6 @@ public class NewHuiGdcarAdapter extends BaseAdapter {
 
                                     mWatingWindow.dismiss();
                                 }
-                                Log.e(Tag, "加入购物车 onSuccess 返回数据：" + message.toString());
                                 mBean.setNum(mBean.getNum() + 1);
                             }
 
@@ -208,7 +207,6 @@ public class NewHuiGdcarAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (mBean.getNum() > 0) {
-
                     cartType = 0;
                     if (TextUtils.isEmpty(HighCommunityApplication.mUserInfo.getToken())) {
                         HighCommunityUtils.GetInstantiation().ShowToast("请先登录再操作", 0);
@@ -219,21 +217,15 @@ public class NewHuiGdcarAdapter extends BaseAdapter {
                             @Override
                             public void onError(int id, String message) {
                                 if (mWatingWindow!=null){
-
                                     mWatingWindow.dismiss();
                                 }
-
                                 HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
-
                             }
-
                             @Override
                             public void onSuccess(Object message) {
                                 if (mWatingWindow!=null){
-
                                     mWatingWindow.dismiss();
                                 }
-                                Log.e(Tag, "加入购物车 onSuccess 返回数据：" + message.toString());
                                 mBean.setNum(mBean.getNum() - 1);
                             }
 
@@ -241,24 +233,18 @@ public class NewHuiGdcarAdapter extends BaseAdapter {
                             public Object onResolve(String result) {
                                 return result;
                             }
-
                             @Override
                             public void setAsyncTask(AsyncTask asyncTask) {
                             }
-
                             @Override
                             public void cancleAsyncTask() {
-
                                 if (mWatingWindow!=null){
-
                                     mWatingWindow.dismiss();
                                 }
                             }
 
                             @Override
-                            public void shouldLogin(boolean isShouldLogin) {
-
-                            }
+                            public void shouldLogin(boolean isShouldLogin) {}
 
                             @Override
                             public void shouldLoginAgain(boolean isShouldLogin, String msg) {
@@ -319,7 +305,6 @@ public class NewHuiGdcarAdapter extends BaseAdapter {
         data.clear();
         notifyDataSetChanged();
     }
-
     class ViewHolder {
         TextView tv_goods_name, tv_goods_standard, tv_goods_price, tv_goods_num, tv_goods_add, tv_goods_reduce, tv_total_pay;
         ImageView img_goods_pic, img_goods_ch;

@@ -27,7 +27,6 @@ public class CityListAdapter extends BaseFragmentAdapter {
     List<CitysBean> mlist = new ArrayList<CitysBean>();
     CitysBean bean;
     String buttonText = null;
-
     public CityListAdapter(Context mContext, Object object) {
         this.mContext = mContext;
         if (object instanceof List<?>) {
@@ -36,9 +35,6 @@ public class CityListAdapter extends BaseFragmentAdapter {
             buttonText = (String) object;
         }
     }
-
-    ;
-
     @Override
     public int getCount() {
         return mlist.size();
@@ -71,7 +67,6 @@ public class CityListAdapter extends BaseFragmentAdapter {
         viewholder.mTeacherName.setText(bean.getCity());
         return convertView;
     }
-
 
     private class ViewHolder {
         TextView mTeacherName;

@@ -1,8 +1,6 @@
 package cn.hi028.android.highcommunity.utils;
 
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -39,7 +37,6 @@ public class BDHttpUtil {
 
         HttpUtils mHttpUtils = MHttpHolder.getHttpUtils();
         RequestParams params = new RequestParams();
-//        params.addBodyParameter("callback", "renderReverse");
         params.addBodyParameter("location", longitude + "," + latitude);
         params.addBodyParameter("output", "json");
         params.addBodyParameter("pois", 1 + "");
@@ -50,26 +47,20 @@ public class BDHttpUtil {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String content = responseInfo.result;
-                Log.e(Tag, "http 访问success的 content--->" + content);
                 mBean = new Gson().fromJson(content, BDRequestLocationBean.class);
-
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e(Tag, "http 访问失败的 arg1--->" + s.toString());
                 HighCommunityUtils.GetInstantiation().ShowToast(s.toString(), 0);
-
             }
         });
         return mBean;
     }
 
     public static List<BDRequestLocationBean.ResultEntity.PoisEntity> getPOiList(double longitude, double latitude) {
-
         BDRequestLocationBean location = getLocation(longitude, latitude);
         if (location != null) {
-
             List<BDRequestLocationBean.ResultEntity.PoisEntity> poisList = location.getResult().getPois();
             return poisList;
         } else {
@@ -78,10 +69,8 @@ public class BDHttpUtil {
 
     }
     public static List<SimplePoiBean> getSimplePOiList(double longitude, double latitude) {
-
         BDRequestLocationBean location = getLocation(longitude, latitude);
         if (location != null) {
-
             List<BDRequestLocationBean.ResultEntity.PoisEntity> poisList = location.getResult().getPois();
             List<SimplePoiBean> mSimplePOiList   =new ArrayList<SimplePoiBean>();
             for (int i = 0; i < poisList.size(); i++) {
@@ -94,7 +83,5 @@ public class BDHttpUtil {
         } else {
             return null;
         }
-
     }
-
 }

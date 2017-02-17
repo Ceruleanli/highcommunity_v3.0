@@ -53,7 +53,6 @@ public class CommDetailAdapter extends BaseFragmentAdapter {
     ReplyBean mTempReply = new ReplyBean();
     PopupWindow mWatingWindow;
     public CommDetailAdapter(CommunityDetilsFrag mContext) {
-
         this.mFrag = mContext;
     }
 
@@ -128,7 +127,6 @@ public class CommDetailAdapter extends BaseFragmentAdapter {
                         ds.setColor(mFrag.getActivity().getResources().getColor(R.color.Defult_Color_AppGreen));
                         ds.setUnderlineText(false);
                     }
-
                     @Override
                     public void onClick(View view) {
                         mFrag.setText("回复:" + host, hostId, mBean.getParentId(), true);
@@ -208,7 +206,6 @@ public class CommDetailAdapter extends BaseFragmentAdapter {
                         }
                         mBean.setComment_praise(mBean.getComment_praise() + 1);
                         // TODO  这里应该要点赞图片变化的  但是接口没有数据可以判断你是不是点赞了  所以暂时先不处理自己点赞图片变化
-//                        mViewHolder.mAssist.setSelected(true);
                         notifyDataSetChanged();
                     }
 

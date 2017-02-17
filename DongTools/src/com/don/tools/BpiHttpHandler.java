@@ -66,12 +66,9 @@ public class BpiHttpHandler extends AsyncDefaultHttppHandler {
                 String msg = jsonSuccess.getString(TAG_MSG);
                 if (msg.contains("请先登陆")) {
                     this.mhttpHandler.shouldLoginAgain(true,msg);
-//                    HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
-//                    HighCommunityApplication.toLoginAgain(getActivity());
 
                 } else {
 
-//                    this.mhttpHandler.shouldLogin(false);
                     if (isSuccess) {
                         String data = "";
                         if (jsonSuccess.has(TAG_CONTENT)) {

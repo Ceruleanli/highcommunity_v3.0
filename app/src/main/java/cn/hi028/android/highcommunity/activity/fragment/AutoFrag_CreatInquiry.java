@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.don.tools.BpiHttpHandler;
 
 import net.duohuo.dhroid.activity.BaseFragment;
-import net.duohuo.dhroid.util.LogUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,9 +25,8 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoFrag_CreatInquiry extends BaseFragment {
-    public static final String Tag = "~~~AutoFrag_CreatReport~~~";
+    public static final String Tag = "CreatReport：";
     public static final String FRAGMENTTAG = "AutoFrag_CreatReport";
     int owner_id;
     @Bind(R.id.creatInquiry_content)
@@ -39,7 +37,6 @@ public class AutoFrag_CreatInquiry extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LogUtil.d(Tag + "onCreateView");
         View view = inflater.inflate(R.layout.frag_auto_creat_inquiry, null);
         Bundle bundle = getArguments();
         owner_id = bundle.getInt("owner_id", -1);

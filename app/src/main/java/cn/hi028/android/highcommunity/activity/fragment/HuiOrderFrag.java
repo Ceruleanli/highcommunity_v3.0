@@ -43,7 +43,6 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  */
 @EFragment(resName = "frag_huilife_order_vp")
 public class HuiOrderFrag extends BaseFragment {
-
     public static final String FRAGMENTTAG = "HuiOrderFrag";
     @ViewById(R.id.vPager)
     ViewPager mPager;

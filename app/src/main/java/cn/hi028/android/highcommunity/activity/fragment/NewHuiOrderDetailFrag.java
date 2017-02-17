@@ -316,8 +316,6 @@ public class NewHuiOrderDetailFrag extends BaseFragment {
 
         }
     }
-    private PopupWindow mPayWindow,mWatingWindow;
-
     /**
      * 取消订单
      *

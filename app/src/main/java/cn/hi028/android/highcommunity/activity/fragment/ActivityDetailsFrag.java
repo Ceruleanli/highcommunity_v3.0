@@ -131,7 +131,6 @@ public class ActivityDetailsFrag extends BaseFragment {
         mlistView.setMode(PullToRefreshBase.Mode.DISABLED);
         mlistView.getRefreshableView().addHeaderView(header);
         mlistView.setAdapter(mAdapter);
-        Log.e(Tag,"HTTPHelper.ActivityDetail---");
 
         HTTPHelper.ActivityDetail(mIbpi, HighCommunityApplication.mUserInfo.getId() + "", aid);
         mGridView.setAdapter(mAssistPicAdapter);

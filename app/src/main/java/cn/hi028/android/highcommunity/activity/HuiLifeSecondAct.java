@@ -45,11 +45,9 @@ public class HuiLifeSecondAct extends BaseFragmentActivity {
             mHight.setVisibility(View.GONE);
         }
         int flag = getIntent().getIntExtra(ACTIVITYTAG, -1);
-
         carIdList = getIntent().getStringExtra("carIdList");
         order_num = getIntent().getStringExtra("order_num");
         isFromOrder = getIntent().getBooleanExtra("isFromOrder", false);
-
         Log.e(Tag, "传过来的数据：carIdList：" + carIdList + ",order_num：" + order_num);
         if (flag == -1)
             return;
@@ -70,13 +68,11 @@ public class HuiLifeSecondAct extends BaseFragmentActivity {
                     mBundle.putInt("orderType", 1);
                     mNewHuiBuyFrag.setArguments(mBundle);
                     ft.replace(R.id.ll_huilife_second_layout, mNewHuiBuyFrag, ServiceNoticeDetailFrag.FRAGMENTTAG);
-
-
                 }
                 break;
             case Constacts.HUILIFE_SUPPORT_ORDER:
                 mTitle.setText("订单");
-                HuiLifeSuppBuyFrag mDetails = (HuiLifeSuppBuyFrag) new HuiLifeSuppBuyFrag_();
+                HuiLifeSuppBuyFrag mDetails =  new HuiLifeSuppBuyFrag_();
                 ft.replace(R.id.ll_huilife_second_layout, mDetails, ServiceNoticeDetailFrag.FRAGMENTTAG);
                 break;
             case Constacts.HUILIFE_CHIPS_DETAIL:

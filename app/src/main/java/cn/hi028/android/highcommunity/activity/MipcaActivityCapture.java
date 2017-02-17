@@ -34,8 +34,8 @@ import cn.hi028.android.highcommunity.R;
 
 /**
  * Initial the camera
- *
  * @author Ryan.Tang
+ * 说明：扫描二维码相关
  */
 public class MipcaActivityCapture extends BaseFragmentActivity implements Callback {
     static final String Tag = "MipcaActCapture:";
@@ -49,10 +49,6 @@ public class MipcaActivityCapture extends BaseFragmentActivity implements Callba
     private boolean playBeep;
     private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
-
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

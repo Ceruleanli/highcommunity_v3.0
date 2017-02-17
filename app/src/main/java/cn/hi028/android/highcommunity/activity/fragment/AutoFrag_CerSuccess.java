@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,7 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2016/10/28<br>
  */
 public class AutoFrag_CerSuccess extends BaseFragment {
-    public static final String Tag = "~~~CerSuccess~~~";
+    public static final String Tag = "CerSuccess：";
     public static final String FRAGMENTTAG = "AutoFrag_CerSuccess";
     @Bind(R.id.pg_progress)
     ProgressBar mProgress;
@@ -56,7 +55,6 @@ public class AutoFrag_CerSuccess extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
         View view = inflater.inflate(R.layout.frag_cer_success, null);
         ButterKnife.bind(this, view);
         initView();
@@ -64,7 +62,6 @@ public class AutoFrag_CerSuccess extends BaseFragment {
     }
 
     void initView() {
-        Log.d(Tag, "initView");
         mProgress.setVisibility(View.VISIBLE);
         DisplayMetrics mdm = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(mdm);
@@ -79,13 +76,11 @@ public class AutoFrag_CerSuccess extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(Tag, "onPause");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(Tag, "onResume");
         initDatas();
     }
 
@@ -96,10 +91,8 @@ public class AutoFrag_CerSuccess extends BaseFragment {
     }
 
     private void ceratCer() {
-
         Intent mCreatCerIntent = new Intent(getActivity(), AutoCommitAct.class);
         mCreatCerIntent.setExtrasClassLoader(getClass().getClassLoader());
-
         mCreatCerIntent.putExtra("tag_creatCer", TAG_CREAT_CER);
         startActivity(mCreatCerIntent);
 

@@ -4,12 +4,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.don.tools.BpiHttpHandler;
@@ -34,7 +32,7 @@ import cn.hi028.android.highcommunity.view.ECAlertDialog;
  * @时间：2016/10/11<br>
  */
 public class AutonomousMainFrag extends BaseFragment implements OnClickListener {
-    public static final String Tag = "~~~AutonomousMain";
+    public static final String Tag = "AutonomousMain";
     public static final String FRAGMENTTAG = "AutonomousMainFrag";
     public static final int TAG_NOTIC = 0;
     public static final int TAG_VOTE = 1;
@@ -42,7 +40,6 @@ public class AutonomousMainFrag extends BaseFragment implements OnClickListener 
     public static final int TAG_MOTION = 3;
     public static final int TAG_SUPERVISE = 4;
     public static final int TAG_CERTIFICATION = 5;
-
 
     @Bind(R.id.autoFrg_notic)
     RelativeLayout auto_Notice;
@@ -81,16 +78,9 @@ public class AutonomousMainFrag extends BaseFragment implements OnClickListener 
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
-        return contentView;
-    }
 
     private void initDatas() {
-        Log.d(Tag, "initDatas");
         HTTPHelper.InitAutoAct(mIbpi);
-
     }
 
     boolean isLocationNoData;

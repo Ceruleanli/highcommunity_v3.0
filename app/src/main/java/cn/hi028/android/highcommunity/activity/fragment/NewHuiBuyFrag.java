@@ -137,7 +137,6 @@ public class NewHuiBuyFrag extends BaseFragment {
         carIdList = bundle.getString("carIdList");
         order_num = bundle.getString("order_num");
         orderType = bundle.getInt("orderType", -1);
-        Log.d(Tag, "carIdList=" + carIdList);
         Log.d(Tag, "order_num=" + order_num);
         WchatPayUtils.getInstance().init(getActivity());
         initData();
@@ -267,7 +266,6 @@ public class NewHuiBuyFrag extends BaseFragment {
 
     @Override
     public void onResume() {
-//        initData();
         super.onResume();
     }
 
@@ -333,7 +331,6 @@ public class NewHuiBuyFrag extends BaseFragment {
             if (orderType != 1 && orderType != 0) {
                 return;
             }
-            Log.e(Tag, "onSuccess:" + mBean.toString());
             orderParams = new HuiSuppOrderParams2();
             orderParams.setToken(HighCommunityApplication.mUserInfo.getToken());
             Log.e(Tag, "onSuccess:" + mBean.getTotal_fee() + "," + mBean.getZero_money());
@@ -355,13 +352,10 @@ public class NewHuiBuyFrag extends BaseFragment {
 
         @Override
         public Object onResolve(String result) {
-            Log.e(Tag, "onResolve:" + result);
             if (result.contains("\"consign\":false")) {
                 Log.e(Tag, "onResolve:替换");
-
                 result = result.replace("\"consign\":false", "\"consign\":null");
                 Log.e(Tag, "onResolve:替换ok" + "onResolve:" + result);
-
             }
             if (orderType == 0) {
 
@@ -514,7 +508,6 @@ public class NewHuiBuyFrag extends BaseFragment {
                 if (orderParams.getOrder_num() != null && !orderParams.getOrder_num().equals("")) {
                     params.put("order_num", orderParams.getCart_ids());
                 }
-                Log.e(Tag, "params:" + params.toString());
                 Log.e(Tag, "orderParams:" + orderParams.toString());
                 if (orderType == 0) {
                     HTTPHelper.submitNewHuiOrder(mIbpiOrder, orderParams.getTicket_id() + "", orderParams.getZero_money() + "", orderParams.getPay_type() + "",
@@ -547,7 +540,6 @@ public class NewHuiBuyFrag extends BaseFragment {
             if (null == message)
                 return;
             Log.e(Tag, "payType == " + payType);
-            Log.e(Tag, "message：" + message.toString());
             if (payType == -1) return;
             if (payType == 2) {
                 NewPaySuccessBean.PaySuccessDataEntity mBean = (NewPaySuccessBean.PaySuccessDataEntity) message;
@@ -559,7 +551,6 @@ public class NewHuiBuyFrag extends BaseFragment {
                             public void onPay(PayResult result) {
 
                                 String resultStatus = result.getResultStatus();
-                                Log.e(Tag, "resultStatus:" + resultStatus);
                                 // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                                 if (TextUtils.equals(resultStatus, "9000")) {
                                     Toast.makeText(getActivity(), "支付成功", Toast.LENGTH_SHORT).show();
@@ -584,8 +575,6 @@ public class NewHuiBuyFrag extends BaseFragment {
                 mWpayBean = (WpayBean) message;
                 Log.e(Tag, "WpayBean:" + mWpayBean.toString());
                 WchatPayUtils.getInstance().apay(getActivity(), mWpayBean.getAppid(), mWpayBean.getPartnerid(), mWpayBean.getPrepayid(), mWpayBean.getNoncestr(), mWpayBean.getPackages(), mWpayBean.getSign(), mWpayBean.getTimestamp());
-
-
             }
 
         }
@@ -593,10 +582,8 @@ public class NewHuiBuyFrag extends BaseFragment {
         @Override
         public Object onResolve(String result) {
             if (payType == 1) {
-                Log.e(Tag, "payType == 1" + result);
                 return HTTPHelper.ResolveHotGoodsWXOrder(result);
             } else if (payType == 2) {
-                Log.e(Tag, "payType == 2" + result);
                 return HTTPHelper.ResolveNewHuiOrder(result);
 
             }
@@ -691,7 +678,6 @@ public class NewHuiBuyFrag extends BaseFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e(Tag, "------onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null && requestCode == 0x21 && resultCode == 0x22) {
             Bundle bundle = data.getBundleExtra("data");
@@ -727,7 +713,6 @@ public class NewHuiBuyFrag extends BaseFragment {
         orderParams.setZero_money(0.0f);
         orderParams.setTicket_id(0);
         if (mConsign != null) {
-            Log.e(Tag, "mConsign != null");
             fl_huiLife_addressChooice.setVisibility(View.VISIBLE);
             orderParams.setAddress_id(mConsign.getId());
             tv_reserve_name.setText(mConsign.getName());
@@ -740,7 +725,6 @@ public class NewHuiBuyFrag extends BaseFragment {
             }
             mNoAddress.setVisibility(View.GONE);
         } else {
-            Log.e(Tag, "mConsign = null");
             mNoAddress.setVisibility(View.VISIBLE);
             fl_huiLife_addressChooice.setVisibility(View.GONE);
         }
@@ -749,12 +733,9 @@ public class NewHuiBuyFrag extends BaseFragment {
     }
 
     public void updateOrder() {
-        Log.e(Tag, "updateOrder:" + orderParams.toString());
-        Log.e(Tag, "parseFloat:" + orderParams.getZero_money());
         orderParams.setTotal_fee((float) (Math.round((orderParams.getTotal_amount() - orderParams.getZero_money() - orderParams.getTicket_value()) * 100)) / 100);
         tv_total_pay.setText("合计金额￥" + CommonUtils.f2Bi(orderParams.getTotal_amount()));
         tv_total_actual.setText("￥" + CommonUtils.f2Bi(orderParams.getTotal_fee()));
-
         Log.e(Tag, "orderParams.getTotal_amount()--" + orderParams.getTotal_amount() + ",tv_coupon.toString()--" + tv_coupon.getText().toString()
                 + ",orderParams.getTicket_value()--" + orderParams.getTicket_value());
         if (orderParams.getTotal_amount() <= 0 || orderParams.getTotal_fee() <= 0) {

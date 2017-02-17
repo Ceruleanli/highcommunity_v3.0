@@ -33,10 +33,8 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  */
 public class HuiSuppGdcarAdapter extends BaseAdapter {
 	HuiSuppGdCarFrag frag;
-
 	public HuiSuppGdcarAdapter(HuiSuppGdCarFrag frag) {
 		this.frag = frag;
-
 	}
 
 	List<GdCarBean> data = new ArrayList<GdCarBean>();

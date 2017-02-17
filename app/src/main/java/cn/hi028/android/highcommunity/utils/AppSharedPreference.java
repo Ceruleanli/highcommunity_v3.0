@@ -26,13 +26,4 @@ public class AppSharedPreference {
         SharedPreferences preferences = context.getSharedPreferences(sharedName, Context.MODE_PRIVATE);
         return preferences.getBoolean(key, defaultValue);
     }
-
-
-
-
-
-
-
-
-
 }

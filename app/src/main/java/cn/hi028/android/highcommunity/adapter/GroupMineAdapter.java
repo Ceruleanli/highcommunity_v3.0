@@ -38,7 +38,6 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2015/12/15<br>
  */
 public class GroupMineAdapter extends BaseFragmentAdapter {
-
     Context mContext;
     List<GroupBean> mlist = new ArrayList<GroupBean>();
 

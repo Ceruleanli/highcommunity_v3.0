@@ -4,36 +4,19 @@
     android:layout_height="wrap_content"
     android:background="@color/Defult_Color_AppGreen"
     android:orientation="vertical"
-    android:visibility="gone"
+    android:visibility="visible"
   >
 
-    <!--<include layout="@layout/title_status_height" />-->
+    <include layout="@layout/title_status_height"
+        android:id="@+id/status_height"
+        />
 
     <RelativeLayout
-        android:visibility="gone"
+        android:id="@+id/main_title_layout_tvandgroup"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height">
 
-        <ImageView
-            android:id="@+id/tv_mainlevel_LeftButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:paddingLeft="@dimen/padding_12"
-            android:paddingRight="42dp"
-            android:src="@mipmap/img_title_left"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/iv_mainlevel_LeftNewMessage"
-            android:layout_width="5dip"
-            android:layout_height="5dip"
-            android:layout_marginLeft="-40dp"
-            android:layout_marginTop="14dip"
-            android:layout_toRightOf="@id/tv_mainlevel_LeftButton"
-            android:clickable="true"
-            android:src="@mipmap/img_title_new_message"
-            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_mainlevel_title"
@@ -43,7 +26,7 @@
             android:gravity="center"
             android:textColor="@color/defult_color_white"
             android:textSize="@dimen/font_extra_large"
-            android:visibility="gone" />
+            android:visibility="visible" />
         <!--            android:background="@drawable/bg_maintitle_radiogroup"
         -->
         <RadioGroup
@@ -54,7 +37,7 @@
 
             android:background="@drawable/bg_maintitle_rg_huilife"
             android:orientation="horizontal"
-            android:visibility="visible">
+            android:visibility="gone">
             <!-- style="@style/My_RadioButton_Style"-->
             <RadioButton
                 android:id="@+id/rb_maintitle_leftbutton"
@@ -122,17 +105,6 @@
             android:layout_marginRight="@dimen/padding_12"
             android:clickable="true"
             android:src="@mipmap/img_title_message"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/iv_mainlevel_RightNewMessage"
-            android:layout_width="5dip"
-            android:layout_height="5dip"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="11dip"
-            android:layout_marginTop="@dimen/padding_12"
-            android:clickable="true"
-            android:src="@mipmap/img_title_new_message"
             android:visibility="gone" />
 
         <TextView

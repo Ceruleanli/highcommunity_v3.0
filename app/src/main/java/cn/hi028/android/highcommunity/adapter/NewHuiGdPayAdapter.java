@@ -83,12 +83,8 @@ public class NewHuiGdPayAdapter extends BaseAdapter {
 			viewHolder.img_goods_pic = (ImageView) convertView.findViewById(R.id.img_goods_pic);
 			convertView.setTag(viewHolder);
 		} else {
-			Log.e(Tag,"convertView != null");
-
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		Log.e(Tag,"convertView begin to set");
-
 		viewHolder.tv_goods_total.setVisibility(View.GONE);
 		viewHolder.tv_goods_name.setText(data.get(position).getName());
 		viewHolder.tv_goods_price.setText(data.get(position).getGoods_price() + "");
@@ -105,7 +101,6 @@ public class NewHuiGdPayAdapter extends BaseAdapter {
 	public void notifyDataSetChanged() {
 		super.notifyDataSetChanged();
 	}
-
 	class ViewHolder {
 		ImageView img_goods_pic;
 		TextView tv_goods_name,tv_goods_total;

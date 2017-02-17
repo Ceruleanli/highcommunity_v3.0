@@ -28,7 +28,6 @@ import cn.hi028.android.highcommunity.utils.HTTPHelper;
 
 /**
  * 商品评价
- *
  * @author Administrator
  */
 public class MyGoodsEvluateActivity extends BaseFragmentActivity implements OnClickListener {

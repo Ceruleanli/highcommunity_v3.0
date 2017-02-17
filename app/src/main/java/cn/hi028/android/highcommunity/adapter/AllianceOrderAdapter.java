@@ -78,11 +78,10 @@ public class AllianceOrderAdapter extends BaseFragmentAdapter {
 			mViewHolder.mAllianceOrderNumber = (TextView) convertView.findViewById(R.id.alliance_order_number);
 			mViewHolder.mBtnCancleAction = (TextView) convertView.findViewById(R.id.btn_cancle_action);
 			mViewHolder.mBtnAction = (TextView) convertView.findViewById(R.id.btn_action);
-//支付前的状态
+			//支付前的状态
 			mViewHolder.mForActionBefore =  (RelativeLayout) convertView.findViewById(R.id.for_action_status_before);
 			//支付后的状态
 			mViewHolder.mForActionAfter = (LinearLayout) convertView.findViewById(R.id.for_action_status_after);
-			
 			//取消订单 确认收货的容器
 			mViewHolder.mActionBtnLayout = (LinearLayout) convertView.findViewById(R.id.action_btn_layout);
 			mViewHolder.mAllianceOrderCounts2 = (TextView) convertView.findViewById(R.id.alliance_order_counts2);
@@ -364,7 +363,6 @@ public class AllianceOrderAdapter extends BaseFragmentAdapter {
 		@Override
 		public void setAsyncTask(AsyncTask asyncTask) {
 			// TODO Auto-generated method stub
-
 		}
 
 		@Override

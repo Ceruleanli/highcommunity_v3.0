@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.don.tools.BpiHttpHandler.IBpiHttpHandler;
 
-import net.duohuo.dhroid.util.LogUtil;
 import net.duohuo.dhroid.view.CustomListView;
 
 import org.xutils.view.annotation.ContentView;
@@ -31,7 +30,6 @@ import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.adapter.OderDetailsProductAdapter;
 import cn.hi028.android.highcommunity.bean.GoodsOrderSubmitBean;
 import cn.hi028.android.highcommunity.bean.NearbyOrderDetailBean;
-import cn.hi028.android.highcommunity.bean.NearbyOrderdetail2.NearbyOrderDeatai_Root;
 import cn.hi028.android.highcommunity.utils.CommonUtils;
 import cn.hi028.android.highcommunity.utils.HTTPHelper;
 import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
@@ -39,14 +37,12 @@ import cn.hi028.android.highcommunity.utils.TimeUtil;
 /**
  * 商家订单详情
  * @author Administrator
- *
+ *@version v1.0
  */
 @ContentView(R.layout.common_order_detail)
 public class ShangJiaOrderDetailAct extends Activity implements OnClickListener{
-
 	@ViewInject(R.id.img_back)
 	private ImageView back;
-	
 	@ViewInject(R.id.tv_reserve_name)
 	TextView tv_reserve_name;
 	@ViewInject(R.id.tv_order_id)
@@ -82,7 +78,6 @@ public class ShangJiaOrderDetailAct extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		x.view().inject(this);
 		out_trade_no = getIntent().getStringExtra("out_trade_no");
-		LogUtil.d("~~~传过来的订单号："+out_trade_no);
 		initViews();
 		
 	}
@@ -110,7 +105,6 @@ String orderSendToDeatailAct;
 		adapter.notifyDataSetChanged();
 	}
 	IBpiHttpHandler mIbpi = new IBpiHttpHandler() {
-		private NearbyOrderDeatai_Root nearbyOrderDeatai_Root;
 		@Override
 		public void setAsyncTask(AsyncTask asyncTask) {
 		}
@@ -119,9 +113,7 @@ String orderSendToDeatailAct;
 		public void onSuccess(Object message) {
 			if (message != null) {
 			}
-			LogUtil.d("~~~ 获取商家联盟订单详情：message:"+message.toString());
 			data = (NearbyOrderDetailBean) message;
-			LogUtil.d("~~~ 获取商家联盟订单详情：data:"+data.toString());
 			updateData(data);
 		}
 		

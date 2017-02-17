@@ -23,7 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
-import com.lidroid.xutils.util.LogUtils;
 
 import net.duohuo.dhroid.activity.ActivityTack;
 import net.duohuo.dhroid.activity.BaseActivity;
@@ -47,13 +46,10 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class WelcomeAct extends BaseActivity {
 	static  final String Tag="WelcomeAct--->";
-
 	LinearLayout mWelcomeLayout;
 	FragmentManager ft = null;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// 透明状态栏
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -128,13 +124,13 @@ public class WelcomeAct extends BaseActivity {
 	}
 
 	/**
-	 * 判断程序是否第一次运行
+	 * 判断程序是否第一次运行来显示引导界面
 	 * @return
      */
 	private boolean isFirstRun(){
-		boolean isFirstRun = AppSharedPreference.getBooleanValue(getApplicationContext(), "app", "is_first_run", true);
+		boolean isFirstRun = AppSharedPreference.getBooleanValue(getApplicationContext(), "hi", "isFirstRun", true);
 		if(isFirstRun){
-			AppSharedPreference.putValue(getApplicationContext(), "app", "is_first_run", false);
+			AppSharedPreference.putValue(getApplicationContext(), "hi", "isFirstRun", false);
 		}
 		return isFirstRun;
 	}
@@ -157,7 +153,7 @@ public class WelcomeAct extends BaseActivity {
 
 		unregistNetworkReceiver();
 	}
-
+	private boolean isNoNetwork;
 	private void unregistNetworkReceiver(){
 		 WelcomeAct.this.unregisterReceiver(receiver);
 	 }
@@ -174,31 +170,22 @@ public class WelcomeAct extends BaseActivity {
 					 }else if(ConnectivityManager.TYPE_MOBILE == type){
 					 }else if(ConnectivityManager.TYPE_ETHERNET == type){
 					 }
-					 //有网络
-					 //					Toast.makeText(getActivity(), "有网络", 0).show();
-					 LogUtils.d("有网络");
-					 //					if(nextPage == 1){
-					 //					}
 					 isNoNetwork = false;
 				 }else{
 					 //没有网络
-					 LogUtils.d("没有网络");
 					 Toast.makeText(WelcomeAct.this, "没有网络", Toast.LENGTH_LONG).show();
-					 //					if(nextPage == 1){
-//					 mLoadingView.noNetwork();
-					 //					}
 					 isNoNetwork = true;
 				 }
 			 }
 		 }
 	 }
-	 private boolean isNoNetwork;
 
-	public int screenWidth;// 屏幕宽度，单位为px
-	public int screenHeight;// 屏幕高度，单位为px
-	public int densityDpi;// 屏幕密度，单位为dpi
-	public float scale;// 缩放系数，值为 densityDpi/160
-	public float fontScale;// 文字缩放系数，同scale
+
+	public int screenWidth;// 屏幕宽度
+	public int screenHeight;// 屏幕高度
+	public int densityDpi;// 屏幕密度
+	public float scale;// 缩放系数
+	public float fontScale;// 文字缩放系数
 
 	public final static int SCREEN_ORIENTATION_VERTICAL = 1; // 屏幕状态：横屏
 	public final static int SCREEN_ORIENTATION_HORIZONTAL = 2; // 屏幕状态：竖屏
@@ -216,11 +203,8 @@ public class WelcomeAct extends BaseActivity {
 		densityDpi = dm.densityDpi;
 		scale = dm.density;
 		fontScale = dm.scaledDensity;
-
 		screenOrientation = screenHeight > screenWidth ? SCREEN_ORIENTATION_VERTICAL
 				: SCREEN_ORIENTATION_HORIZONTAL;
-
-
 		Log.e(Tag,"屏幕参数："+ ":[screenWidth: "
 				+ screenWidth
 				+ " screenHeight: "
@@ -234,7 +218,6 @@ public class WelcomeAct extends BaseActivity {
 				+ " screenOrientation: "
 				+ (screenOrientation == SCREEN_ORIENTATION_VERTICAL ? "vertical"
 				: "horizontal") + "]");
-//        return dm;
 		setScreenParams();
 	}
 	public static int bigImgWith,bigImgHeight,smallImgWith;
@@ -251,7 +234,6 @@ public class WelcomeAct extends BaseActivity {
 		HighCommunityApplication.bigImgWith=every*5-2*pading;//大图的宽
 //		HighCommunityApplication.bigImgWith=(HighCommunityApplication.screenWidth - CommonUtils.dip2px(this, 20)-CommonUtils.dip2px(this, 16)) / 2;/2/大图的宽
 		bigImgHeight=every*6-CommonUtils.dip2px(this, 45)-3*pading;
-		//因为高太多，有减掉了40 -pading 8*2
 		HighCommunityApplication.bigImgHeight=bigImgHeight;
 		HighCommunityApplication.smallImgWith=3*every;
 	}

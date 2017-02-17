@@ -21,8 +21,6 @@ import com.don.tools.GeneratedClassUtils;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-import net.duohuo.dhroid.util.LogUtil;
-
 import cn.hi028.android.highcommunity.HighCommunityApplication;
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.activity.CommunityDetailAct;
@@ -41,7 +39,6 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2016-2-16<br>
  */
 public class GroupMessageFrag extends Fragment {
-
     public static final String FRAGMENTTAG = "GroupMessageFrag";
     private int mCount = -1;
     GroupMessageListAdapter mAdapter;
@@ -139,7 +136,6 @@ public class GroupMessageFrag extends Fragment {
         }
         @Override
         public void onSuccess(Object message) {
-        	LogUtil.d("---群组消息返回数据：---"+message.toString());
             if (null == message)
                 return;
             mList = (CommunityListBean) message;
@@ -183,10 +179,8 @@ public class GroupMessageFrag extends Fragment {
 
 	@Override
 	public void onResume() {
-		
 		mAdapter.ClearData();
         initData();
-		
 		super.onResume();
 	}
 

@@ -1,6 +1,5 @@
 package cn.hi028.android.highcommunity.utils;
 
-import org.xutils.x;
 import org.xutils.http.RequestParams;
 
 public class HttpUtilsReq {

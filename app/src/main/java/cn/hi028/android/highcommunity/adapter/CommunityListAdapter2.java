@@ -58,7 +58,7 @@ import cn.hi028.android.highcommunity.view.nine.MyNineGridView;
  */
 public class CommunityListAdapter2 extends BaseFragmentAdapter {
 
-    final String Tag = "CommunityListAdapter2--->";
+    final String Tag = "CommunityListAdapter2->";
     BaseFragmentActivity mContext;
     List<CommunityBean> mList = new ArrayList<CommunityBean>();
     CommunityListBean mBean;
@@ -153,8 +153,6 @@ public class CommunityListAdapter2 extends BaseFragmentAdapter {
         } else {
             //显示用户发动态的情况
 //            caseForUserTopic(mViewHolder, mBean);
-
-
             mViewHolder.ll_act.setVisibility(View.GONE);
             mViewHolder.mGridView.setVisibility(View.VISIBLE);
             mViewHolder.mMore.setVisibility(View.VISIBLE);
@@ -165,7 +163,6 @@ public class CommunityListAdapter2 extends BaseFragmentAdapter {
                 bigImgUrlList.add(i, Constacts.IMAGEHTTP + picList.get(i).getBig());
 
             }
-            Log.e(Tag, "imgUrlList-----" + imgUrlList.size());
             mViewHolder.mGridView.setUrlList(imgUrlList, bigImgUrlList);
             Log.e(Tag,position+"getSite"+mBean.getSite());
             if (mBean.getSite()!=null&&!mBean.getSite().equals("null")&&!mBean.getSite().equals("")){
@@ -191,9 +188,7 @@ public class CommunityListAdapter2 extends BaseFragmentAdapter {
             } else {
                 mViewHolder.mFrom.setVisibility(View.GONE);
             }
-
         }
-
         //设置用户头像
         if (mBean.getHead_pic() == null || mBean.getHead_pic().equals("")) {
             BpiUniveralImage.displayImage("drawable://" + R.mipmap.defult_avatar, mViewHolder.mAvatar);
@@ -359,7 +354,6 @@ public class CommunityListAdapter2 extends BaseFragmentAdapter {
 
                 } else {
                     //跳转到帖子
-
                     creatTime = mBean.getCreate_time();
                     Intent mCommunity = new Intent(mContext, GeneratedClassUtils.get(CommunityDetailAct.class));
                     mCommunity.putExtra(CommunityDetailAct.ACTIVITYTAG, "Details");
@@ -369,36 +363,30 @@ public class CommunityListAdapter2 extends BaseFragmentAdapter {
                 }
             }
         });
-
         //来自xxx群组监听
         mViewHolder.mFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(Tag, "点击来自xxx---type--->" + mViewHolder.mFrom.getText().toString() + ",---id--->" + mBean.getId());
                 if (mBean.getType() == 1 && mViewHolder.mFrom.getText().toString().endsWith("群组")) {
                     //跳转到群资料
                     Intent mInt = new Intent(mContext, GeneratedClassUtils.get(GroupDataAct.class));
                     mInt.putExtra(GroupDataAct.ACTIVITYTAG, "Detils");
                     mInt.putExtra(GroupDataAct.INTENTTAG, mBean.getGid() + "");
                     mContext.startActivity(mInt);
-
                 } else if (mBean.getType() == 2) {
                     //跳转到活动详情
                     Intent ActCreate = new Intent(mContext, GeneratedClassUtils.get(ActiveAct.class));
                     ActCreate.putExtra(ActiveAct.ACTIVITYTAG, Constacts.ACTIVITY_DETAILS);
                     ActCreate.putExtra(ActiveAct.INTENTTAG, mBean.getId() + "");
                     mContext.startActivity(ActCreate);
-
                 } else if (mBean.getType() == 3) {
                     //跳转到群资料
-
                     Intent mInt = new Intent(mContext, GeneratedClassUtils.get(GroupDataAct.class));
                     mInt.putExtra(GroupDataAct.ACTIVITYTAG, "Detils");
                     mInt.putExtra(GroupDataAct.INTENTTAG, mBean.getId() + "");
                     mContext.startActivity(mInt);
 
                 }
-//
             }
         });
         //头像点击监听
@@ -413,18 +401,14 @@ public class CommunityListAdapter2 extends BaseFragmentAdapter {
         });
         return convertView;
     }
-
     String creatTime = "";
     boolean isClickItem = false;
-
     public String getCreatTime() {
         return creatTime;
     }
-
     public boolean isClickItem() {
         return isClickItem;
     }
-
     public void setClickItem(boolean clickItem) {
         if (mFrag!=null){
 

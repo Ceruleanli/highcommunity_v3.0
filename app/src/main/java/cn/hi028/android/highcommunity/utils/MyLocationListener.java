@@ -82,7 +82,4 @@ public class MyLocationListener implements BDLocationListener {
     public BDLocation getLocation() {
         return location;
     }
-    //    public int getLocType ( ){
-//
-//    }
 }

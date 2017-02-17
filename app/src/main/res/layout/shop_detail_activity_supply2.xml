@@ -7,6 +7,7 @@
     android:fitsSystemWindows="true">
 
     <RelativeLayout
+
         android:id="@+id/ac_shop_good_title_rl"
         android:layout_width="match_parent"
         android:layout_height="48dp"

@@ -51,7 +51,6 @@ import photo.util.ImageItem;
  * @版本：1.0<br>
  * @时间：2016/1/13<br>
  */
-//@EFragment(resName = "frag_activitycreate")
 public class ActivityCreateFrag extends BaseFragment {
     public static final String Tag = "ActivityCreateFrag->";
     public static final String FRAGMENTTAG = "ActivityCreateFrag";

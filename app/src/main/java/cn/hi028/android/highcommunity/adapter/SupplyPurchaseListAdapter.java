@@ -6,7 +6,6 @@ import android.os.CountDownTimer;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StrikethroughSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import java.util.List;
 
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.activity.alliance.SupplyGoodsDetailActivity2;
-import cn.hi028.android.highcommunity.bean.Autonomous.Auto_SupportedResultBean;
 import cn.hi028.android.highcommunity.bean.NewSupplyBean;
 import cn.hi028.android.highcommunity.utils.Constacts;
 import cn.hi028.android.highcommunity.utils.MBitmapHolder;
@@ -37,12 +35,10 @@ import cn.hi028.android.highcommunity.view.MyNoScrollMeasureListview2;
  * @时间：2016/11/28<br>
  */
 public class SupplyPurchaseListAdapter extends BaseFragmentAdapter {
-    public static final String TAG = "SupplyPurchaseListAdapter：";
+    public static final String TAG = "SupplyPurchase：";
     List<NewSupplyBean.NewSupplyDataEntity.PurchaseEntity> mList = new ArrayList<NewSupplyBean.NewSupplyDataEntity.PurchaseEntity>();
-
     private Context context;
     private LayoutInflater layoutInflater;
-    Auto_SupportedResultBean.SupportedResultDataEntity mResultData;
 
     public SupplyPurchaseListAdapter(List<NewSupplyBean.NewSupplyDataEntity.PurchaseEntity> list, Context context) {
         super();
@@ -73,6 +69,7 @@ public class SupplyPurchaseListAdapter extends BaseFragmentAdapter {
     ViewHolder mViewHolder = null;
 
     onCounter mCounter;
+
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
         if (convertView == null) {
@@ -95,44 +92,41 @@ public class SupplyPurchaseListAdapter extends BaseFragmentAdapter {
             mViewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if(parent instanceof MyNoScrollMeasureListview2 &&((MyNoScrollMeasureListview2) parent).isMeasure){
-            Log.e(TAG,"~~~isMeasure position---"+position);
+        if (parent instanceof MyNoScrollMeasureListview2 && ((MyNoScrollMeasureListview2) parent).isMeasure) {
             return convertView;
         }
-        Log.d(TAG,"~~!  isMeasure ~position---"+position);
         final NewSupplyBean.NewSupplyDataEntity.PurchaseEntity mBean = mList.get(position);
-
         if (mBean.getCover_pic() == null || mBean.getCover_pic().equals("")) {
             BpiUniveralImage.displayImage("drawable://" + R.mipmap.default_no_pic, mViewHolder.mImg);
         } else {
             BpiUniveralImage.displayImage(Constacts.IMAGEHTTP + mBean.getCover_pic(), mViewHolder.mImg);
         }
-        mViewHolder.mNowPrice.setText("￥:"+mBean.getPrice());
+        mViewHolder.mNowPrice.setText("￥:" + mBean.getPrice());
         Spannable spanStrikethrough = new SpannableString("￥" + mBean.getOld_price());
         StrikethroughSpan stSpan = new StrikethroughSpan();  //设置删除线样式
         try {
             spanStrikethrough.setSpan(stSpan, 0, spanStrikethrough.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
         }
         mViewHolder.mPastPrice.setText(spanStrikethrough);
         mViewHolder.mGoodstitle.setText(mBean.getName());
-        if ( mBean.getPercent().contains("%")){
+        if (mBean.getPercent().contains("%")) {
 
             String[] strings = mBean.getPercent().split("%");
             mViewHolder.mProgressBar.setProgress(Integer.parseInt(strings[0]));
         }
         mViewHolder.mTvProgress.setText(mBean.getPercent());
-        mViewHolder.flashsaleTvKucun.setText("共"+mBean.getStorage()+"份");
+        mViewHolder.flashsaleTvKucun.setText("共" + mBean.getStorage() + "份");
         long nowTime = System.currentTimeMillis();
-        long time22 = Long.parseLong(mBean.getRemainTime())*1000 - nowTime;
-        startCutdown(mViewHolder.mCounterTime, position,(time22),1000);
+        long time22 = Long.parseLong(mBean.getRemainTime()) * 1000 - nowTime;
+        startCutdown(mViewHolder.mCounterTime, position, (time22), 1000);
         mViewHolder.mTojoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mIntent=new Intent(context, SupplyGoodsDetailActivity2.class);
-                mIntent.putExtra("id",mBean.getId());
+                Intent mIntent = new Intent(context, SupplyGoodsDetailActivity2.class);
+                mIntent.putExtra("id", mBean.getId());
                 context.startActivity(mIntent);
 
             }
@@ -141,31 +135,33 @@ public class SupplyPurchaseListAdapter extends BaseFragmentAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mIntent=new Intent(context, SupplyGoodsDetailActivity2.class);
-                mIntent.putExtra("id",mBean.getId());
+                Intent mIntent = new Intent(context, SupplyGoodsDetailActivity2.class);
+                mIntent.putExtra("id", mBean.getId());
                 context.startActivity(mIntent);
             }
         });
         mViewHolder.layout11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mIntent=new Intent(context, SupplyGoodsDetailActivity2.class);
-                mIntent.putExtra("id",mBean.getId());
+                Intent mIntent = new Intent(context, SupplyGoodsDetailActivity2.class);
+                mIntent.putExtra("id", mBean.getId());
                 context.startActivity(mIntent);
             }
         });
         mViewHolder.layout22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mIntent=new Intent(context, SupplyGoodsDetailActivity2.class);
-                mIntent.putExtra("id",mBean.getId());
+                Intent mIntent = new Intent(context, SupplyGoodsDetailActivity2.class);
+                mIntent.putExtra("id", mBean.getId());
                 context.startActivity(mIntent);
             }
         });
 
         return convertView;
     }
+
     BitmapUtils bitmapUtils;
+
     @Override
     public void AddNewData(Object mObject) {
         if (mObject instanceof List<?>) {
@@ -179,7 +175,8 @@ public class SupplyPurchaseListAdapter extends BaseFragmentAdapter {
         mList.clear();
         notifyDataSetChanged();
     }
-    class ViewHolder{
+
+    class ViewHolder {
         ImageView mImg;
         TextView mNowPrice;
         TextView mPastPrice;
@@ -190,7 +187,7 @@ public class SupplyPurchaseListAdapter extends BaseFragmentAdapter {
         TextView mTvProgress;
         TextView flashsaleTvKucun;
         CutdownTextView mCounterTime2;
-        RelativeLayout layout11,layout22;
+        RelativeLayout layout11, layout22;
 
     }
 
@@ -211,34 +208,14 @@ public class SupplyPurchaseListAdapter extends BaseFragmentAdapter {
 
     }
 
-    private void startCutdown(CutdownTextView view, final int position, long time, int period){
+    private void startCutdown(CutdownTextView view, final int position, long time, int period) {
         view.setOnCountDownFinishListener(new CutdownTextView.OnCountDownFinishListener() {
 
             @Override
             public void onFinish() {
-//                String url = UrlHandler.handlUrl(Constants.URL_UPDATE_PERIOD_INFO, getItem(position).period);
-//                mHttpUtils.send(HttpMethod.GET, url, new RequestCallBack<String>() {
-//
-//                    @Override
-//                    public void onFailure(HttpException arg0, String arg1) {
-//
-//                    }
-//                    @Override
-//                    public void onSuccess(ResponseInfo<String> arg0) {
-//                        try {
-//                            System.out.println("getView---------"+position+"被回调拉！！！");
-//                            String content = arg0.result;
-//                            ResponseRevealedPeriodInfo2 response = new Gson().fromJson(content, ResponseRevealedPeriodInfo2.class);
-//                            list.set(position, response.result);
-//                            int viewPosition = position - adapterView.getFirstVisiblePosition();
-//                            getView(position, adapterView.getChildAt(viewPosition), adapterView);
-//                        } catch (Exception e) {
-//                        }
-//                    }
-//                });
             }
         });
-        view.startCutdown(position,time, period);
+        view.startCutdown(position, time, period);
 
     }
 }

@@ -9,10 +9,7 @@ import static com.blankj.utilcode.utils.ConstUtils.*;
 
 
 /**
- * <pre>
- *     time  : 2016/8/2
- *     desc  : 时间相关工具类
- * </pre>
+ * 时间相关工具类
  */
 public class TimeUtils {
 
@@ -479,7 +476,6 @@ public class TimeUtils {
     public static long getIntervalByNow(Date time, TimeUnit unit) {
         return getIntervalTime(getCurTimeDate(), time, unit);
     }
-
     /**
      * 判断闰年
      *

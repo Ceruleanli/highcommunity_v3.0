@@ -12,32 +12,24 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.duohuo.dhroid.activity.BaseFragment;
 import net.duohuo.dhroid.util.ImageLoaderUtil;
-import net.duohuo.dhroid.util.ListUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.hi028.android.highcommunity.R;
-import cn.hi028.android.highcommunity.activity.fragment.HuiLifeSuppBuyFrag;
-import cn.hi028.android.highcommunity.activity.fragment.HuiSuppPayFrag;
 import cn.hi028.android.highcommunity.bean.GoodsOrderSubmitBean;
-import cn.hi028.android.highcommunity.params.HuiSuppGdParams;
 import cn.hi028.android.highcommunity.utils.Constacts;
-import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 
 /**
- *@功能：惠生活支付商品<br>
- *@作者： 赵海<br>
- *@版本：1.0<br>
- *@时间：2016-01-28<br>
+ * @功能：惠生活支付商品<br>
+ * @作者： 赵海<br>
+ * @版本：1.0<br>
+ * @时间：2016-01-28<br>
  */
 public class OderDetailsProductAdapter extends BaseAdapter {
-	
-	   List<GoodsOrderSubmitBean> data;
-	
-	private Context context;
+    List<GoodsOrderSubmitBean> data;
+
+    private Context context;
 
     public List<GoodsOrderSubmitBean> getData() {
         return data;
@@ -48,14 +40,15 @@ public class OderDetailsProductAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
- 
-    public OderDetailsProductAdapter(Context context ,List<GoodsOrderSubmitBean> data){
-        this.context=context;
-        this.data=data;
+
+    public OderDetailsProductAdapter(Context context, List<GoodsOrderSubmitBean> data) {
+        this.context = context;
+        this.data = data;
     }
+
     @Override
     public int getCount() {
-        return  data.size();
+        return data.size();
     }
 
     @Override
@@ -88,8 +81,8 @@ public class OderDetailsProductAdapter extends BaseAdapter {
         }
         viewHolder.tv_goods_name.setText(data.get(position).getGoods_name());
         viewHolder.tv_goods_price.setText(data.get(position).getGoods_price() + "");
-        viewHolder.tv_goods_num.setText("x"+data.get(position).getNumber() + "");
-        ImageLoaderUtil.disPlay(Constacts.IMAGEHTTP+data.get(position).getThumb_pic(),viewHolder.img_goods_pic,R.mipmap.default_no_pic,null);
+        viewHolder.tv_goods_num.setText("x" + data.get(position).getNumber() + "");
+        ImageLoaderUtil.disPlay(Constacts.IMAGEHTTP + data.get(position).getThumb_pic(), viewHolder.img_goods_pic, R.mipmap.default_no_pic, null);
         return convertView;
     }
 
@@ -98,7 +91,7 @@ public class OderDetailsProductAdapter extends BaseAdapter {
         super.notifyDataSetChanged();
     }
 
-    class ViewHolder{
+    class ViewHolder {
         ImageView img_goods_pic;
         TextView tv_goods_name;
         TextView tv_goods_price;

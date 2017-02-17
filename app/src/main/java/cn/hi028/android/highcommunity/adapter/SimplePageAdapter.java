@@ -23,7 +23,6 @@ import cn.hi028.android.highcommunity.utils.Constacts;
  * ImagePagerAdapter
  */
 public class SimplePageAdapter extends RecyclingPagerAdapter {
-
     private Context context;
     private List<String> imageIdList;
     private boolean isInfiniteLoop;

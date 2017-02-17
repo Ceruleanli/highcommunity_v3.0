@@ -48,15 +48,12 @@ import cn.hi028.android.highcommunity.view.MyCustomViewPager;
  */
 @EFragment(resName = "frag_message_center_my")
 public class MyMessageFrag extends BaseFragment {
-    public static final String TAG = "~MsgCenterFrag->";
+    public static final String TAG = "~MyMessageFrag->";
     public static final String FRAGMENTTAG = "MyMessageFrag";
     @ViewById(R.id.vp_MessageCenter_ViewPager)
-    MyCustomViewPager mPager;// 页卡内容
+    MyCustomViewPager mPager;
     @ViewById(R.id.rg_Message_Center)
-    RadioGroup rg;//
-    /**
-     * 当前页
-     **/
+    RadioGroup rg;
     int currentPo = 0;
     public List<ListView> listViewList;
     public List<View> proPressList;
@@ -84,9 +81,8 @@ public class MyMessageFrag extends BaseFragment {
         noDataList = new ArrayList<TextView>();
         listViewList = new ArrayList<ListView>();
         adapterList = new ArrayList<BaseAdapter>();
-        HuiOrderAdapter adapter = new HuiOrderAdapter();//与我相关用
+        HuiOrderAdapter adapter = new HuiOrderAdapter();
         List<View> viewList = new ArrayList<View>();
-        //将与我相关和系统消息添加进viewlist
         viewList.add(getRelatedList());
         viewList.add(getPageView());
         mPager.setAdapter(adapter);
@@ -102,7 +98,6 @@ public class MyMessageFrag extends BaseFragment {
                 if (!((RadioButton) rg.getChildAt(i)).isChecked()) {
                     ((RadioButton) rg.getChildAt(i)).setChecked(true);
                 }
-                // 如果页面滑动的时候 adapter里面的数据是空的 就访问接口获取数据  与我相关是0  系统消息是1
                 if (adapterList.get(i).getCount() == 0) {
                     if (i == 0) {
                         HTTPHelper.GetRelatedMsg(mRelateIbpi);
@@ -125,7 +120,7 @@ public class MyMessageFrag extends BaseFragment {
     List<SystemMessageBean.SystemMsgDataEntity> mSystemMsgList = new ArrayList<SystemMessageBean.SystemMsgDataEntity>();
 
     /**
-     * 应该是系统消息的view
+     * 系统消息
      **/
     View getPageView() {
         Log.e(TAG, "getPageView");
@@ -149,7 +144,7 @@ public class MyMessageFrag extends BaseFragment {
     }
 
     /**
-     * 返回与我相关的view
+     * 与我相关
      **/
     View getRelatedList() {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.frag_chip_order, null);

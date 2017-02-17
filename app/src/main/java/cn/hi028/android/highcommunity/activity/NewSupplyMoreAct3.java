@@ -57,11 +57,8 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
     HorizontalScrollView mHorizontalScrollView;
     ViewPager mViewpager;
     public static final int categray_with = (int) (HighCommunityApplication.screenWidth / 3);
-    List<RadioButton> mRadioButList = new ArrayList<RadioButton>();
     List<SupplyGoodsMoreBean.SupplyGoodsMoreDataEntity.SupplyMoreCategoryEntity> mDataCategory = new ArrayList<SupplyGoodsMoreBean.SupplyGoodsMoreDataEntity.SupplyMoreCategoryEntity>();
-
     private String[] mTitles = new String[]{"最新", "销量", "价格"};
-
     int category_id = 0;
     /**
      * 1=>最新,2=>销量,3=>价格升序,4=>价格降序  每次进入默认最新
@@ -123,7 +120,6 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
             } else {
                 isCategorySizeMuch = false;
             }
-
             RadioButton defaultRadioBut = (RadioButton) LayoutInflater.from(NewSupplyMoreAct3.this).inflate(R.layout.radiobut_newsupplymore, null);
             defaultRadioBut.setId(0);
             if (isCategorySizeMuch) {
@@ -145,14 +141,12 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
                     Log.e(Tag, "isCategorySizeMuch false ");
                     newRadioBut.setLayoutParams(new RadioGroup.LayoutParams(categray_with, RadioGroup.LayoutParams.MATCH_PARENT));
                 }
-
                 newRadioBut.setText(mDataCategory.get(i).getName());
                 mRgCategory.addView(newRadioBut);
             }
             Log.e(Tag, "mRgCategory.size(): " + mRgCategory.getChildCount());
             Log.e(Tag, "mGroup.size(): " + mGroup.getChildCount());
             mHorizontalScrollView.addView(mRgCategory);
-            Log.e(Tag, "mHorizontalScrollView.size(): " + mHorizontalScrollView.getChildCount());
             initView();
         }
 
@@ -196,11 +190,8 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
 
             @Override
             public void onPageSelected(int i) {
-                Log.e(Tag, " onPageSelected");
-
                 for (int k = 0; k < mRgCategory.getChildCount(); k++) {
                     if (i == k) {
-                        Log.e(Tag, " onPageSelected  i == k");
                         ((RadioButton) (mRgCategory.getChildAt(i))).setChecked(true);
                     }
                 }
@@ -211,7 +202,6 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
 
             }
         });
-
         mRgCategory.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -219,7 +209,6 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
                 for (int i = 0; i < mRgCategory.getChildCount(); i++) {
                     if (mRgCategory.getChildAt(i).getId() == checkedId) {
                         setCurrentPage(i);
-                        Log.e(Tag, "横向滑动的距离：" + categray_with * i);
                         mHorizontalScrollView.smoothScrollTo(categray_with * i, 0);
                     }
 
@@ -231,10 +220,8 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
         mRgSort.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                Log.e(Tag, "mRgSort ChangeListener");
                 if (checkedId != R.id.supplyMore_rb_price) {
                     mRbPrice.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.mipmap.img_sort_none), null);
-
                 }
                 switch (checkedId) {
                     case R.id.supplyMore_rb_newest:
@@ -269,7 +256,6 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
                     sort = 3;
                     isSortAsc = !isSortAsc;
                 } else {
-//                            mRbPrice.setCompoundDrawables(null,null,getResources().getDrawable(R.mipmap.img_sort_foot),null);
                     mRbPrice.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.mipmap.img_sort_foot), null);
                     sort = 4;
                     isSortAsc = !isSortAsc;
@@ -293,12 +279,8 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
                             }
                         }), 300);
             }
-
-
         }
-
     }
-
     /**
      * 价格是否升序  默认为是
      **/
@@ -309,7 +291,6 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
         Log.d(Tag, "page" + page);
         this.page = page;
         mViewpager.setCurrentItem(page);
-
     }
 
     @OnClick(R.id.supplyMore_back)
@@ -317,7 +298,9 @@ public class NewSupplyMoreAct3 extends FragmentActivity {
         onBackPressed();
     }
 
-
+    /**
+     * 排序监听
+     */
     public interface MySortChangeListener {
         public void onSortChange(String category_id, int sort);
     }

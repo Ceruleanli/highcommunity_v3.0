@@ -40,7 +40,7 @@ import cn.hi028.android.highcommunity.utils.HTTPHelper;
 import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 
 /**
- * @功能：新版我的<br>
+ * @功能：新版我的 <br>
  * @作者： Lee_yting<br>
  * @版本：2.0<br>
  * @时间：2016/12/19<br>
@@ -141,7 +141,6 @@ public class ActFrag extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e(Tag, "onCreateView");
         mFragmeView = LayoutInflater.from(getActivity()).inflate(R.layout.frag_myusercenter_act, null);
         ButterKnife.bind(this, mFragmeView);
         iniView();
@@ -151,20 +150,11 @@ public class ActFrag extends Fragment {
         }
         return mFragmeView;
     }
-
-    /**
-     * 初始化VIew
-     */
     void iniView() {
         findView(mFragmeView);
         initData();
     }
-
-    /**
-     * 找控件
-     */
     private void findView(View mFragmeView) {
-
         myinforEdit.setOnClickListener(mLeftMenuListener);
         mAvatar.setOnClickListener(mLeftMenuListener);
         mOrder_all_layout.setOnClickListener(mLeftMenuListener);
@@ -381,7 +371,6 @@ public class ActFrag extends Fragment {
                         mLeftjump.putExtra(MenuLeftAct.ACTIVITYTAG,
                                 Constacts.MENU_LEFT_GDCAR);
                         getActivity().startActivity(mLeftjump);
-                        // Constacts.mUserCenter.setCart(0);
                         break;
                     case R.id.ll_leftMenu_Carft:
                         mLeftjump.putExtra(MenuLeftAct.ACTIVITYTAG,
@@ -395,13 +384,11 @@ public class ActFrag extends Fragment {
                         getActivity().startActivity(mLeftjump);
                         break;
                     case R.id.ll_leftMenu_MyMsg://我的消息
-                        Log.d(Tag, "点击我的消息");
                         mLeftjump.putExtra(MenuLeftAct.ACTIVITYTAG,
                                 Constacts.MENU_LEFT_MESSAGECENTER);
                         getActivity().startActivity(mLeftjump);
                         break;
                     case R.id.ll_leftMenu_SysMsg://系统消息
-                        Log.d(Tag, "点击系统消息");
                         mLeftjump.putExtra(MenuLeftAct.ACTIVITYTAG,
                                 Constacts.MENU_SYSMESSAGE);
                         Constacts.mUserCenter.setCho(0);
@@ -409,14 +396,12 @@ public class ActFrag extends Fragment {
                         break;
                     case R.id.tx_LeftFrag_userlocation_layout:
                     case R.id.tx_LeftFrag_userlocation:
-//                        VallageAct.toStartAct(this, 1, 1);
                         break;
                 }
             }
 
         }
     };
-    public static String TYPE = "type";
 
     private void setleftData() {
         boolean leftFlag = false, rightFlag = false;
@@ -497,12 +482,6 @@ public class ActFrag extends Fragment {
                     mOrder_ComNum.setText(sorder.getComment() + "");
                 }
             }
-
-            if (leftFlag) {
-//                mLeftTop.setVisibility(View.VISIBLE);
-            } else {
-//                mLeftTop.setVisibility(View.GONE);
-            }
         } else {
 
         }
@@ -519,7 +498,6 @@ public class ActFrag extends Fragment {
     }
 
     private void initData() {
-        Log.e(Tag, "initdata");
         HTTPHelper.getUserCenter(mIbpi, HighCommunityApplication.mUserInfo.getId() + "");
     }
 

@@ -49,8 +49,6 @@ public class ImagePagerAdapter extends RecyclingPagerAdapter {
 
 	@Override
 	public int getCount() {
-		// Infinite loop
-		// return ListUtils.getSize(getImageIdList());
 		return imageIdList.size();
 	}
 

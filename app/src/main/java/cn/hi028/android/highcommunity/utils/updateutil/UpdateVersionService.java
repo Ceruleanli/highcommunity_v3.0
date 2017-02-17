@@ -65,13 +65,6 @@ public class UpdateVersionService extends Service implements FileDownloader.Down
     @Override
     public void success(final File file) {
         reset();
-//        notiBuilder.setContentTitle(" ");
-//        notiBuilder.setContentText("下载完成，请点击安装");
-//        notiBuilder.setProgress(0,0,false);
-//        notificationManager.notify(
-//                NOTIFY_ID,
-//                notiBuilder.build());
-
         notificationManager.cancel(NOTIFY_ID); //取消通知
         if(delta){
             //如果是增量更新就 合成新APK
@@ -79,9 +72,7 @@ public class UpdateVersionService extends Service implements FileDownloader.Down
                 @Override
                 public void run() {
                     try {
-//                         String srcDir = Environment.getExternalStorageDirectory().toString() + "/qingdan2.5.apk";
                         // 指定包名的程序源文件路径
-//                        String srcDir = getPackageManager().getApplicationInfo(getPackageName(), 0).sourceDir;
                         String srcDir = getPackageManager().getApplicationInfo("com.eqingdan", 0).sourceDir;
                         Log.d("UpdateVersionService", "srcDir"+srcDir);
                         String destDir = file.getAbsolutePath().replace("patch","apk");

@@ -1,8 +1,5 @@
 package cn.hi028.android.highcommunity.view;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -13,11 +10,14 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * 装两个scrollView 实现页面自动上滑
  * 联盟商家商品详情页用
  * 
- * @author 李玉婷
+ * @author Lee_yting
  * 
  */
 public class Auto_ScrollViewContainer extends RelativeLayout {

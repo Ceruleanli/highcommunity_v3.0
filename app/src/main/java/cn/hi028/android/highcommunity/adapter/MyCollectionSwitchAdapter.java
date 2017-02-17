@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import cn.hi028.android.highcommunity.activity.fragment.MyCollectionActFrag;
-import cn.hi028.android.highcommunity.activity.fragment.*;
 import cn.hi028.android.highcommunity.activity.fragment.MyCollectionMessageFrag;
 
 /**
@@ -18,7 +17,6 @@ import cn.hi028.android.highcommunity.activity.fragment.MyCollectionMessageFrag;
  * @时间：2016-2-18<br>
  */
 public class MyCollectionSwitchAdapter extends FragmentPagerAdapter {
-
     MyCollectionMessageFrag mMessageFrag;
     MyCollectionActFrag mActFrag;
 
@@ -35,7 +33,7 @@ public class MyCollectionSwitchAdapter extends FragmentPagerAdapter {
             return mMessageFrag;
         } else {
             if (mActFrag == null) {
-                mActFrag = new MyCollectionActFrag_();
+                mActFrag = new MyCollectionActFrag();
             }
             return mActFrag;
         }

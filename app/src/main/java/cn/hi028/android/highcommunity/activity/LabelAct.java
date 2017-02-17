@@ -24,8 +24,6 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
-import com.baidu.mapapi.search.poi.PoiSearch;
-import com.baidu.mapapi.search.sug.SuggestionSearch;
 import com.don.tools.BpiHttpHandler;
 import com.don.tools.SaveBitmap;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -60,9 +58,8 @@ import photo.util.ImageItem;
  * @版本：1.0<br>
  * @时间：2015/12/16<br>
  */
-
 public class LabelAct extends BaseFragmentActivity implements ShowLocationListAct.MyAddressChangerListener {
-    static final String TAG = "LabelAct--->";
+    static final String TAG = "LabelAct->";
     public static final String ACTIVITYTAG = "LabelAct";
     public static final String INTENTTAG = "LabelActIntent";
     LabelGrideAdapter mAdapter;
@@ -94,7 +91,6 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
     TextView mPublish;
     @Bind(R.id.tv_label_PostContent)
     EditText mContent;
-    private PopupWindow mWindow;
     String allDetailAdress;
 
     @Override
@@ -102,7 +98,6 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_label);
         ButterKnife.bind(this);
-
         initView();
     }
 
@@ -138,11 +133,8 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
         );
         HighCommunityUtils.InitLabelList(6);
         HTTPHelper.getUserCenter(mLocationIbpi, HighCommunityApplication.mUserInfo.getId() + "");
-
         //定位init
-        Log.e(TAG, "准备定位");
         mLocationClient = new LocationClient(this); //声明LocationClie
-        Log.e(TAG, "准备定位2");
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true);        //是否打开GPS
         option.setCoorType("bd09ll");       //设置返回值的坐标类型。
@@ -217,7 +209,6 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
                 }
                 Log.i("BaiduLocationApiDem", sb.toString());
                 Log.i("BaiduLocationApiDem", "定位信息：" + location.getCity() + " " + location.getDistrict() + " " + location.getStreet() + " " + location.getAddress());
-                Log.i("BaiduLocationApiDem", "定位完成 setui");
                 if (allDetailAdress != null && !isLocationClicked) {
                     if (allDetailAdress.contains("省")) {
                         String[] split = allDetailAdress.split("省");
@@ -227,18 +218,15 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
                     }
                 }
                 if (isLocationClicked) {
-                    Log.i("BaiduLocationApiDem", "定位完成 setui2");
                     isLocationClicked = !isLocationClicked;
                     Intent mModify = new Intent(LabelAct.this, ShowLocationListAct.class);
                     Bundle mBundle = new Bundle();
                     mBundle.putParcelable("BDLocation", location);
                     mModify.putExtras(mBundle);
-//                    startActivity(mModify);
                     startActivityForResult(mModify, 8);
                 }
             }
         });//注册监听函数
-        Log.e(TAG, "定位3");
         mLocationClient.start();
         mLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,15 +242,10 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
                     mLocationClient.start();
                     requestLocation = mLocationClient.requestLocation();
                 }
-                Log.e(TAG, "requestLocation--->" + requestLocation);
             }
         });
 
     }
-
-    // 搜索周边相关
-    private PoiSearch mPoiSearch = null;
-    private SuggestionSearch mSuggestionSearch = null;
     boolean isLocationClicked = false;
     public static LocationClient mLocationClient = null;
 
@@ -291,7 +274,6 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
         mAdapter.notifyDataSetChanged();
         setHeight();
         super.onResume();
-
     }
 
 
@@ -316,7 +298,6 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
                                     HTTPHelper.Dellabel(new BpiHttpHandler.IBpiHttpHandler() {
                                         @Override
                                         public void onError(int id, String message) {
-
                                         }
 
                                         @Override
@@ -692,9 +673,7 @@ public class LabelAct extends BaseFragmentActivity implements ShowLocationListAc
     @Override
     public void onAddressChange(String address) {
         if (this.mLocation == null) {
-            Log.e(TAG, "mLocation null  address:" + address);
         } else {
-            Log.e(TAG, "mLocation  不空  address:" + address);
             this.mLocation.setText(address);
         }
     }

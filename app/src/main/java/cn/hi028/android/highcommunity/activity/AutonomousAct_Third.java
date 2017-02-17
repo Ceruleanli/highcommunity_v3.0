@@ -23,13 +23,11 @@ import cn.hi028.android.highcommunity.activity.fragment.AutoFrag_CreatMotion;
 import cn.hi028.android.highcommunity.activity.fragment.AutoFrag_CreatReport;
 
 /**
- * * @功能：自治大厅 三级Act<br>
- *
+ *@功能：自治大厅 三级Act<br>
  * @作者： Lee_yting<br>
  * @时间：2016/10/9<br>
  */
 public class AutonomousAct_Third extends BaseFragmentActivity {
-    static final String Tag_debug = "AutonomousAct_Third--->";
     public static final int TAG_REPORT_DETAIL = 0;
     public static final int TAG_INQUIRY_DETAIL = 1;
     public static final int TAG_MOTION_DETAIL = 2;

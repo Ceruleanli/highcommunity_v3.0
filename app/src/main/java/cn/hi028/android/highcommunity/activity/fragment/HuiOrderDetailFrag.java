@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +50,6 @@ import cn.hi028.android.highcommunity.view.ECAlertDialog;
 public class HuiOrderDetailFrag extends BaseFragment {
     public static final String FRAGMENTTAG = "HuiOrderDetailFrag";
     public static final String Tag = "HuiOrderDetailFrag：";
-
     @ViewById(R.id.tv_reserve_name)
     TextView tv_reserve_name;
     @ViewById(R.id.tv_order_id)
@@ -87,7 +85,6 @@ public class HuiOrderDetailFrag extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e(Tag, "onCreateView...");
         view = inflater.inflate(R.layout.frag_hlife_order_detail, null);
 
         return view;
@@ -98,7 +95,6 @@ public class HuiOrderDetailFrag extends BaseFragment {
         if (adapter==null){
         }
         if (cl_goods==null){
-            Log.e(Tag,"cl_goods  null");
 
         }
         cl_goods.setAdapter(adapter);
@@ -236,11 +232,9 @@ public class HuiOrderDetailFrag extends BaseFragment {
             });
         }
     }
-    private PopupWindow mWatingWindow;
 
     /**
      * 取消订单
-     *
      * @param v
      */
     public void cancelOrder(final View v, String msg) {

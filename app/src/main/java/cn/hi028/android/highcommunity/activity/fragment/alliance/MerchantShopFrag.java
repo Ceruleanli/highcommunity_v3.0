@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.don.tools.BpiHttpHandler.IBpiHttpHandler;
 
 import net.duohuo.dhroid.activity.BaseFragment;
-import net.duohuo.dhroid.util.LogUtil;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -43,7 +42,6 @@ import cn.hi028.android.highcommunity.view.PaylistPopupWindow;
 
 /**
  * 惠生活-商家联盟-item点击 -商品
- *
  * @author Administrator
  */
 public class MerchantShopFrag extends BaseFragment implements OnClickListener,
@@ -59,16 +57,10 @@ public class MerchantShopFrag extends BaseFragment implements OnClickListener,
     RelativeLayout shopcar;
     RelativeLayout bottomrl;
     private String shopName;
-
-    public String getMyId() {
-        return id;
-    }
-
     public void setMyId(String id, String name) {
         this.id = id;
         this.shopName = name;
     }
-
     ArrayList<MerchantShopGoodBean> goodslist;
     ArrayList<MerchantGoodTitleBean> leftlist;
     ArrayList<Goods_info> rightlist;
@@ -125,7 +117,6 @@ public class MerchantShopFrag extends BaseFragment implements OnClickListener,
 
         @Override
         public void onSuccess(Object message) {
-            LogUtil.d("----------info:messsage:------" + message);
             if (message != null) {
                 goodslist.clear();
                 goodslist = (ArrayList<MerchantShopGoodBean>) message;
@@ -227,17 +218,12 @@ public class MerchantShopFrag extends BaseFragment implements OnClickListener,
                 break;
 
             case R.id.ac_merchant_shop_car_go_pay:
-                /**
-                 * 点击去支付 在此处请求服务器 获得订单号 total_price 总金额 goods_info 这是一个json字符串 商品信息
-                 * merchant_id 商家id 把这些参数从页面上去出来 放进去就行 然后在getOrderNo中去解析服务器返回的数据
-                 * 其中就包含 订单号
-                 */
                 if (poplist == null || poplist.size() < 1) {
                     Toast.makeText(getActivity(), "请选择商品数量", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                String total_price = getAllPrice();// 把对应的数据取出来 放到里面就行
+                String total_price = getAllPrice();
                 StringBuffer sb = new StringBuffer();
                 sb.append("[");
                 for (int i = 0; i < poplist.size(); i++) {
@@ -272,7 +258,6 @@ public class MerchantShopFrag extends BaseFragment implements OnClickListener,
         }
     }
 
-    int countincar = 0;
     /**
      * 左边列表当前位置
      ***/
@@ -448,7 +433,6 @@ public class MerchantShopFrag extends BaseFragment implements OnClickListener,
 
     }
 
-    // Popupwindow 关闭后返回列表数据，更新rightlist 列表数据
     @Override
     public void backAllList(List<Goods_info> glist) {
 

@@ -40,7 +40,6 @@ public class AllianceOrderUnRecFrag extends BaseFragment implements
     TextView mNodata;
     PullToRefreshListView mUnRecListView;
     private AllianceOrderAdapter mUnRecAdapter = null;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -41,15 +41,10 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2016/10/11<br>
  */
 public class AutoFrag_SuperVise extends BaseFragment {
-    public static final String Tag = "~~~AutoFrag_SuperVise:";
+    public static final String Tag = "SuperVise:";
     public static final String FRAGMENTTAG = "AutoFrag_SuperVise";
-    public static final int TAG_REPORT_DETAIL = 0;
     public static final int TAG_CREAT_REPORT = 5;
     public static final int TAG_CREAT_INQUIRY = 6;
-    public static final boolean isMessage = false;
-    /**
-     * 创建留言
-     **/
     public static final int TAG_CREAT_MESSAGE = 9;
 
     int owner_id;
@@ -94,12 +89,10 @@ public class AutoFrag_SuperVise extends BaseFragment {
         ButterKnife.bind(this, view);
         Bundle bundle = getArguments();
         owner_id = bundle.getInt("owner_id", -1);
-        Log.d(Tag, "owner_id=" + owner_id);
-        Log.d(Tag, "user_type=" + user_type);
+        Log.d(Tag, "owner_id=" + owner_id+","+user_type);
         initView();
         return view;
     }
-
 
     @Override
     public void onResume() {

@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import com.don.tools.BpiHttpHandler;
 
 import net.duohuo.dhroid.activity.BaseFragment;
-import net.duohuo.dhroid.util.LogUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,9 +26,8 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoFrag_Groupchat extends BaseFragment implements OnClickListener {
-    public static final String Tag = "~~~AutonomousMainFrag~~~";
+    public static final String Tag = "AutonomousMainFrag：";
     public static final String FRAGMENTTAG = "AutonomousMainFrag";
     public static final int TAG_NOTIC = 0;
     public static final int TAG_VOTE = 1;
@@ -54,29 +52,14 @@ public class AutoFrag_Groupchat extends BaseFragment implements OnClickListener 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LogUtil.d(Tag + "onCreateView");
         View view = inflater.inflate(R.layout.frag_autonomous_identified2, null);
         ButterKnife.bind(this, view);
-        findView(view);
-        registerListener();
         initView();
         return view;
     }
 
 
-    private void registerListener() {
-    }
-
-
-    private void findView(View view) {
-
-
-    }
-
-
-    void initView() {
-        LogUtil.d(Tag + "initView");
-
+    public void initView() {
         initDatas();
     }
 
@@ -87,8 +70,6 @@ public class AutoFrag_Groupchat extends BaseFragment implements OnClickListener 
     BpiHttpHandler.IBpiHttpHandler mIbpi = new BpiHttpHandler.IBpiHttpHandler() {
         @Override
         public void onError(int id, String message) {
-            LogUtil.d(Tag + "---~~~onError");
-            LogUtil.d(Tag + "-------------  initView   onError");
             HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
         }
 
@@ -126,19 +107,6 @@ public class AutoFrag_Groupchat extends BaseFragment implements OnClickListener 
         }
     };
 
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.d(Tag + "onPause");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtil.d(Tag + "onResume");
-
-    }
 
 
     @Override

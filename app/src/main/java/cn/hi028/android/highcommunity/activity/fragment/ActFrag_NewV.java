@@ -24,7 +24,6 @@ import com.don.tools.BpiHttpHandler;
 import com.don.tools.GeneratedClassUtils;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.lidroid.xutils.util.LogUtils;
 
 import net.duohuo.dhroid.activity.BaseFragment;
 
@@ -47,8 +46,8 @@ import cn.hi028.android.highcommunity.view.LoadingView.OnLoadingViewListener;
  * @版本：2.0<br>
  */
 public class ActFrag_NewV extends BaseFragment {
-    String Tag = "~~~ActFrag~~~";
-    public static final String FRAGMENTTAG = "ActFrag";
+    String Tag = "ActFrag_NewV：";
+    public static final String FRAGMENTTAG = "ActFrag_NewV";
     private View mFragmeView;
     PullToRefreshListView mListView;
     View mProgress;
@@ -65,7 +64,6 @@ public class ActFrag_NewV extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e(Tag, "onCreateView");
         if (mFragmeView == null) {
             iniView();
         }
@@ -79,9 +77,7 @@ public class ActFrag_NewV extends BaseFragment {
      * 初始化VIew
      */
     void iniView() {
-        Log.e(Tag, "iniView");
-        mFragmeView = LayoutInflater.from(getActivity()).inflate(
-                R.layout.frag_activity, null);
+        mFragmeView = LayoutInflater.from(getActivity()).inflate(R.layout.frag_activity, null);
         layoutContainer = mFragmeView.findViewById(R.id.ll_act);
         layout_Container = mFragmeView.findViewById(R.id.loadingview_Container);
         mLoadingView = (LoadingView) mFragmeView.findViewById(R.id.loadingView);
@@ -100,7 +96,6 @@ public class ActFrag_NewV extends BaseFragment {
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 new GetDataTask().execute();
             }
-
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 new GetDataTask().execute();
@@ -120,7 +115,6 @@ public class ActFrag_NewV extends BaseFragment {
         mLoadingView.startLoading();
         HTTPHelper.GetActivityList(mIbpi, HighCommunityApplication.mUserInfo.getId() + "");
     }
-
     OnLoadingViewListener onLoadingViewListener = new OnLoadingViewListener() {
 
         @Override
@@ -133,11 +127,9 @@ public class ActFrag_NewV extends BaseFragment {
 
     @Override
     public void onResume() {
-        Log.e(Tag, "onResume");
         super.onResume();
-        registNetworkReceiver();
+//        registNetworkReceiver();
     }
-
     /**
      * 获取活动列表回掉handler
      */
@@ -205,7 +197,7 @@ public class ActFrag_NewV extends BaseFragment {
     }
 
     /****
-     * 与网络状态相关
+     * 网络
      */
     private BroadcastReceiver receiver;
 
@@ -234,7 +226,6 @@ public class ActFrag_NewV extends BaseFragment {
                     } else if (ConnectivityManager.TYPE_ETHERNET == type) {
 
                     }
-                    LogUtils.d("有网络");
                     HTTPHelper.GetActivityList(mIbpi, HighCommunityApplication.mUserInfo.getId() + "");
                     isNoNetwork = false;
                 } else {

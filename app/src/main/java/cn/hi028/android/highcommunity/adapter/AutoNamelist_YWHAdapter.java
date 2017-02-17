@@ -25,7 +25,6 @@ import cn.hi028.android.highcommunity.utils.Constacts;
  * @时间：2016/10/12<br>
  */
 public class AutoNamelist_YWHAdapter extends BaseFragmentAdapter {
-
     List<Auto_NameListBean.NameListDataEntity.YwhEntity> mList = new ArrayList<Auto_NameListBean.NameListDataEntity.YwhEntity>();
     private Context context;
     private LayoutInflater layoutInflater;

@@ -2,7 +2,6 @@ package cn.hi028.android.highcommunity.activity.fragment;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +27,7 @@ import cn.hi028.android.highcommunity.bean.Autonomous.Auto_CertificationInitBean
  */
 
 public class AutoFrag_CerFailedMsg extends BaseFragment {
-    public static final String Tag = "~~~CerFailedMsg";
+    public static final String Tag = "CerFailedMsg";
     public static final String FRAGMENTTAG = "AutoFrag_CerFailedMsg";
 
     CerFailedAdapter mAdapter;
@@ -42,7 +41,6 @@ public class AutoFrag_CerFailedMsg extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
         View view = inflater.inflate(R.layout.frag_cer_failed, null);
         ButterKnife.bind(this, view);
         initView();
@@ -50,7 +48,6 @@ public class AutoFrag_CerFailedMsg extends BaseFragment {
     }
 
     void initView() {
-        Log.d(Tag, "initView");
         DisplayMetrics mdm = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(mdm);
 
@@ -59,16 +56,6 @@ public class AutoFrag_CerFailedMsg extends BaseFragment {
         mListView.setEmptyView(mNoData);
         mListView.setAdapter(mAdapter);
         mListView.setPullToRefreshEnabled(false);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(Tag, "onPause");
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(Tag, "onResume");
     }
 
     @Override

@@ -18,7 +18,6 @@ import com.don.tools.GeneratedClassUtils;
 
 import net.duohuo.dhroid.activity.BaseFragment;
 import net.duohuo.dhroid.activity.BrowseActivity;
-import net.duohuo.dhroid.util.LogUtil;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -42,7 +41,6 @@ import cn.hi028.android.highcommunity.view.ECAlertDialog;
  */
 @EFragment(resName = "frag_service_payment")
 public class ServicePaymentFrag extends BaseFragment {
-
     public static final String FRAGMENTTAG = "ServicePaymentFrag";
 
     private PopupWindow mWaitingWindow;
@@ -146,7 +144,7 @@ public class ServicePaymentFrag extends BaseFragment {
                 }).show();
     }
 
-    final String payUrl = "alipays://platformapi/startapp?appId=20000193&userId={0}";// 用户的alipay-userid
+    final String payUrl = "alipays://platformapi/startapp?appId=20000193&userId={0}";//
     View.OnClickListener mListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -170,7 +168,6 @@ public class ServicePaymentFrag extends BaseFragment {
                     break;
                 case R.id.tv_payment_service_dian:
                     if (!HighCommunityApplication.isAliPayInStalled()) {
-                        LogUtil.d("------未安装支付宝");
                         showUnInstallPayDialog();
                     } else {
                         HighCommunityUtils.GetInstantiation().ShowToast("功能待完善", 0);
@@ -181,7 +178,6 @@ public class ServicePaymentFrag extends BaseFragment {
                 case R.id.tv_payment_service_qi:
 
                     if (!HighCommunityApplication.isAliPayInStalled()) {
-                        LogUtil.d("------未安装支付宝");
                         showUnInstallPayDialog();
                     } else {
                         final String Url = "alipays://platformapi/startapp?appId=20000193";

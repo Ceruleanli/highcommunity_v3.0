@@ -13,7 +13,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import net.duohuo.dhroid.activity.BaseFragment;
-import net.duohuo.dhroid.util.LogUtil;
 
 import java.util.ArrayList;
 
@@ -27,6 +26,7 @@ import cn.hi028.android.highcommunity.bean.Goods_info;
 /**
  * 联盟商家item点击 进来的 包含了三个frag的act
  * @author Administrator
+ * @version v1.0
  *
  */
 public class MerchantActivity extends BaseFragmentActivity implements
@@ -51,7 +51,6 @@ public class MerchantActivity extends BaseFragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_merchant);
-		LogUtil.d("------MerchantActivity");
 		id = getIntent().getStringExtra("id");
 		shopName = getIntent().getStringExtra("shop");
 		init();
@@ -137,9 +136,6 @@ public class MerchantActivity extends BaseFragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Log.e("renk", "OnResume");
-		Log.e("renk", "OnResume" + ++onresume);
-
 	}
 	
 	@Override

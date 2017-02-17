@@ -33,13 +33,12 @@ import cn.hi028.android.highcommunity.HighCommunityApplication;
 import cn.hi028.android.highcommunity.R;
 /**
  *办事指南
- * @author Administrator
- *
+ * @author Administrator 李金隆
  */
 public class Service_ManageGuideActivity extends Activity {
 	private WebView mWebView;
 	private ImageView back;
-	private ValueCallback<Uri> mUploadMessage;// 琛ㄥ崟鐨勬暟鎹俊鎭�
+	private ValueCallback<Uri> mUploadMessage;
 	private ValueCallback<Uri[]> mUploadCallbackAboveL;
 	private final static int FILECHOOSER_RESULTCODE = 1;
 	private Uri imageUri;
@@ -102,7 +101,7 @@ public class Service_ManageGuideActivity extends Activity {
 		init();
 		// 这里就是在加载页面
 		mWebView.loadUrl("http://028hi.cn/api/guide/index.html?token="
-				+ HighCommunityApplication.mUserInfo.getToken());// loadurl这个方法是直接加载链接地址
+				+ HighCommunityApplication.mUserInfo.getToken());
 
 		mWebView.setWebViewClient(new WebViewClient() {
 			@Override
@@ -130,22 +129,18 @@ public class Service_ManageGuideActivity extends Activity {
 				mUploadCallbackAboveL = filePathCallback;
 				take();
 				return true;
-
 			}
-
 			// android 3.0以下：
 			public void openFileChooser(ValueCallback<Uri> uploadMsg) {
 				mUploadMessage = uploadMsg;
 				take();
 			}
-
 			// android 3.0以上，android4.0以下：
 			public void openFileChooser(ValueCallback<Uri> uploadMsg,
 					String acceptType) {
 				mUploadMessage = uploadMsg;
 				take();
 			}
-
 			// android4.4.4
 			public void openFileChooser(ValueCallback<Uri> uploadMsg,
 					String acceptType, String capture) {
@@ -229,7 +224,6 @@ public class Service_ManageGuideActivity extends Activity {
 				Environment
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
 				"MyApp");
-		// Create the storage directory if it does not exist
 		if (!imageStorageDir.exists()) {
 			imageStorageDir.mkdirs();
 		}

@@ -34,9 +34,8 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoFrag_myMotion extends BaseFragment {
-    public static final String Tag = "~~~AutoFrag_myMotion~~~";
+    public static final String Tag = "myMotion";
     public static final String FRAGMENTTAG = "AutoFrag_myMotion";
     /**
      * 创建提案
@@ -113,11 +112,6 @@ public class AutoFrag_myMotion extends BaseFragment {
             }
         }
     };
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
     @Override
     public void onResume() {

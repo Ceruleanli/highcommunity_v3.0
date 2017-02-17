@@ -33,9 +33,8 @@ import cn.hi028.android.highcommunity.view.MyCustomViewPager;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoFrag_Certigication extends BaseFragment {
-    public static final String Tag = "~~~AutoFrag_Certigication~~~";
+    public static final String Tag = "Certigication：";
     public static final String FRAGMENTTAG = "AutoFrag_Certigication";
     View view;
     CertificationPagerAdapter mPagerAdapter;
@@ -54,7 +53,6 @@ public class AutoFrag_Certigication extends BaseFragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.e(Tag, "onDetach");
         try {
             Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
             childFragmentManager.setAccessible(true);
@@ -68,7 +66,6 @@ public class AutoFrag_Certigication extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e(Tag, "onCreateView");
         view = inflater.inflate(R.layout.frag_auto_certificati_page, null);
         ButterKnife.bind(this, view);
         initView();
@@ -76,7 +73,6 @@ public class AutoFrag_Certigication extends BaseFragment {
     }
 
     void initView() {
-        Log.e(Tag, "initView");
         mViewPager.setPagingEnabled(false);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

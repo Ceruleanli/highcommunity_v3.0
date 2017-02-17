@@ -35,13 +35,7 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  *         联盟订单未支付状态下的frg
  */
 public class AllianceOrderUnPayFrag extends BaseFragment implements OnRefreshListener {
-    /**
-     * 正在加载的页面
-     **/
     View mProgress;
-    /**
-     * emptyview界面
-     **/
     TextView mNodata;
     PullToRefreshListView mUnPayListView;
     private AllianceOrderAdapter mUnPayAdapter = null;

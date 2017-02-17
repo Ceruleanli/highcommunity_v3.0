@@ -26,6 +26,7 @@ import cn.hi028.android.highcommunity.utils.Constacts;
  * @作者： 李凌云<br>
  * @版本：1.0<br>
  * @时间：2016/1/12<br>
+ * 备注： 2.0版本活动页面归到邻里里
  */
 @EActivity(resName = "act_activity")
 

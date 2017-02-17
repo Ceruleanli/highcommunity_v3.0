@@ -85,7 +85,6 @@ public class AutoSuperviseAdapter_Inq extends BaseFragmentAdapter {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("~~~", "留言adapter");
                     Intent mIntent_report = new Intent(context, AutonomousAct_Third.class);
                     mIntent_report.putExtra("title", TAG_MESSAGE_DETAIL);
                     mIntent_report.putExtra("message_id", mBean.getId());
@@ -97,7 +96,6 @@ public class AutoSuperviseAdapter_Inq extends BaseFragmentAdapter {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("~~~", "询问adapter");
                     Intent mIntent_report = new Intent(context, AutonomousAct_Third.class);
                     mIntent_report.putExtra("title", TAG_INQUIRY_DETAIL);
                     mIntent_report.putExtra("inquiry_id", mBean.getId());

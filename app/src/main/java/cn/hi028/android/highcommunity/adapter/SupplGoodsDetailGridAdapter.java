@@ -76,56 +76,39 @@ public class SupplGoodsDetailGridAdapter extends BaseFragmentAdapter {
             mViewHolder.mOldPrice = (TextView) convertView.findViewById(R.id.supplygoodsmore_oldPrice);
             mViewHolder.mSaledNum = (TextView) convertView.findViewById(R.id.supplygoodsmore_saledNum);
             mViewHolder.mShopcart = (ImageView) convertView.findViewById(R.id.supplygoodsmore_shopcart);
-
             convertView.setTag(mViewHolder);
         } else {
             mViewHolder = (ViewHolder) convertView.getTag();
         }
         final NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity.RecommendEntity mBean = mList.get(position);
-
         if (mBean.getCover_pic()== null || mBean.getCover_pic().equals("")) {
             BpiUniveralImage.displayImage("drawable://" + R.mipmap.default_no_pic, mViewHolder.mGoodsimg);
         } else {
-
             BpiUniveralImage.displayImage(Constacts.IMAGEHTTP + mBean.getCover_pic(), mViewHolder.mGoodsimg);
         }
 
-
         if (mBean.getLabel()!=null&&!mBean.getLabel().equals("")){
-
             mViewHolder.mTvTag.setVisibility(View.VISIBLE);
-
             mViewHolder.mTvTag.setText(mBean.getLabel());
 
         }else{
             mViewHolder.mTvTag.setVisibility(View.GONE);
-
-
         }
-
         mViewHolder.mTitle.setText(mBean.getName());
         mViewHolder.mNowPrice.setText("￥:"+mBean.getPrice());
         if (mBean.getOld_price()!=null&&!mBean.getOld_price().equals("")&&!mBean.getOld_price().equals("0")){
-
-
             mViewHolder.mOldPrice.setVisibility(View.VISIBLE);
-
-
             Spannable spanStrikethrough = new SpannableString("￥：" + mBean.getOld_price());
             StrikethroughSpan stSpan = new StrikethroughSpan();  //设置删除线样式
             try {
                 spanStrikethrough.setSpan(stSpan, 0, spanStrikethrough.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-
             }catch (Exception ex){
-
             }
             mViewHolder.mOldPrice.setText(spanStrikethrough);
         }else{
             mViewHolder.mOldPrice.setVisibility(View.GONE);
-
         }
         mViewHolder.mSaledNum.setText("已售"+mBean.getSale());
-
        mViewHolder.mShopcart.setVisibility(View.GONE);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,8 +120,6 @@ public class SupplGoodsDetailGridAdapter extends BaseFragmentAdapter {
         });
         return convertView;
     }
-
-
     @Override
     public void AddNewData(Object mObject) {
         if (mObject instanceof List<?>) {
@@ -162,6 +143,4 @@ public class SupplGoodsDetailGridAdapter extends BaseFragmentAdapter {
         TextView mSaledNum;
         ImageView mShopcart;
     }
-
-
 }

@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.don.view.CircleImageView;
@@ -42,7 +41,6 @@ public class ActivityDetailAdapter extends BaseFragmentAdapter {
     List<RepliesBean> mList = new ArrayList<RepliesBean>();
     RepliesBean mTempReplies = new RepliesBean();
     ReplyBean mTempReply = new ReplyBean();
-    PopupWindow mWatingWindow;
 
     public ActivityDetailAdapter(ActivityDetailsFrag mContext) {
         this.mFrag = mContext;

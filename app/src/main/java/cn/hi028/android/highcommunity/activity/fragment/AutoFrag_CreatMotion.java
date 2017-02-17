@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.don.tools.BpiHttpHandler;
 
 import net.duohuo.dhroid.activity.BaseFragment;
-import net.duohuo.dhroid.util.LogUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,9 +27,8 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoFrag_CreatMotion extends BaseFragment {
-    public static final String Tag = "~CreatMotion：";
+    public static final String Tag = "CreatMotion：";
     public static final String FRAGMENTTAG = "AutoFrag_CreatMotion";
     public static final int TAG_MOTION_DETAIL = 2;
     String owner_idStr;
@@ -44,10 +42,8 @@ public class AutoFrag_CreatMotion extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LogUtil.d(Tag + "onCreateView");
         View view = inflater.inflate(R.layout.frag_auto_creat_motion, null);
         ButterKnife.bind(this, view);
-        Bundle bundle = getArguments();
         owner_idStr = HighCommunityApplication.mUserInfo.getOwner_id();
         initView();
         return view;
@@ -110,19 +106,6 @@ public class AutoFrag_CreatMotion extends BaseFragment {
             }
         }
     };
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-
 
     @Override
     public void onDestroyView() {

@@ -1,11 +1,11 @@
 package cn.hi028.android.highcommunity.activity.alliance;
 
-import net.duohuo.dhroid.util.LogUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.activity.BaseFragmentActivity;
 import cn.hi028.android.highcommunity.activity.fragment.alliance.AllianceAllOrderFrag;
@@ -96,22 +96,16 @@ public class AllianceOrder extends BaseFragmentActivity {
     }
 @Override
 protected void onResume() {
-	// TODO Auto-generated method stub
 	super.onResume();
-	LogUtil.d("--------act 进入onresume");
 	switchFragment(mCurrentTab);
 	
 	
 }
 
 
-    /**
-     * 选择哪个fragment
-     **/
     private void switchFragment(int currentTab) {
         this.mCurrentTab = currentTab;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
         hideFragments(transaction);
         resetView();
         switch (currentTab) {

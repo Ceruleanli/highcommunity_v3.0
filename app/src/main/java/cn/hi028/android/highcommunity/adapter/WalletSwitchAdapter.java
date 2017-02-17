@@ -18,10 +18,10 @@ public class WalletSwitchAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int arg0) {
         if (arg0 == 0) {
-            WalletScoreFrag mFragment = new WalletScoreFrag_();
+            WalletScoreFrag mFragment = new WalletScoreFrag();
             return mFragment;
         } else {
-            WalletTickitFrag mFragment = new WalletTickitFrag_();
+            WalletTickitFrag mFragment = new WalletTickitFrag();
             return mFragment;
         }
     }

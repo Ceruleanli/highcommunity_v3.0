@@ -3,7 +3,6 @@ package cn.hi028.android.highcommunity.activity.fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +33,9 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-public class AutoFrag_Motion_forback1027 extends BaseFragment {
-    public static final String Tag = "~~~AutoFrag_Motion~~~";
-    public static final String FRAGMENTTAG = "AutoFrag_Motion";
+public class AutoFrag_Motion_public extends BaseFragment {
+    public static final String Tag = "Motion_public";
+    public static final String FRAGMENTTAG = "AutoFrag_Motion_public";
     /**
      * 创建提案
      **/
@@ -59,7 +58,6 @@ public class AutoFrag_Motion_forback1027 extends BaseFragment {
     }
 
     void initView() {
-        Log.d(Tag, "initView");
         mList = new ArrayList<Auto_MotionBean.MotionDataEntity>();
         mAdapter = new AutoMoitionAdapter(mList, getActivity(), getActivity().getWindow().getDecorView());
         mListview.setEmptyView(tv_Nodata);
@@ -67,7 +65,6 @@ public class AutoFrag_Motion_forback1027 extends BaseFragment {
     }
 
     private void initDatas() {
-
         HTTPHelper.GetAutoMotionList(mIbpi);
     }
 
@@ -87,7 +84,6 @@ public class AutoFrag_Motion_forback1027 extends BaseFragment {
 
         @Override
         public Object onResolve(String result) {
-//			Log.e("renk", result);
             return HTTPHelper.ResolveMotionDataEntity(result);
         }
 
@@ -116,11 +112,6 @@ public class AutoFrag_Motion_forback1027 extends BaseFragment {
     };
 
     @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         initDatas();
@@ -134,18 +125,12 @@ public class AutoFrag_Motion_forback1027 extends BaseFragment {
 
     @OnClick(R.id.img_Automotion_creat)
     public void onClick() {
-
         ceratMotion();
-
     }
 
     private void ceratMotion() {
-
         Intent mIntent_report = new Intent(getActivity(), AutonomousAct_Third.class);
         mIntent_report.putExtra("title", TAG_CREAT_MOTION);
         startActivity(mIntent_report);
-
     }
-
-
 }

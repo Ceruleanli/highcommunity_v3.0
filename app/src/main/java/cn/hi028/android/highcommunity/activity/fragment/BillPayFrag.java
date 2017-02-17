@@ -55,9 +55,7 @@ import cn.hi028.android.highcommunity.wxapi.WXPayEntryActivity;
  */
 @EFragment(resName = "frag_billpay")
 public class BillPayFrag extends BaseFragment {
-
     public static final String FRAGMENTTAG = "BillPayFrag";
-
     @ViewById(R.id.tv_amount_pay)
     TextView mTotal;
     @ViewById(R.id.tv_billpay_discount)

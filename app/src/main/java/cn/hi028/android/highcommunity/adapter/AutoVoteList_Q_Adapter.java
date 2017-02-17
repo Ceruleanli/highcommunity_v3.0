@@ -75,20 +75,19 @@ public class AutoVoteList_Q_Adapter extends BaseFragmentAdapter {
         mViewHolder.mTitle.setText(mBean.getTitle());
         mViewHolder.mTime.setText(TimeUtil.getYearMonthDay(Long.parseLong(mBean.getCreate_time())));
         mViewHolder.mbuilding.setText("适用于：" + mBean.getBuilding());
-if (mBean.getIs_voted()==1){
-    mViewHolder.mIsJoin.setVisibility(View.VISIBLE);
-}else{
-    mViewHolder.mIsJoin.setVisibility(View.GONE);
-}
+        if (mBean.getIs_voted() == 1) {
+            mViewHolder.mIsJoin.setVisibility(View.VISIBLE);
+        } else {
+            mViewHolder.mIsJoin.setVisibility(View.GONE);
+        }
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //这里要跳去选举详情
-                Intent mIntent_report=new Intent(context, AutonomousAct_Third.class);
-                mIntent_report.putExtra("title",TAG_VOTE_DETAIL);
-                mIntent_report.putExtra("question_id",mBean.getId());
-                mIntent_report.putExtra("is_voted",mBean.getIs_voted());
-                mIntent_report.putExtra("type",1);
+                Intent mIntent_report = new Intent(context, AutonomousAct_Third.class);
+                mIntent_report.putExtra("title", TAG_VOTE_DETAIL);
+                mIntent_report.putExtra("question_id", mBean.getId());
+                mIntent_report.putExtra("is_voted", mBean.getIs_voted());
+                mIntent_report.putExtra("type", 1);
 
                 context.startActivity(mIntent_report);
             }
@@ -109,10 +108,11 @@ if (mBean.getIs_voted()==1){
         mList.clear();
         notifyDataSetChanged();
     }
+
     class ViewHolder {
         TextView mTitle;
         TextView mTime;
-        TextView mbuilding,mIsJoin;
+        TextView mbuilding, mIsJoin;
 
     }
 }

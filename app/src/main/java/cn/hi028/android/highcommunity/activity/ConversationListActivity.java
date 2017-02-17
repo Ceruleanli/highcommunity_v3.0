@@ -31,9 +31,9 @@ public class ConversationListActivity extends BaseFragmentActivity {
 
     @OnClick(R.id.button4)
     public void onClick() {
-if (RongIM.getInstance()!=null){
-    RongIM.getInstance().startConversationList(this);
-}
+        if (RongIM.getInstance() != null) {
+            RongIM.getInstance().startConversationList(this);
+        }
 
     }
 

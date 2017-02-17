@@ -1,7 +1,6 @@
 package cn.hi028.android.highcommunity.activity.alliance;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,7 +41,6 @@ import java.util.List;
 import cn.hi028.android.highcommunity.HighCommunityApplication;
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.activity.BaseFragmentActivity;
-import cn.hi028.android.highcommunity.activity.GoodImageDetailOrEvaluationActivity;
 import cn.hi028.android.highcommunity.activity.ShowPayActivity;
 import cn.hi028.android.highcommunity.adapter.EvaluationAdapter;
 import cn.hi028.android.highcommunity.bean.GoodsData;
@@ -64,23 +62,20 @@ import cn.hi028.android.highcommunity.view.snap.McoySnapPageLayout;
 import cn.hi028.android.highcommunity.view.snap.McoySnapPageLayout.PageSnapedListener;
 
 /**
- * 就是我用的联盟商家商品详情
+ * 壹元整的联盟商家商品详情
  * @author Administrator
  *
  */
 public class GoodsDetailActivity3 extends BaseFragmentActivity implements
 OnClickListener, PayPop2FragFace {
-
-	static String Tag="~~~GoodsDetailActivity3~~~";
+	static String Tag="GoodsDetailActivity3->";
 	private static final int TAB_PICDETAIL = 0;
 	public static final int TAB_COMMENTDETAIL = 1;
-	int currentTab=0; 
 	String good_id;
 	int good_count;
 	ImageView back;
 	TextView name,price;ImageView headimg;
 	TextView subimg,addimg,kucun,conttv,detail,goodname,guige,origin;
-	//	TextView time,telephone;
 	TextView guige_,origin_,edible_;
 	Button goPay;
 	TextView caramount,mAllprice,telephone,time;
@@ -89,7 +84,6 @@ OnClickListener, PayPop2FragFace {
 	FrameLayout shopcar;
 	RelativeLayout tuwenxiangqing;RelativeLayout goodevaluation;LinearLayout payrl;
 	RadioButton mPicDetail,mCommentDetail;
-	ScrollView mScrollView2;
 	private TextView edible,scrollText;
 	GoodsData goodsdata;
 	ArrayList<Goods_info> goodslist;
@@ -109,20 +103,14 @@ OnClickListener, PayPop2FragFace {
 	CheckBox toSeeMore;
 	ViewGroup moreDetailGroup;
 	DrawableCenterTextView tv_noData,tv_empty;
-
-
-
 	int width,height ;
-
-	Handler mHandler = new Handler(); 
+	Handler mHandler = new Handler();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		LogUtil.d(Tag+"——————————————————啦啦啦  进入详情3");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shop_detail_activity3);
 		mcoySnapPageLayout = (McoySnapPageLayout) findViewById(R.id.flipLayout);
-
 		topPage = new McoyProductDetailInfoPage(GoodsDetailActivity3.this,
 				getLayoutInflater().inflate(
 						R.layout.page_top, null));
@@ -190,7 +178,6 @@ OnClickListener, PayPop2FragFace {
 			caramount.setText(goods_count + "");
 		}
 	}
-	Bundle bundle = new Bundle();
 	private void registerListener() {
 		back.setOnClickListener(this);
 		subimg.setOnClickListener(this);
@@ -199,7 +186,6 @@ OnClickListener, PayPop2FragFace {
 		goPay.setOnClickListener(this);
 		call.setOnClickListener(this);
 		telephone.setOnClickListener(this);
-
 		mPicDetail.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -230,16 +216,13 @@ OnClickListener, PayPop2FragFace {
 				if (isChecked) {
 					moreDetailGroup.setVisibility(View.VISIBLE);
 					top_view.invalidate();
-					LogUtil.d("~~~ 准备滑动top_view.getHeight() "+top_view.getHeight()+"---height="+height);
+					LogUtil.d("top_view.getHeight() "+top_view.getHeight()+"---height="+height);
 					mHandler.post(new Runnable() {  
 						@Override  
 						public void run() {  
 							((ScrollView) top_view).fullScroll(ScrollView.FOCUS_DOWN);  
 						}  
 					}); 
-					//					mcoySnapPageLayout.scrollTo(0,top_view.getBottom());
-					//					LogUtil.d("~~~ 准备滑动完成"+scrollText.getX()+"---scrollText.getY()="+scrollText.getY());
-
 				}else{
 					moreDetailGroup.setVisibility(View.GONE);
 				}
@@ -251,16 +234,13 @@ OnClickListener, PayPop2FragFace {
 				if (toSeeMore.isChecked()) {
 					moreDetailGroup.setVisibility(View.VISIBLE);
 					top_view.invalidate();
-					LogUtil.d("~~~ 准备滑动top_view.getHeight() "+top_view.getHeight()+"---height="+height);
+					LogUtil.d("top_view.getHeight() "+top_view.getHeight()+"---height="+height);
 					mHandler.post(new Runnable() {
 						@Override
 						public void run() {
 							((ScrollView) top_view).fullScroll(ScrollView.FOCUS_DOWN);
 						}
 					});
-					//					mcoySnapPageLayout.scrollTo(0,top_view.getBottom());
-					//					LogUtil.d("~~~ 准备滑动完成"+scrollText.getX()+"---scrollText.getY()="+scrollText.getY());
-
 				}else{
 					moreDetailGroup.setVisibility(View.GONE);
 				}
@@ -274,10 +254,8 @@ OnClickListener, PayPop2FragFace {
 		back = (ImageView) findViewById(R.id.ac_good_title_go_back);
 		payrl = (LinearLayout) findViewById(R.id.shop_deatil_bottom_pay_rl);
 		mAllprice = (TextView) findViewById(R.id.ac_shop_car_price);
-
 		goPay = (Button) findViewById(R.id.ac_shop_car_go_pay);
 		shopcar = (FrameLayout) findViewById(R.id.ac_shop_car_fl);
-
 		name = (TextView) top_view.findViewById(R.id.ac_shop_detail_goods_name);
 		price = (TextView) top_view.findViewById(R.id.ac_shop_detail_goods_price);
 		headimg = (ImageView) top_view.findViewById(R.id.ac_shop_goods_head_iv);
@@ -321,15 +299,12 @@ OnClickListener, PayPop2FragFace {
 		viewline1 = top_view.findViewById(R.id.view11);
 		viewline2 = top_view.findViewById(R.id.view12);
 		viewline3 = top_view.findViewById(R.id.view13);
-
 		scrollText=(TextView) top_view.findViewById(R.id.scroll_Text);
-
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		//		switchFragment(0);
 	}
 	private IBpiHttpHandler mIbpi = new IBpiHttpHandler() {
 
@@ -347,7 +322,6 @@ OnClickListener, PayPop2FragFace {
 
 		@Override
 		public Object onResolve(String result) {
-			Log.e("renk", "106>goodsdata");
 			Log.e("renk", result);
 			Gson gson = new Gson();
 			return gson.fromJson(result, GoodsData.class);
@@ -488,7 +462,6 @@ OnClickListener, PayPop2FragFace {
 			public void onPageFinished(WebView view, String url) {
 			}
 		});
-		LogUtil.d("----------准备loadUrl-------------："+contentdetail);
 		mWebview.loadUrl(contentdetail);
 	}
 	String contentdetail;
@@ -515,9 +488,6 @@ OnClickListener, PayPop2FragFace {
 
 	@Override
 	public void onClick(View v) {
-		Intent intent = new Intent(this,
-				GoodImageDetailOrEvaluationActivity.class);
-		Bundle bundle = new Bundle();
 		switch (v.getId()) {
 		case R.id.ac_good_title_go_back:
 			goBack();
@@ -661,16 +631,9 @@ OnClickListener, PayPop2FragFace {
 					storeId);
 			break;
 		case R.id.call:
-			Intent intent2 = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+ telPhone));
-//			startActivity(intent2);
 			break;
 
 		}
-	}
-
-	public String gettotalprice() {
-		String pric = mAllprice.getText().toString();
-		return pric;
 	}
 
 	private void upDateList() {

@@ -37,10 +37,8 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2015/12/15<br>
  */
 public class GroupAdapter extends BaseFragmentAdapter {
-
     Context mContext;
     List<GroupBean> mlist = new ArrayList<GroupBean>();
-
     public GroupAdapter(Context mContext) {
         this.mContext = mContext;
     }
@@ -210,7 +208,6 @@ public class GroupAdapter extends BaseFragmentAdapter {
         notifyDataSetChanged();
         super.AddNewData(mObject);
     }
-
     @Override
     public void RefreshData(Object mObject) {
         super.RefreshData(mObject);

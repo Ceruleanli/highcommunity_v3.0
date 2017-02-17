@@ -34,6 +34,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import net.duohuo.dhroid.activity.BaseFragment;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,7 +42,6 @@ import butterknife.OnClick;
 import cn.hi028.android.highcommunity.HighCommunityApplication;
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.bean.AddressBean;
-import cn.hi028.android.highcommunity.bean.AddressModifyBean;
 import cn.hi028.android.highcommunity.bean.CitysBean;
 import cn.hi028.android.highcommunity.bean.CreatAddress2Bean;
 import cn.hi028.android.highcommunity.bean.DistrictBean;
@@ -51,17 +51,17 @@ import cn.hi028.android.highcommunity.utils.HTTPHelper;
 import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 import cn.hi028.android.highcommunity.utils.MHttpHolder;
 import cn.hi028.android.highcommunity.utils.RegexValidateUtil;
-import cn.hi028.android.highcommunity.view.ShowListUtils;
 
 /**
  * @功能：修改地址界面<br>
  * @作者： 李凌云<br>
  * @版本：1.0<br>
- * @时间：2016/1/21<br>  2.0版本换接口
+ * @时间：2016/1/21<br>
  */
 public class AddressModifyFrag extends BaseFragment {
     static final String Tag = "AddressModifyFrag";
     public static final String FRAGMENTTAG = "AddressModifyFrag";
+
     @Bind(R.id.et_addressModify_name)
     EditText mName;
     @Bind(R.id.et_addressModify_phone)
@@ -97,10 +97,7 @@ public class AddressModifyFrag extends BaseFragment {
     String defulttag = "0";
     String aid = "";
     PopupWindow mWaitingWindow, mListWindow;
-    AddressModifyBean mModifyBean;
-    ArrayList<CitysBean> mCityBean;
     ArrayList<DistrictBean> mDistrictBean;
-    ArrayList<VallageBean> mVillageBean = new ArrayList<VallageBean>();
     String CityId, QuxianId, XiaoquId;
     /**
      * 城市区县小区选择器
@@ -113,6 +110,7 @@ public class AddressModifyFrag extends BaseFragment {
     ArrayList<DistrictBean> options2Items_01 = new ArrayList<DistrictBean>();
     int isModify;
     AddressBean modifyData;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(Tag, "onCreateView");
@@ -121,11 +119,12 @@ public class AddressModifyFrag extends BaseFragment {
         initView();
         return view;
     }
+
     public void initView() {
-        Log.e(Tag, "initView");
         Bundle bundle = getArguments();
         if (bundle != null) {
             modifyData = bundle.getParcelable("modifyData");
+
             isModify = bundle.getInt("isModify", -1);
             Log.e(Tag, "传过来的对象：" + modifyData.toString());
         } else {
@@ -134,6 +133,7 @@ public class AddressModifyFrag extends BaseFragment {
         }
         if (isModify == 1) {
             setData(modifyData);
+
         }
         mHttpUtils = MHttpHolder.getHttpUtils();
         Log.e(Tag, "传过来的aid：" + aid);
@@ -143,14 +143,11 @@ public class AddressModifyFrag extends BaseFragment {
         mDetailAdress.setOnClickListener(mClick);
         //选项选择器
         pvOptions = new OptionsPickerView(getActivity());
-        //选项1
         options1Items.add(new CitysBean("成都市", "5101"));
-        //监听确定选择按钮
         pvOptions.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
 
             @Override
             public void onOptionsSelect(int options1, int option2, int options3) {
-                //返回的分别是三个级别的选中位置
                 String tx = options1Items.get(options1).getCity() + " " + options2Items.get(options1).get(option2).getDistrict();
                 city = options1Items.get(options1).getCity();
                 district = options2Items.get(options1).get(option2).getDistrict();
@@ -162,24 +159,42 @@ public class AddressModifyFrag extends BaseFragment {
     }
 
     private void setData(AddressBean modifyData) {
-        Log.e(Tag, "setData");
         mName.setText(modifyData.getReal_name());
         mPhone.setText(modifyData.getTel());
         String address = modifyData.getAddress();
-        String City = "";
+        city = "成都市";
         String detail = "";
-        if (address.contains("区")) {
-            City = address.substring(0, address.indexOf("区") + 1);
-            detail = address.substring(address.indexOf("区") + 1);
-        } else if (address.contains("县")) {
-            City = address.substring(0, address.indexOf("县") + 1);
-            detail = address.substring(address.indexOf("县") + 1);
-        } else if (address.contains("市")) {
-            int index = address.indexOf("市");
-            City = address.substring(0, address.indexOf("市", index + 1) + 1);
-            detail = address.substring(address.indexOf("市") + 1);
+        String address2 = "";
+        district = "";
+        int startindex = 0;
+        if (address.contains(city)) {
+            startindex = 3;
+        } else {
+            startindex = 0;
         }
-        mArea.setText(City);
+        address2 = address.substring(startindex);
+        boolean startsWith = address2.startsWith("\\*" + "市");
+        boolean matches = Pattern.matches("\\*" + "市", address2);
+        if (address2.startsWith("都江堰市") || address2.startsWith("彭州市") || address2.startsWith("邛崃市") || address2.startsWith("崇州市")) {
+            district = address2.substring(0, address2.indexOf("市") + 1);
+            detail = address2.substring(address2.indexOf("市") + 1);
+        } else if (address2.startsWith("金堂县") || address2.startsWith("双流县") || address2.startsWith("郫县") || address2.startsWith("大邑县")
+                || address2.startsWith("浦江县") || address2.startsWith("新津县")) {
+            district = address2.substring(0, address2.indexOf("县") + 1);
+            detail = address2.substring(address2.indexOf("县") + 1);
+        } else if (address2.contains("区")) {
+            district = address2.substring(0, address2.indexOf("区") + 1);
+            detail = address2.substring(address2.indexOf("区") + 1);
+        } else if (address2.contains("县")) {
+            district = address2.substring(0, address2.indexOf("县") + 1);
+            detail = address2.substring(address2.indexOf("县") + 1);
+        } else if (address2.contains("市")) {
+
+            district = address2.substring(0, address2.indexOf("市"));
+            detail = address2.substring(address2.indexOf("市") + 1);
+        }
+
+        mArea.setText(city + " " + district);
         mDetailAdress.setText(detail);
         if (modifyData.getIsDefault().equals("0")) {
             mIsDefult.setSelected(false);
@@ -188,12 +203,15 @@ public class AddressModifyFrag extends BaseFragment {
             defulttag = 1 + "";
             mIsDefult.setSelected(true);
         }
+//        aid = getActivity().getIntent().getStringExtra(AddressModifyAct.INTENTTAG);
         if (modifyData.getId() != null && modifyData.getId() != "") {
             aid = modifyData.getId();
         }
     }
-    String city = "";
+
+    String city = "成都市";
     String district = "";
+
     View.OnClickListener mClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -209,9 +227,7 @@ public class AddressModifyFrag extends BaseFragment {
                         mIsDefult.setSelected(true);
                     }
                     break;
-                case R.id.et_addressModify_city:
-                    mListWindow = ShowListUtils.GetInstantiation().ShowCityList(getActivity(), mCity, mBack, mCityBean);
-                    break;
+
                 case R.id.et_addressModify_area:
                     hideInputManager();
                     pvOptions.show();
@@ -222,32 +238,20 @@ public class AddressModifyFrag extends BaseFragment {
             }
         }
     };
-/**隐藏软键盘**/
+
+    /**
+     * 隐藏软键盘
+     **/
     private void hideInputManager() {
-        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        boolean isOpen=imm.isActive();//isOpen若返回true，则表示输入法打开
-        Log.e(Tag,"isOpen:"+isOpen);
-        if (imm.isActive()){
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        boolean isOpen = imm.isActive();
+        Log.e(Tag, "isOpen:" + isOpen);
+        if (imm.isActive()) {
             imm.hideSoftInputFromWindow(getActivity().getWindow().getDecorView().getWindowToken(), 0); //强制隐藏键盘 tips：没有直接绑定某个edittext  因为页面上有多个ed
         }
     }
 
-    ShowListUtils.OnItemClickBack mBack = new ShowListUtils.OnItemClickBack() {
-        @Override
-        public void onClick(Object mBack) {
-            Log.e(Tag, "ShowListUtils.OnItemClickBack");
 
-            if (mBack instanceof CitysBean) {
-                mCity.setText(((CitysBean) mBack).getCity());
-                CityId = ((CitysBean) mBack).getCity_code();
-                HTTPHelper.getAddressDistrist(mDistristIbpi, CityId);
-            } else if (mBack instanceof DistrictBean) {
-                mQuxian.setText(((DistrictBean) mBack).getDistrict());
-                QuxianId = ((DistrictBean) mBack).getDistrict_code();
-            }
-
-        }
-    };
 
     /**
      * 选择城市区县  城市已经固定只能选成都
@@ -262,11 +266,12 @@ public class AddressModifyFrag extends BaseFragment {
         @Override
         public void onSuccess(Object message) {
             Log.e(Tag, "选择城市区县  onSuccess");
-            if (null == message)
+            if (null == message){
                 return;
+            }
             mDistrictBean = (ArrayList<DistrictBean>) message;
+            Log.e(Tag, "选择城市区县 mDistrictBean："+mDistrictBean.toString());
             options2Items_01 = mDistrictBean;
-            //选项2
             options2Items.add(mDistrictBean);
             pvOptions.setPicker(options1Items, options2Items, true);
             pvOptions.setTitle("请选择所在区县");
@@ -282,12 +287,10 @@ public class AddressModifyFrag extends BaseFragment {
 
         @Override
         public void setAsyncTask(AsyncTask asyncTask) {
-
         }
 
         @Override
         public void cancleAsyncTask() {
-
         }
 
         @Override
@@ -297,7 +300,7 @@ public class AddressModifyFrag extends BaseFragment {
 
         @Override
         public void shouldLoginAgain(boolean isShouldLogin, String msg) {
-            if (isShouldLogin){
+            if (isShouldLogin) {
                 HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
                 HighCommunityApplication.toLoginAgain(getActivity());
             }
@@ -328,14 +331,16 @@ public class AddressModifyFrag extends BaseFragment {
             HighCommunityUtils.GetInstantiation().ShowToast("请输入正确的电话号码", 0);
             return;
         }
-
         mWaitingWindow = HighCommunityUtils.GetInstantiation().ShowWaittingPopupWindow(getActivity(), mDoorNumber, Gravity.CENTER);
         postSubmit(city, district, detail, name, phone, defulttag);
+
+
     }
 
     private HttpUtils mHttpUtils;
 
     private void postSubmit(String city, String district, String detail, String name, String phone, String defulttag) {
+
         Log.e(Tag, "进入编辑收货地址");
         String url = "http://028hi.cn/api/saddress/edit.html";
         RequestParams params = new RequestParams();
@@ -354,15 +359,15 @@ public class AddressModifyFrag extends BaseFragment {
         mHttpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
             @Override
             public void onFailure(HttpException arg0, String arg1) {
-                Log.e(Tag, "http 访问失败的 arg1--->" + arg1.toString());
+                Log.e(Tag, "http 访问失败" + arg1.toString());
                 mWaitingWindow.dismiss();
+
                 HighCommunityUtils.GetInstantiation().ShowToast(arg1.toString(), 0);
             }
 
             @Override
             public void onSuccess(ResponseInfo<String> arg0) {
                 String content = arg0.result;
-                Log.e(Tag, "http 访问success的 content--->" + content);
                 mWaitingWindow.dismiss();
                 CreatAddress2Bean mInitBean = new Gson().fromJson(content, CreatAddress2Bean.class);
                 if (mInitBean != null) {
@@ -374,59 +379,7 @@ public class AddressModifyFrag extends BaseFragment {
         });
     }
 
-    BpiHttpHandler.IBpiHttpHandler mOpereteIbpi = new BpiHttpHandler.IBpiHttpHandler() {
-        @Override
-        public void onError(int id, String message) {
-            Log.e(Tag, "提交数据失败");
-            mWaitingWindow.dismiss();
-            HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
-        }
-
-        @Override
-        public void onSuccess(Object message) {
-            Log.e(Tag, "提交数据成功");
-
-            mWaitingWindow.dismiss();
-            if (message != null) {
-                CreatAddress2Bean.CreatAddress2DataEntity mBean = (CreatAddress2Bean.CreatAddress2DataEntity) message;
-            } else {
-                Log.e(Tag, "message null");
-            }
-            HighCommunityUtils.GetInstantiation().ShowToast("数据提交成功", 0);
-            getActivity().finish();
-
-        }
-
-        @Override
-        public Object onResolve(String result) {
-            return HTTPHelper.ResolveCreatAddress2Entity(result);
-        }
-
-        @Override
-        public void setAsyncTask(AsyncTask asyncTask) {
-
-        }
-
-        @Override
-        public void cancleAsyncTask() {
-            mWaitingWindow.dismiss();
-        }
-
-        @Override
-        public void shouldLogin(boolean isShouldLogin) {
-        }
-
-        @Override
-        public void shouldLoginAgain(boolean isShouldLogin, String msg) {
-            if (isShouldLogin){
-                HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
-                HighCommunityApplication.toLoginAgain(getActivity());
-            }
-        }
-    };
-
     public void onRight() {
-        Log.e(Tag, "onRight");
         if (HighCommunityUtils.isLogin(getActivity())) {
             mWaitingWindow = HighCommunityUtils.GetInstantiation().ShowWaittingPopupWindow(getActivity(), mDoorNumber, Gravity.CENTER);
             HTTPHelper.DeleteAddress2(mDeteleIbpi, modifyData.getId());
@@ -437,7 +390,6 @@ public class AddressModifyFrag extends BaseFragment {
         @Override
         public void onError(int id, String message) {
             Log.e(Tag, "删除onError");
-
             mWaitingWindow.dismiss();
             HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
         }
@@ -445,7 +397,6 @@ public class AddressModifyFrag extends BaseFragment {
         @Override
         public void onSuccess(Object message) {
             Log.e(Tag, "删除成功");
-
             mWaitingWindow.dismiss();
             if (message == null)
                 return;
@@ -465,20 +416,16 @@ public class AddressModifyFrag extends BaseFragment {
 
         @Override
         public void cancleAsyncTask() {
-
-            Log.e(Tag, "cancleAsyncTask  delete");
-
             mWaitingWindow.dismiss();
         }
 
         @Override
         public void shouldLogin(boolean isShouldLogin) {
-
         }
 
         @Override
         public void shouldLoginAgain(boolean isShouldLogin, String msg) {
-            if (isShouldLogin){
+            if (isShouldLogin) {
                 HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
                 HighCommunityApplication.toLoginAgain(getActivity());
             }
@@ -498,7 +445,6 @@ public class AddressModifyFrag extends BaseFragment {
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.e(Tag, "pvOptions.isShowing()--->" + pvOptions.isShowing());
         if (pvOptions != null && pvOptions.isShowing()) {
             pvOptions.dismiss();
             return true;
@@ -520,6 +466,7 @@ public class AddressModifyFrag extends BaseFragment {
         super.onResume();
         HTTPHelper.getAddressDistrist(mDistristIbpi, "5101");
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -528,8 +475,9 @@ public class AddressModifyFrag extends BaseFragment {
 
     @OnClick(R.id.tv_addressModify_submit)
     public void onClick() {
-        Log.e(Tag, "tv_addressModify_submit  onClick");
+        Log.e(Tag, "tv_addressModify_submit");
         submit();
+
     }
 
 }

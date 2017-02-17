@@ -33,7 +33,6 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  */
 @EFragment(resName = "frag_aboutus")
 public class AboutUsFrag extends BaseFragment {
-
     public static final String FRAGMENTTAG = "AboutUsFrag";
     @ViewById(R.id.tv_AboutUs_AppVersion)
     TextView mAppVersion;
@@ -47,7 +46,6 @@ public class AboutUsFrag extends BaseFragment {
     TextView mContactUs;
     @ViewById(R.id.tv_AboutUs_UpdateContent)
     TextView mUpdateContent;
-
     PopupWindow mWaitingWindow;
 
     /**

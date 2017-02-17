@@ -14,8 +14,6 @@ import com.don.tools.BpiUniveralImage;
 import com.don.tools.GeneratedClassUtils;
 import com.don.view.CircleImageView;
 
-import net.duohuo.dhroid.util.ImageLoaderUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +29,6 @@ import cn.hi028.android.highcommunity.utils.Constacts;
  * @时间：2015/12/16<br>
  */
 public class AssistHeadPicAdapter extends BaseFragmentAdapter {
-
     public Context mContext;
     private List<PraisesBean> mList = new ArrayList<PraisesBean>();
 

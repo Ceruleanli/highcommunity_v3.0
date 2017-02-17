@@ -56,7 +56,6 @@ public class NewTopPageFrag extends BaseFragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
         view = inflater.inflate(R.layout.page_top_supply2, null);
         ButterKnife.bind(this, view);
         initView();
@@ -64,15 +63,12 @@ public class NewTopPageFrag extends BaseFragment implements View.OnClickListener
     }
 
     NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity goodsdata;
-
     private void initView() {
-        Log.e(Tag, "initView");
         findView(view);
         Bundle bundle = getArguments();
         if (bundle != null) {
             goodsdata = bundle.getParcelable("goodsdata");
             setUi(goodsdata);
-            Log.e(Tag, "传过来的对象：" + goodsdata.toString());
         } else {
             Log.e(Tag, "传过来的对象：null");
         }
@@ -174,7 +170,7 @@ public class NewTopPageFrag extends BaseFragment implements View.OnClickListener
             standardId = msg.getStandard().get(0).getId();
             mStandardChangeListener.onStandardChange(false, singlePrice, standardId);
             if (null != msg.getStandard().get(0).getOld_price() && !msg.getStandard().get(0).getOld_price().equals("")
-                    && !msg.getStandard().get(0).getOld_price().equals("null")) {
+                    && !msg.getStandard().get(0).getOld_price().equals("null")&& !msg.getStandard().get(0).getOld_price().equals("0")) {
                 Spannable spanStrikethrough = new SpannableString("￥:" + msg.getStandard().get(0).getOld_price());
                 StrikethroughSpan stSpan = new StrikethroughSpan();
                 try {
@@ -202,7 +198,7 @@ public class NewTopPageFrag extends BaseFragment implements View.OnClickListener
             mStandardChangeListener.onStandardChange(false, singlePrice, standardId);
 
             if (null != msg.getStandard().get(0).getOld_price() && !msg.getStandard().get(0).getOld_price().equals("")
-                    && !msg.getStandard().get(0).getOld_price().equals("null")) {
+                    && !msg.getStandard().get(0).getOld_price().equals("null") && !msg.getStandard().get(0).getOld_price().equals("0")) {
                 Spannable spanStrikethrough = new SpannableString("￥:" + msg.getStandard().get(0).getOld_price());
                 StrikethroughSpan stSpan = new StrikethroughSpan();
                 try {
@@ -278,10 +274,8 @@ public class NewTopPageFrag extends BaseFragment implements View.OnClickListener
             LayoutInflater layoutInflater;
             layoutInflater = LayoutInflater.from(getActivity());
             mStandardList = msg.getStandard();
-            Log.e(Tag, "排序前list：" + mStandardList.toString());
+            //排序
             Collections.sort(mStandardList);
-            Log.e(Tag, "排序后list：" + mStandardList.toString());
-            Log.e(Tag, "规格长度：" + mStandardList.size());
             for (int i = 0; i < mStandardList.size(); i++) {
                 RadioButton newRadioBut = (RadioButton) layoutInflater.inflate(R.layout.radiobut_standard, null);
                 newRadioBut.setId(Integer.parseInt(mStandardList.get(i).getId()));
@@ -328,7 +322,6 @@ public class NewTopPageFrag extends BaseFragment implements View.OnClickListener
                                 StrikethroughSpan stSpan = new StrikethroughSpan();
                                 try {
                                     spanStrikethrough.setSpan(stSpan, 0, spanStrikethrough.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-
                                 } catch (Exception ex) {
 
                                 }

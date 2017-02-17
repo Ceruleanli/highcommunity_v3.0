@@ -14,6 +14,8 @@ import com.don.tools.SystemBarTintManager;
 
 import net.duohuo.dhroid.activity.BaseActivity;
 
+import cn.hi028.android.highcommunity.R;
+
 /**
  * @功能：基类FragmentActivity<br>
  * @作者： 李凌云<br>
@@ -28,14 +30,14 @@ public class BaseFragmentActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setStatusBar();
-//        mTintManager = new SystemBarTintManager(this);
-//        mTintManager.setStatusBarTintEnabled(true);
-//        mTintManager.setNavigationBarTintEnabled(true);
-//        mTintManager.setStatusBarTintResource(R.color.Defult_Color_AppGreen);
-//        mTintManager.setTintColor(getResources().getColor(R.color.Defult_Color_AppGreen));
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            setTranslucentStatus(true);
-//        }
+        mTintManager = new SystemBarTintManager(this);
+        mTintManager.setStatusBarTintEnabled(true);
+        mTintManager.setNavigationBarTintEnabled(true);
+        mTintManager.setStatusBarTintResource(R.color.Defult_Color_AppGreen);
+        mTintManager.setTintColor(getResources().getColor(R.color.Defult_Color_AppGreen));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+        }
     }
 
     public boolean isVersionBiger() {

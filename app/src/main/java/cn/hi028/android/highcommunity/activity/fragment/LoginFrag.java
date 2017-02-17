@@ -57,7 +57,6 @@ import cn.sharesdk.wechat.friends.Wechat;
  * @时间：2015/12/9<br>
  */
 public class LoginFrag extends BaseFragment {
-
     public static final String FRAGMENTTAG = "LoginFrag";
     private View mFragmeView;
     private EditText mUserName, mPassword;

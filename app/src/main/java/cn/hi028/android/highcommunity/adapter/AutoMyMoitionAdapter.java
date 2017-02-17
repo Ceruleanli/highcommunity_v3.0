@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.HorizontalScrollView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,22 +45,21 @@ import cn.hi028.android.highcommunity.utils.TimeUtil;
  */
 public class AutoMyMoitionAdapter extends BaseFragmentAdapter {
     BpiHttpHandler.IBpiHttpHandler mIbpi, mDeleteIbpi;
-    public static final String TAG = "~~~MoitionAdapter-";
+    public static final String TAG = "MoitionAdapter-";
     public static final int TAG_MOTION_DETAIL = 2;
     List<Auto_MotionBean.MotionDataEntity> mList = new ArrayList<Auto_MotionBean.MotionDataEntity>();
     private Context context;
     private LayoutInflater layoutInflater;
     View view;
     Auto_SupportedResultBean.SupportedResultDataEntity mResultData;
-    // 屏幕宽度,由于是HorizontalScrollView,所以按钮选项应该在屏幕外
     private int mScreentWidth;
-    private View view2,view3;
+    private View view2, view3;
     private ListView listView;
-    private HttpUtils mHttpUtils,mSupportHttpUtils;
-View clickView;
+    private HttpUtils mHttpUtils, mSupportHttpUtils;
+    View clickView;
+
     public AutoMyMoitionAdapter(List<Auto_MotionBean.MotionDataEntity> list, Context context, View view, int screenWidth, ListView listView) {
         super();
-        Log.e(TAG, "---构造---");
         this.mList = list;
         if (this.mList == null) {
             this.mList = new ArrayList<Auto_MotionBean.MotionDataEntity>();
@@ -100,7 +98,8 @@ View clickView;
 
     ViewHolder mViewHolder = null;
     private boolean isClose = true;
-int clickPosition=-1;
+    int clickPosition = -1;
+
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
         if (convertView == null) {
@@ -114,16 +113,14 @@ int clickPosition=-1;
             mViewHolder.mBut_Support = (CheckedTextView) convertView.findViewById(R.id.item_aotumotion_but_support);
             mViewHolder.action = convertView.findViewById(R.id.ll_action);
             mViewHolder.but_delete = (Button) convertView.findViewById(R.id.item_aotumotion_but_delete);
-
-            // 设置内容view的大小为屏幕宽度,这样按钮就正好被挤出屏幕外
+            // 设置内容view的大小为屏幕宽度,使按钮被挤出屏幕外
             LayoutParams lp = mViewHolder.mContentLayout.getLayoutParams();
             lp.width = mScreentWidth;
-
             convertView.setTag(mViewHolder);
         } else {
             mViewHolder = (ViewHolder) convertView.getTag();
         }
-        view3=convertView;
+        view3 = convertView;
         final Auto_MotionBean.MotionDataEntity mBean = mList.get(position);
         mViewHolder.mTitle.setText(mBean.getTitle());
         mViewHolder.mTime.setText(TimeUtil.getYearMonthDay(Long.parseLong(mBean.getCreate_time())));
@@ -132,46 +129,34 @@ int clickPosition=-1;
             mViewHolder.mBut_Support.setChecked(true);
             mViewHolder.mBut_Support.setText(" 已支持 ");
 
-        } else  {
+        } else {
             mViewHolder.mBut_Support.setChecked(false);
             mViewHolder.mBut_Support.setText(" 支持 ");
         }
-        //位置放到view里   方便知道点击的是那一条item
         mViewHolder.but_delete.setTag(position);
         mViewHolder.mBut_Support.setTag(position);
         mViewHolder.mTv_Support.setTag(position);
-        Log.e(TAG,"支持按钮的tag--->"+mViewHolder.mBut_Support.getTag()+"支支持文字的tag--->"+mViewHolder.mTv_Support.getTag());
-
         //监听支持
         mViewHolder.mBut_Support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickView=v;
-                clickPosition=position;
-                Log.e(TAG,"监听 支持按钮的tag--->"+mViewHolder.mBut_Support.getTag()+"监听 支支持文字的tag--->"+mViewHolder.mTv_Support.getTag());
-
-                Log.e(TAG,"position--->"+position);
-                Log.e(TAG,"clickPosition--->"+clickPosition);
-                Log.e(TAG,"v.getTag()--->"+v.getTag());
+                clickView = v;
+                clickPosition = position;
                 HTTPHelper.SupportMotion(mIbpi, mBean.getId());
             }
         });
 
 
-
         mIbpi = new BpiHttpHandler.IBpiHttpHandler() {
             @Override
             public void onError(int id, String message) {
-                Log.e(TAG, "onError");
                 HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
 
             }
 
             @Override
             public void onSuccess(Object message) {
-                Log.e(TAG, "onSuccess");
                 if (message == null) return;
-
                 mResultData = (Auto_SupportedResultBean.SupportedResultDataEntity) message;
                 Toast.makeText(context, "已支持", Toast.LENGTH_SHORT).show();
                 mList.get(clickPosition).setVote_percent(mResultData.getVote_percent() + "");
@@ -203,7 +188,7 @@ int clickPosition=-1;
 
             @Override
             public void shouldLoginAgain(boolean isShouldLogin, String msg) {
-                if (isShouldLogin){
+                if (isShouldLogin) {
                     HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
                     HighCommunityApplication.toLoginAgain(context);
                 }
@@ -250,13 +235,11 @@ int clickPosition=-1;
                         int scrollX = viewHolder2.mHSView.getScrollX();
                         // 获得操作区域的长度
                         int actionW = viewHolder2.action.getWidth();
-                        // 注意使用smoothScrollTo,这样效果看起来比较圆滑,不生硬
-                        // 如果水平方向的移动值<操作区域的长度的一半,就复原
                         if (isClose) {
                             if (scrollX < (actionW / 5)) {
                                 isClose = true;
                                 viewHolder2.mHSView.smoothScrollTo(0, 0);
-                            } else// 否则的话显示操作区域
+                            } else
                             {
                                 isClose = false;
                                 viewHolder2.mHSView.smoothScrollTo(actionW, 0);
@@ -286,23 +269,16 @@ int clickPosition=-1;
         mViewHolder.but_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 deleteHttp(mBean.getId());
                 mList.remove(position);
-
-//
                 // 刷新ListView内容
                 notifyDataSetChanged();
             }
         });
 
 
-
         return convertView;
     }
-
-
-    private PopupWindow mWatingWindow;
 
     @Override
     public void AddNewData(Object mObject) {
@@ -318,9 +294,7 @@ int clickPosition=-1;
         notifyDataSetChanged();
     }
 
-
     class ViewHolder {
-
         HorizontalScrollView mHSView;
         View mContentLayout;
         TextView mTitle;
@@ -332,27 +306,20 @@ int clickPosition=-1;
     }
 
     private void deleteHttp(String id) {
-
         String url = "http://028hi.cn/api/ysuggest/delete.html";
         RequestParams params = new RequestParams();
         params.addBodyParameter("token", HighCommunityApplication.mUserInfo.getToken());
         params.addBodyParameter("id", id);
         mHttpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
-
             @Override
             public void onFailure(HttpException arg0, String arg1) {
-                Log.e(TAG, "http 访问失败的 arg1--->" + arg1.toString());
                 Toast.makeText(context, arg1.toString(), Toast.LENGTH_SHORT).show();
-
-
             }
 
             @Override
             public void onSuccess(ResponseInfo<String> arg0) {
                 String content = arg0.result;
-                Log.e(TAG, "http 访问success的 content--->" + content);
                 CommonHttpResultBean mInitBean = new Gson().fromJson(content, CommonHttpResultBean.class);
-                //                ResponseGoodsItem responseGoodsItem = new Gson().fromJson(content, ResponseGoodsItem.class);
                 if (mInitBean != null) {
                     Toast.makeText(context, mInitBean.getMsg(), Toast.LENGTH_SHORT).show();
                 }
@@ -360,34 +327,28 @@ int clickPosition=-1;
         });
     }
 
-
     public String supportHttp(String id) {
         final String[] mPercentStr = {""};
         final int[] num = new int[1];
         String url = "http://028hi.cn/api/ywatch/suggest.html";
         RequestParams params = new RequestParams();
-        params.addBodyParameter("uid",122+"");
-        params.addBodyParameter("id", 33+"");
-        Log.e(TAG,"id--->"+id+"uid--->"+HighCommunityApplication.mUserInfo.getId());
+        params.addBodyParameter("uid", 122 + "");
+        params.addBodyParameter("id", 33 + "");
         mSupportHttpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
             @Override
             public void onFailure(HttpException arg0, String arg1) {
-                Log.e(TAG, "http 访问失败的 arg1--->" + arg1.toString());
                 Toast.makeText(context, arg1.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(ResponseInfo<String> arg0) {
                 String content = arg0.result;
-                Log.e(TAG, "http 访问success的 content--->" + content);
                 Auto_SupportedResultBean mInitBean = new Gson().fromJson(content, Auto_SupportedResultBean.class);
-                //                ResponseGoodsItem responseGoodsItem = new Gson().fromJson(content, ResponseGoodsItem.class);
                 if (mInitBean != null) {
                     Toast.makeText(context, mInitBean.getMsg(), Toast.LENGTH_SHORT).show();
-                    Auto_SupportedResultBean.SupportedResultDataEntity mSupportedData=mInitBean.getData();
-                    if (mSupportedData!=null){
-                        mPercentStr[0] = mSupportedData.getVote_percent()+"";
-//                        num[0] =mSupportedData.getVote_percent();
+                    Auto_SupportedResultBean.SupportedResultDataEntity mSupportedData = mInitBean.getData();
+                    if (mSupportedData != null) {
+                        mPercentStr[0] = mSupportedData.getVote_percent() + "";
                     }
 
                 }
@@ -396,22 +357,17 @@ int clickPosition=-1;
         return mPercentStr[0];
     }
 
-    private  void support(String id){
+    private void support(String id) {
         final String[] str = {""};
-//        }
         mIbpi = new BpiHttpHandler.IBpiHttpHandler() {
             @Override
             public void onError(int id, String message) {
-                Log.e(TAG, "onError");
                 HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
-
             }
 
             @Override
             public void onSuccess(Object message) {
-                Log.e(TAG, "onSuccess");
                 if (message == null) return;
-
                 mResultData = (Auto_SupportedResultBean.SupportedResultDataEntity) message;
                 Toast.makeText(context, "已支持", Toast.LENGTH_SHORT).show();
 
@@ -441,7 +397,7 @@ int clickPosition=-1;
             @Override
             public void shouldLoginAgain(boolean isShouldLogin, String msg) {
 
-                if (isShouldLogin){
+                if (isShouldLogin) {
                     HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
                     HighCommunityApplication.toLoginAgain(context);
                 }

@@ -6,7 +6,6 @@ package cn.hi028.android.highcommunity.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +78,6 @@ public class AutoSuperviseAdapter_Re extends BaseFragmentAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("~~~","报告adapter");
                 Intent mIntent_report=new Intent(context, AutonomousAct_Third.class);
                 mIntent_report.putExtra("title",TAG_REPORT_DETAIL);
                 mIntent_report.putExtra("reportDetail_id",mBean.getId());

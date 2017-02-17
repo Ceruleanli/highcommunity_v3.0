@@ -1,7 +1,5 @@
 package cn.hi028.android.highcommunity.adapter;
 
-import java.util.List;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -9,18 +7,17 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.List;
+
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.bean.Goods_info;
-import cn.hi028.android.highcommunity.bean.PayPopListBean;
-import cn.hi028.android.highcommunity.lisenter.PopListAddSubListener;
 import cn.hi028.android.highcommunity.lisenter.ShopAddSubListener;
 
 public class PayPopupListAdapter extends MyBaseAdapter<Goods_info> {
 	ShopAddSubListener face;
-
 	public PayPopupListAdapter(Context context, List<Goods_info> data) {
 		super(context, data);
-
 	}
 
 	public void setFace(ShopAddSubListener face) {

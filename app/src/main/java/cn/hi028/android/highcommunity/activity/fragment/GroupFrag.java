@@ -50,7 +50,6 @@ import io.rong.imlib.model.Conversation;
  */
 @EFragment(resName = "frag_group")
 public class GroupFrag extends BaseFragment {
-
     public static final String FRAGMENTTAG = "ServiceFrag";
 
     @ViewById(R.id.tv_group_hot)
@@ -166,16 +165,12 @@ public class GroupFrag extends BaseFragment {
 //                        getData(type);
 //                    }
                     //首先需要构造使用客服者的用户信息
+                    //TODO 记得改回来
                     CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
                     CSCustomServiceInfo csInfo = csBuilder.nickName("融云").build();
 
 /**
  * 启动客户服聊天界面。
- *
- * @param context           应用上下文。
- * @param customerServiceId 要与之聊天的客服 Id。
- * @param title             聊天的标题，如果传入空值，则默认显示与之聊天的客服名称。
- * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
  */
                     RongIM.getInstance().startCustomerServiceChat(getActivity(), "KEFU148514008440782", "在线客服",csInfo);
                     break;
@@ -200,11 +195,6 @@ public class GroupFrag extends BaseFragment {
 
                     /**
                      * 启动系统会话聊天界面。
-                     *
-                     * @param context          应用上下文。
-                     * @param conversationType 开启会话类型。
-                     * @param targetId         目标 Id；
-                     * @param title            聊天的标题，如果传入空值，则默认显示会话的名称。
                      */
                     RongIM.getInstance().startConversation(getActivity(), Conversation.ConversationType.SYSTEM, "116", "标题");
                     break;

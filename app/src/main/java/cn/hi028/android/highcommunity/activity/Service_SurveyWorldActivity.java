@@ -31,12 +31,15 @@ import java.util.List;
 
 import cn.hi028.android.highcommunity.HighCommunityApplication;
 import cn.hi028.android.highcommunity.R;
-
+/**
+ *调查天地
+ * @author Administrator 李金隆
+ */
 public class Service_SurveyWorldActivity extends Activity {
 	private WebView mWebView;
 	private ImageView back;
 
-	private ValueCallback<Uri> mUploadMessage;// 琛ㄥ崟鐨勬暟鎹俊鎭�
+	private ValueCallback<Uri> mUploadMessage;
 	private ValueCallback<Uri[]> mUploadCallbackAboveL;
 	private final static int FILECHOOSER_RESULTCODE = 1;
 	private Uri imageUri;
@@ -99,7 +102,7 @@ public class Service_SurveyWorldActivity extends Activity {
 		init();
 		// 这里就是在加载页面
 		mWebView.loadUrl("http://028hi.cn/community/survey/index.html?token="
-				+ HighCommunityApplication.mUserInfo.getToken());// loadurl这个方法是直接加载链接地址
+				+ HighCommunityApplication.mUserInfo.getToken());
 		mWebView.setWebViewClient(new WebViewClient() {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {

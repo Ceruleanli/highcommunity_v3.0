@@ -8,18 +8,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.ImageView;
-
-import com.don.tools.BpiUniveralImage;
 
 import net.duohuo.dhroid.util.ImageLoaderUtil;
 import net.duohuo.dhroid.util.ListUtils;
-
-import org.androidannotations.annotations.res.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,9 +35,7 @@ import cn.hi028.android.highcommunity.utils.Constacts;
  */
 public class HuiSupportAdapter extends PagerAdapter {
     Context context;
-
     Map<Integer, ImageView> viewlist = new HashMap<Integer, ImageView>();
-
     public List<HuiSupportBean> getData() {
         return data;
     }
@@ -72,25 +64,8 @@ public class HuiSupportAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        //对ViewPager页号求模取出View列表中要显示的项
-//        position %= data.size();
-//        if (position < 0) {
-//            position = data.size() + position;
-//        }
-//        if (viewlist.size() == 0) {
-//            for (int i = 0; i < data.size(); i++) {
-//                ImageView imageView = new ImageView(context);
-//                viewlist.put(i, imageView);
-//            }
-//        }
         ImageView view = new ImageView(context);
         viewlist.put(position, view);
-//        //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
-//        ViewParent vp = view.getParent();
-//        if (vp != null) {
-//            ViewGroup parent = (ViewGroup) vp;
-//            parent.removeView(view);
-//        }
         container.addView(view);
         ImageLoaderUtil.disPlay(Constacts.IMAGEHTTP + data.get(position).getPic().
                 get(data.get(position).getCurrentPicPosition()).getBig(), view, R.mipmap.default_no_pic, null);
@@ -118,24 +93,14 @@ public class HuiSupportAdapter extends PagerAdapter {
                 get(data.get(position).getCurrentPicPosition()).getBig(), viewlist.get(position), R.mipmap.default_no_pic, null);
     }
 
-//    public int getCurrentPo(int currentPositon) {
-//        int curr = currentPositon % ListUtils.getSize(getData());
-//        if (curr < 0) {
-//            curr = ListUtils.getSize(getData()) + curr;
-//        }
-//        return curr;
-//    }
-
     @Override
     public void startUpdate(ViewGroup container) {
         super.startUpdate(container);
-
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
-
 }
 

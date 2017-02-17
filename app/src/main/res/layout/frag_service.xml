@@ -18,11 +18,14 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_height"
+android:visibility="gone"
             android:background="@color/Defult_Color_AppGreen">
 
-
+            <include
+                android:id="@+id/title_secondTitle_Hight"
+                layout="@layout/title_status_height" />
             <TextView
-
+android:layout_below="@id/title_secondTitle_Hight"
                 android:id="@+id/tv_mainlevel_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

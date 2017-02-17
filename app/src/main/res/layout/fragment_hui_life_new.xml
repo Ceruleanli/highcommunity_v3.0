@@ -6,18 +6,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/Defult_Color_AppGreen"
+        android:visibility="gone"
         android:layout_height="@dimen/title_height">
 
-
+        <include
+            android:id="@+id/title_secondTitle_Hight"
+            layout="@layout/title_status_height" />
 
         <RadioGroup
+            android:layout_below="@id/title_secondTitle_Hight"
             android:id="@+id/rg_title_newHuilifegroup"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_centerInParent="true"
             android:background="@drawable/bg_maintitle_rg_huilife"
             android:orientation="horizontal"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <RadioButton
                 android:id="@+id/rb_title_supply"

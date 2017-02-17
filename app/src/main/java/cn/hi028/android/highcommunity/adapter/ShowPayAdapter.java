@@ -1,21 +1,18 @@
 package cn.hi028.android.highcommunity.adapter;
 
-import java.text.DecimalFormat;
-import java.util.List;
-
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
+
+import com.squareup.picasso.Picasso;
+
+import java.text.DecimalFormat;
+import java.util.List;
+
 import cn.hi028.android.highcommunity.R;
-import cn.hi028.android.highcommunity.bean.AddressModel;
 import cn.hi028.android.highcommunity.bean.Goods_info;
 import cn.hi028.android.highcommunity.utils.CommonUtils;
 import cn.hi028.android.highcommunity.utils.Constacts;
@@ -55,7 +52,6 @@ public class ShowPayAdapter extends MyBaseAdapter<Goods_info> {
 			allprice.setText("小计:"+rs);
 		}
 		String imageUrl = Constacts.IMAGEHTTP + info.getThumb_pic();
-		Log.e("showPayAdapter", "imageUrl-" +  imageUrl);
 		int width = CommonUtils.dip2px(context, 75);
 		Picasso.with(context)
 				.load(imageUrl)

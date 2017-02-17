@@ -38,7 +38,7 @@ import cn.hi028.android.highcommunity.view.MyCustomViewPager;
  * @时间：2016/10/11<br>
  */
 public class AutoFrag_Vote extends BaseFragment {
-    public static final String Tag = "~~~AutoFrag_Vote~~~";
+    public static final String Tag = "Vote:";
     public static final String FRAGMENTTAG = "AutoFrag_Vote";
     AutoVoteList_Q_Adapter mQuestionAdapter;
     AutoVoteList_V_Adapter mVoteAdapter;
@@ -46,9 +46,6 @@ public class AutoFrag_Vote extends BaseFragment {
     RadioGroup mRadioGroup;
     @Bind(R.id.frag_vote_ViewPager)
     MyCustomViewPager mViewPager;
-    /**
-     * 当前页
-     **/
     int currentPo = 0;
     public List<ListView> listViewList;
     public List<View> proPressList;
@@ -269,7 +266,6 @@ public class AutoFrag_Vote extends BaseFragment {
     public void onResume() {
         super.onResume();
         initDatas();
-        Log.d(Tag, "onResume");
     }
 
 

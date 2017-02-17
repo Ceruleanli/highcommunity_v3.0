@@ -30,7 +30,6 @@ import cn.hi028.android.highcommunity.bean.AddressBean;
  * @时间：2016/1/21<br>
  */
 public class AddressListAdapter extends BaseFragmentAdapter {
-
     public AddressListFrag mFrag;
     List<AddressBean> mList = new ArrayList<AddressBean>();
 
@@ -86,7 +85,6 @@ public class AddressListAdapter extends BaseFragmentAdapter {
             @Override
             public void onClick(View view) {
                 Intent mModify = new Intent(mFrag.getActivity(), GeneratedClassUtils.get(AddressModifyAct.class));
-
 //                mModify.putExtra("modifyData", (Parcelable) mBean);
                 Bundle mBundle = new Bundle();
                 mBundle.putParcelable("modifyData", mBean);

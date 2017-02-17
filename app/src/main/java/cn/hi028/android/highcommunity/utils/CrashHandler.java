@@ -50,8 +50,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         return INSTANCE;
     }
     public void init(Context context) {
-        Log.e(Tag, "init ");
-
         mContext = context;
         //获取系统默认的UncaughtException处理器
         mExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
@@ -69,12 +67,10 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             mExceptionHandler.uncaughtException(thread, ex);
         } else {
             try {
-                Log.e(Tag, "sleep  3s ");
                 Thread.sleep(1000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.e(Tag, " sleep   ActivityTack  exit ");
             // 退出程序
             ActivityTack.getInstanse().exit(mContext.getApplicationContext());
         }
@@ -82,7 +78,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     ECAlertDialog dialog2;
     Throwable throwable;
-
     private boolean handleException(Throwable throwable) {
         Log.e(Tag, "handleException ");
         this.throwable=throwable;
@@ -90,7 +85,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             return false;
         }
         new Thread(new Runnable() {
-
             @Override
             public void run() {
                 Looper.prepare();
@@ -114,87 +108,24 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      * 重启app
      */
     public void restartApp() {
-//        Log.e(Tag, "重启app");
-//        ActivityTack.getInstanse().exit(mContext.getApplicationContext());
-//        Log.e(Tag, "重启app ok");
-//        Intent intent = new Intent(mContext, WelcomeAct.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        mContext.startActivity(intent);
-//        android.os.Process.killProcess(android.os.Process.myPid());  //结束进程之前可以把你程序的注销或者退出代码放在这段代码之前
+
+
     }
 
     /****
      * crash弹窗
      */
     public void showCrashDialog() {
-//        mContext.getApplicationContext().getWindow().getDecorView().findViewById(android.R.id.content);
-//        ActivityManager manager = (ActivityManager)mContext.getSystemService(Context.ACTIVITY_SERVICE);
-//        List<ActivityManager.RunningTaskInfo> runningTasks = manager .getRunningTasks(1);
-//        ActivityManager.RunningTaskInfo cinfo = runningTasks.get(0);
-//        ComponentName component = cinfo.topActivity;
-//        Log.e(Tag+"current activity is -", component.getClassName());
-//        Log.e(Tag+"current activity is -", component.getClass().toString());
-//        Log.e(Tag+"current activity is -", component.getClassName().getClass().toString());
-//        Log.e(Tag, "显示奔溃弹窗");
-//        Toast.makeText(this, "很抱歉,程序出现异常,即将退出.", Toast.LENGTH_SHORT).show();
-//        HighCommunityUtils.GetInstantiation().ShowToast("很抱歉,程序出现异常,即将退出.", 0);
-//        restartApp();
-//        android.os.Process.killProcess(android.os.Process.myPid());
-//        System.exit(0);
-//        AppManager.getAppManager().finishAllActivity();
-//        ECAlertDialog dialog2 ;
-//
-//            Log.e(Tag,"getGlobleActivity()---"+ActivityTack.getInstanse().getActivityByClassName(component.getClassName()).toString());
-//            dialog2 = ECAlertDialog.buildAlert(ActivityTack.getInstanse().getActivityByClassName("SettingAct_"), "抱歉，程序奔溃了……即将退出", "我知道了", new DialogInterface.OnClickListener() {
-//
-//                @Override
-//                public void onClick(DialogInterface arg0, int arg1) {
-//                    Log.e(Tag, "退出 app1");
-    // 收集设备参数信息
-//                    collectDeviceInfo(mContext);
-//                    // 保存日志文件
-//                    saveCrashInfo2File(throwable);
-//                    ActivityTack.getInstanse().exit(mContext.getApplicationContext());
-    //                System.exit(0);
-//                    Log.e(Tag, "退出 app2");
-//                }
-//            });
-//
-//        Log.e(Tag, "显示奔溃弹窗2 ");
-//
-//        dialog2.setTitle("提示");
-//        Log.e(Tag, "显示奔溃弹窗3 ");
-//
-//        dialog2.show();
-//        Log.e(Tag, "显示奔溃弹窗4 ");
+
 
     }
-//    public static Activity getGlobleActivity() throws ClassNotFoundException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, NoSuchFieldException{
-//        Class activityThreadClass = Class.forName("android.app.ActivityThread");
-//        Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
-//        Field activitiesField = activityThreadClass.getDeclaredField("mActivities");
-//        activitiesField.setAccessible(true);
-//        Map activities = (Map) activitiesField.get(activityThread);
-//        for(Object activityRecord:activities.values()){
-//            Class activityRecordClass = activityRecord.getClass();
-//            Field pausedField = activityRecordClass.getDeclaredField("paused");
-//            pausedField.setAccessible(true);
-//            if(!pausedField.getBoolean(activityRecord)) {
-//                Field activityField = activityRecordClass.getDeclaredField("activity");
-//                activityField.setAccessible(true);
-//                Activity activity = (Activity) activityField.get(activityRecord);
-//                return activity;
-//            }
-//        }
-//        return null;
-//    }
+
     class GetDataTask extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... params) {
             try {
                 Log.e(Tag, "doInBackground  1s");
-
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
             }
@@ -205,12 +136,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             Log.e(Tag, "onPostExecute ActivityTack  exit");
-
             ActivityTack.getInstanse().exit(mContext.getApplicationContext());
-
-
-            // Call onRefreshComplete when the list has been refreshed.
-            //				mListView.onRefreshComplete();
         }
     }
     /**
@@ -219,7 +145,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      * @param ctx
      */
     public void collectDeviceInfo(Context ctx) {
-        Log.e(Tag,"collectDeviceInfo");
         try {
             PackageManager pm = ctx.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(),
@@ -232,7 +157,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 infos.put("versionCode", versionCode);
             }
         } catch (PackageManager.NameNotFoundException e) {
-            Log.e(Tag, "an error occured when collect package info", e);
         }
         Field[] fields = Build.class.getDeclaredFields();
         for (Field field : fields) {
@@ -241,7 +165,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 infos.put(field.getName(), field.get(null).toString());
                 Log.d(Tag, field.getName() + " : " + field.get(null));
             } catch (Exception e) {
-                Log.e(Tag, "an error occured when collect crash info", e);
             }
         }
     }

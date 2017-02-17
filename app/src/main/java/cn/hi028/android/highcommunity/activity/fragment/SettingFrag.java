@@ -115,13 +115,10 @@ public class SettingFrag extends BaseFragment {
 
     @Click(R.id.tv_settings_PhoneNumber)
     void call() {
-//        mIntent.putExtra(SettingAct.ACTIVITYTAG, Constacts.MENU_LEFTSECOND_SETTINGABOUTUS);
-//        startActivity(mIntent);
     }
 
     @Click(R.id.tv_settings_AppUpdate)
     void update() {
-        //检查更新
       boolean isUpdate=  new UpdateUtil(getActivity(), getContext()).checkIsToUpdate();
         if (isUpdate){
             new UpdateUtil(getActivity(), getContext()).initUpdate();

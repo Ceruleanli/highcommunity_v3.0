@@ -37,7 +37,7 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2016/10/17<br>
  */
 public class Auto_ReportDetailAdapter extends BaseFragmentAdapter {
-    static final String Tag = "~~~000 Auto_ReportDetailAdapter：";
+    static final String Tag = "Auto_ReportDetailAdapter：";
     AutoDetail_Report mFrag;
     List<Auto_ReportDetailBean.ReportDetailDataEntity.ReportDetailReplyEntity> mList = new ArrayList<Auto_ReportDetailBean.ReportDetailDataEntity.ReportDetailReplyEntity>();
     /**
@@ -120,7 +120,6 @@ public class Auto_ReportDetailAdapter extends BaseFragmentAdapter {
                 final String To_name = mBean.getSub_reply().get(i).getTo_name();
                 final String To_id = mBean.getSub_reply().get(i).getTo_id() + "";//主评论人id
                 final String From_id = mBean.getSub_reply().get(i).getFrom_id() + "";//小评论里的评论人id
-                Log.d(Tag, "~~~From_name:" + From_name + ",To_name" + To_name + ",From_id" + From_id + ",To_id" + To_id);
                 mSpan.setSpan(new ClickableSpan() {
                     @Override
                     public void updateDrawState(TextPaint ds) {
@@ -131,7 +130,6 @@ public class Auto_ReportDetailAdapter extends BaseFragmentAdapter {
 
                     @Override
                     public void onClick(View view) {
-                        Log.d(Tag, "点击了：" + From_name + ",hostId" + From_id + ",mBean.getId()评论id " + mBean.getId());
                         mFrag.setText("回复:" + From_name, From_id, mBean.getId() + "", true);
                         mTempReplies = mBean;
                         avoidHintColor(view);
@@ -139,7 +137,6 @@ public class Auto_ReportDetailAdapter extends BaseFragmentAdapter {
                         mTempReply.setFrom_id(HighCommunityApplication.mUserInfo.getId());
                         mTempReply.setFrom_name(HighCommunityApplication.mUserInfo.getNick());
                         mTempReply.setTo_name(From_name);
-                        Log.d(Tag, "点击结束的小回复bean+" + mTempReply.toString());
                     }
                 }, 0, fromNameLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 mSpan.setSpan(new ClickableSpan() {
@@ -153,8 +150,6 @@ public class Auto_ReportDetailAdapter extends BaseFragmentAdapter {
                     @Override
                     public void onClick(View view) {
                         avoidHintColor(view);
-                        Log.d(Tag, "点击了：" + To_name + ",To_id" + To_id + ",mBean.getId()评论id " + mBean.getId());
-
                         mFrag.setText("回复:" + To_name, To_id, mBean.getId() + "", true);
                         mTempReplies = mBean;
                         mTempReply = new Auto_ReportDetailBean.ReportDetailDataEntity.ReportDetailReplyEntity.SubReplyEntity();
@@ -179,8 +174,6 @@ public class Auto_ReportDetailAdapter extends BaseFragmentAdapter {
                 mTempReplies = mBean;
                 mFrag.setText("回复:" + mBean.getFrom_name(), mBean.getFrom_id() + "", mBean.getId() + "", true);
                 mTempReply = new Auto_ReportDetailBean.ReportDetailDataEntity.ReportDetailReplyEntity.SubReplyEntity();
-//                mTempReply.set(mBean.getId());
-
                 mTempReply.setFrom_id(HighCommunityApplication.mUserInfo.getId());
                 mTempReply.setFrom_name(HighCommunityApplication.mUserInfo.getNick());
                 mTempReply.setTo_name(mBean.getFrom_name());

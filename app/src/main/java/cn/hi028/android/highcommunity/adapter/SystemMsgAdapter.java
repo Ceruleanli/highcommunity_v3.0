@@ -30,7 +30,7 @@ import cn.hi028.android.highcommunity.utils.Constacts;
  * @时间：2016/10/16<br>
  */
 public class SystemMsgAdapter extends BaseFragmentAdapter {
-    static final String Tag = "~~~ SystemMsgAdapter:";
+    static final String Tag = "SystemMsgAdapter:";
     public Context mContext;
     public int flag = 0;
     List<SystemMessageBean.SystemMsgDataEntity> mList=new ArrayList<SystemMessageBean.SystemMsgDataEntity>();
@@ -89,7 +89,6 @@ public class SystemMsgAdapter extends BaseFragmentAdapter {
                     if (mViewHolder.mPic != null) {
                         BpiUniveralImage.displayImage(Constacts.IMAGEHTTP + mBean.getPic(), mViewHolder.mPic);
                     } else {
-                        Log.d("~~~", "mViewHolder.mYWHAvatar null");
                     }
                 }
                 mViewHolder.mTime.setText(TimeFormat.TimedateFormat(Long.parseLong(mBean.getCreate_time()) * 1000));
@@ -119,7 +118,6 @@ public class SystemMsgAdapter extends BaseFragmentAdapter {
                 break;
         }
         String title=mBean.getTitle();
-        Log.d(Tag,"TITLE "+title.toString());
         if (title.indexOf("过期")!=-1) {
             Log.d(Tag,"1 ");
             mViewHolder.mTitle.setTextColor(Color.RED);
@@ -128,23 +126,18 @@ public class SystemMsgAdapter extends BaseFragmentAdapter {
             mViewHolder.mTitle.setTextColor(0xff2D8719);
         }else if (title.indexOf("订单")!=-1){
             Log.d(Tag,"3 ");
-
             mViewHolder.mTitle.setTextColor(0xff2D8719);
-
-
         }
         mViewHolder.mTitle.setText(mBean.getTitle());
         mViewHolder.mContent.setText(mBean.getContent());
         return convertView;
     }
-
     class ViewHolder {
         TextView mTitle;
         ImageView mPic;
         TextView mContent;
         TextView mTime, mTimeRight;
         TextView mOrderId;
-
     }
     public void ClearData() {
         mList.clear();
@@ -166,6 +159,4 @@ public class SystemMsgAdapter extends BaseFragmentAdapter {
         notifyDataSetChanged();
         super.RefreshData(mObject);
     }
-
-
 }

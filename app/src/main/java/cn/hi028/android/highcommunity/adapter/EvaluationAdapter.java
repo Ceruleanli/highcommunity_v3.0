@@ -68,8 +68,7 @@ public class EvaluationAdapter extends MyBaseAdapter<MerchantEvaluationInfoListB
 		merchantname.setText(bean.getGoods_name());
 		time.setText(getTime(Long.parseLong(bean.getCreate_time())));
 		content.setText("     " + bean.getContent());
-		//		Picasso.with(context).load(Constacts.IMAGEHTTP + bean.getHead_pic())
-		//				.into(head);
+		//		Picasso.with(context).load(Constacts.IMAGEHTTP + bean.getHead_pic()).into(head);
 		bitmapUtils.display(head, Constacts.IMAGEHTTP + bean.getHead_pic(), new BitmapLoadCallBack<ImageView>() {
 
 			@Override

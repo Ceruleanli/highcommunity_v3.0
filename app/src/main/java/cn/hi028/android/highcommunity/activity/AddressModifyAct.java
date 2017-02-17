@@ -70,10 +70,9 @@ static  final  String Tag="AddressModifyAct:";
                 bundle.putParcelable("modifyData", modifyData);
             }
             bundle.putInt("isModify",1);
-            mCreate = (AddressModifyFrag) new AddressModifyFrag();
+            mCreate =new AddressModifyFrag();
             mCreate.setArguments(bundle);
         }
-        int flagDelete = getIntent().getIntExtra(INTENTTAGDELETE_TAG, 0);
         ft.replace(R.id.ll_activity_mainLayout, mCreate, AddressModifyFrag.FRAGMENTTAG);
         ft.commit();
     }

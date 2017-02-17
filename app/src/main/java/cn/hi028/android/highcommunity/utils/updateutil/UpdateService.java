@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -30,9 +29,6 @@ import cn.hi028.android.highcommunity.R;
  * 说明：升级服务 在用的
  */
 public class UpdateService extends Service {
-    final String Tag = "~~~00 UpdateService:";
-
-    public static final String Install_Apk = "Install_Apk";
     /**
      * download progress step   现在apk文件比较小 3不会卡  以后文件变大 更新频率太快就会卡  这里注意以后要换掉
      **/
@@ -47,22 +43,18 @@ public class UpdateService extends Service {
 
     private NotificationManager notificationManager;
     private Notification notification;
-    private Intent updateIntent;
     private PendingIntent pendingIntent;
     private RemoteViews contentView;
     /***
      * 是否正在下载
      **/
     public static boolean downloading;
-
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
     }
 
     /**
-     * 方法描述：onStartCommand方法
-     *
      * @return int
      * @see UpdateService
      */
@@ -71,7 +63,6 @@ public class UpdateService extends Service {
 
         app_name = intent.getStringExtra("App_Name");
         down_url = intent.getStringExtra("update_url");
-        Log.d("~~~~~~", "app_name=" + app_name + ",down_url=" + down_url);
         // create file,应该在这个地方加一个返回值的判断SD卡是否准备好，文件是否创建成功，等等！
         FileUtil.createFile(app_name);
 
@@ -82,13 +73,10 @@ public class UpdateService extends Service {
             Toast.makeText(this, R.string.insert_card, Toast.LENGTH_SHORT).show();
             /***stop service**/
             stopSelf();
-
         }
 
         return super.onStartCommand(intent, flags, startId);
     }
-
-
     /**
      * update UI
      **/
@@ -126,7 +114,6 @@ public class UpdateService extends Service {
     };
 
     private void installApk() {
-        // TODO Auto-generated method stub
         /*********下载完成，点击安装***********/
         Uri uri = Uri.fromFile(FileUtil.updateFile);
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -155,7 +142,6 @@ public class UpdateService extends Service {
             try {
                 long downloadSize = downloadUpdateFile(down_url, FileUtil.updateFile.toString());
                 if (downloadSize > 0) {
-                    // down success
                     message.what = DOWN_OK;
                     handler.sendMessage(message);
                 }
@@ -169,11 +155,7 @@ public class UpdateService extends Service {
 
 
     Notification.Builder builder;
-
     /**
-     * 方法描述：createNotification方法
-     *
-     * @param
      * @return
      * @see UpdateService
      */
@@ -184,7 +166,6 @@ public class UpdateService extends Service {
                 .setSmallIcon(R.drawable.ic_launcher);
         notification = builder.build();
         notification.flags = Notification.FLAG_ONGOING_EVENT;
-
         /*** 自定义  Notification 的显示****/
         contentView = new RemoteViews(getPackageName(), R.layout.notification_item);
         contentView.setTextViewText(R.id.notificationTitle, app_name + getString(R.string.is_downing));
@@ -202,12 +183,10 @@ public class UpdateService extends Service {
      * @throws MalformedURLException
      */
     public long downloadUpdateFile(String down_url, String file) throws Exception {
-
         int down_step = down_step_custom;// 提示step
         int totalSize;// 文件总大小
         int downloadCount = 0;// 已经下载好的大小
         int updateCount = 0;// 已经上传的文件大小
-
         InputStream inputStream;
         OutputStream outputStream;
 
@@ -219,8 +198,6 @@ public class UpdateService extends Service {
         totalSize = httpURLConnection.getContentLength();
         if (httpURLConnection.getResponseCode() == 404) {
             throw new Exception("fail!");
-            //这个地方应该加一个下载失败的处理，但是，因为我们在外面加了一个try---catch，已经处理了Exception,
-            //所以不用处理
         }
 
         inputStream = httpURLConnection.getInputStream();
@@ -230,15 +207,6 @@ public class UpdateService extends Service {
         int readsize = 0;
 
         while ((readsize = inputStream.read(buffer)) != -1) {
-
-//			/*********如果下载过程中出现错误，就弹出错误提示，并且把notificationManager取消*********/
-//			if (httpURLConnection.getResponseCode() == 404) {
-//				notificationManager.cancel(R.layout.notification_item);
-//				throw new Exception("fail!");
-//				//这个地方应该加一个下载失败的处理，但是，因为我们在外面加了一个try---catch，已经处理了Exception,
-//				//所以不用处理
-//			}
-
             outputStream.write(buffer, 0, readsize);
             downloadCount += readsize;// 时时获取下载到的大小
             /*** 每次增张3%**/

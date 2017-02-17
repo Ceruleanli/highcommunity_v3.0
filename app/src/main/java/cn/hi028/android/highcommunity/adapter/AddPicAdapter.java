@@ -25,7 +25,6 @@ import cn.hi028.android.highcommunity.R;
  * @时间：2016/1/4<br>
  */
 public class AddPicAdapter extends BaseFragmentAdapter {
-
     public Context mContext;
     private List<String> mList = new ArrayList<String>();
 

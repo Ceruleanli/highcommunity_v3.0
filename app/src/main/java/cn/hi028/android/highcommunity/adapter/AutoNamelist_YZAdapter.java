@@ -5,7 +5,6 @@
 package cn.hi028.android.highcommunity.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +77,6 @@ public class AutoNamelist_YZAdapter extends BaseFragmentAdapter {
 
                 BpiUniveralImage.displayImage(Constacts.IMAGEHTTP + mBean.getHead_pic(), mViewHolder.mYWHAvatar);
             }else{
-                Log.d("~~~","mViewHolder.mYWHAvatar null");
             }
         }
         mViewHolder.mYWHName.setText(mBean.getName());
@@ -109,8 +107,5 @@ public class AutoNamelist_YZAdapter extends BaseFragmentAdapter {
         TextView mYWHName;
         TextView mYWHAdress;
         TextView mYWHTel;
-
     }
-
-
 }

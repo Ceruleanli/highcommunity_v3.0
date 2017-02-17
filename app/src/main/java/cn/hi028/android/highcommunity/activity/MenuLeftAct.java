@@ -45,7 +45,7 @@ import cn.hi028.android.highcommunity.activity.fragment.WalletSwitchFrag_;
 import cn.hi028.android.highcommunity.utils.Constacts;
 
 /**
- * @功能：菜单的二级页面统统都在这里<br> 从侧边栏点进去的所有项目都在这个界面加载   联盟订单没有经过这里
+ * @功能：菜单的二级页面统统都在这里<br> 从侧边栏点进去的所有项目都在这个界面
  * @作者： 赵海<br>
  * @版本：1.0<br>
  * @时间：2015/12/28<br>
@@ -67,7 +67,6 @@ public class MenuLeftAct extends BaseFragmentActivity {
     FragmentManager fm;
     @AfterViews
     void initView() {
-        Log.d(Tag, "------MenuLeftAct");
         if (!super.isVersionBiger()) {
             mHight.setVisibility(View.GONE);
         }
@@ -85,13 +84,11 @@ public class MenuLeftAct extends BaseFragmentActivity {
                 break;
             case Constacts.MENU_LEFT_TOPIC:
                 mTitle.setText("我的话题");
-                Log.d(Tag, "------goto我我的话题");
                 MyTopicFrag mMyTopicFrag = new MyTopicFrag();
                 ft.replace(R.id.ll_menuleft_layout, mMyTopicFrag, MyTopicFrag.FRAGMENTTAG);
                 break;
             case Constacts.MENU_LEFT_COLLECTION:
                 mTitle.setText("我的收藏");
-                Log.d(Tag, "------goto我的收藏");
                 MyCollectionSwitchFrag mCollection = (MyCollectionSwitchFrag) new MyCollectionSwitchFrag_();
                 ft.replace(R.id.ll_menuleft_layout, mCollection, MyCollectionSwitchFrag.FRAGMENTTAG);
                 break;
@@ -110,13 +107,11 @@ public class MenuLeftAct extends BaseFragmentActivity {
                 break;
             case Constacts.MENU_LEFT_BILL:
                 mTitle.setText("物业账单");
-                Log.d(Tag, "------goto物业账单");
                 TenementBillFrag mBill = (TenementBillFrag) new TenementBillFrag_();
                 ft.replace(R.id.ll_menuleft_layout, mBill, TenementBillFrag.FRAGMENTTAG);
                 break;
             case Constacts.MENU_LEFT_ORDER:
                 mTitle.setText("我的订单");
-                Log.d(Tag, "------goto我的订单");
                 NewHuiOrderFrag mOrder = (NewHuiOrderFrag) new NewHuiOrderFrag_();
                 if (intentPage != -1) {
                 }
@@ -124,7 +119,6 @@ public class MenuLeftAct extends BaseFragmentActivity {
                 break;
             case Constacts.MENU_LEFT_ZHONGCOU:
                 mTitle.setText("我的众筹");
-                Log.d(Tag, "------goto我的众筹");
                 HuiChipsOrderFrag mChipsOrder = (HuiChipsOrderFrag) new HuiChipsOrderFrag_();
                 ft.replace(R.id.ll_menuleft_layout, mChipsOrder, HuiChipsOrderFrag.FRAGMENTTAG);
                 break;
@@ -136,29 +130,24 @@ public class MenuLeftAct extends BaseFragmentActivity {
                 break;
             case Constacts.MENU_LEFT_SETTING:
                 mTitle.setText("设置");
-                Log.d(Tag, "------goto设置");
                 SettingFrag mSetting = (SettingFrag) new SettingFrag_();
                 ft.replace(R.id.ll_menuleft_layout, mSetting, SettingFrag.FRAGMENTTAG);
                 break;
             case Constacts.MENU_LEFT_MESSAGECENTER:
                 mTitle.setText("与我相关");
-                Log.d(Tag, "------goto消息");
                 MessageCenterFrag mMessage = (MessageCenterFrag) new MessageCenterFrag_();
 
                 ft.replace(R.id.ll_menuleft_layout, mMessage, MessageCenterFrag.FRAGMENTTAG);
                 break;
             case Constacts.MENU_MYMESSAGE:
                 mTitle.setText("与我相关");
-                Log.d(Tag, "------goto与我相关");
                 MyMessageFrag mMyMessage = (MyMessageFrag) new MyMessageFrag();
 
                 ft.replace(R.id.ll_menuleft_layout, mMyMessage, MyMessageFrag.FRAGMENTTAG);
                 break;
             case Constacts.MENU_SYSMESSAGE:
                 mTitle.setText("系统消息");
-                Log.d(Tag, "------goto系统消息");
                 SysMessageFrag mSysMessage = (SysMessageFrag) new SysMessageFrag();
-                Log.d(Tag, "------goto系统消息2");
 
                 ft.replace(R.id.ll_menuleft_layout, mSysMessage, SysMessageFrag.FRAGMENTTAG);
                 break;

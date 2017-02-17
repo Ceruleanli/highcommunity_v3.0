@@ -47,14 +47,12 @@ public class VallageAct extends BaseFragmentActivity implements
 
 	/**
 	 * 类型
-	 *
 	 * @param activity
 	 * @param type
 	 *            0:未登录，1：其他、登录
 	 */
 	public static void toStartAct(Activity activity, int type, boolean toMainAct) {
-		Intent intent = new Intent(activity,
-				GeneratedClassUtils.get(VallageAct.class));
+		Intent intent = new Intent(activity, GeneratedClassUtils.get(VallageAct.class));
 		intent.putExtra(TYPE, type);
 		intent.putExtra(ISTOMAINACT, toMainAct);
 		if (toMainAct) {

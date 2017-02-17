@@ -49,7 +49,6 @@ public class HuiOrderListAdapter extends BaseExpandableListAdapter {
     HuiOrderFrag frag;
     private List<HuiOrderBean> data = new ArrayList<HuiOrderBean>();
     int flagTp;
-
     public HuiOrderListAdapter(HuiOrderFrag frag, int flagTp) {
         this.frag = frag;
         this.flagTp = flagTp;

@@ -3,7 +3,7 @@ package cn.hi028.android.highcommunity.bean;
 /**
  * @说明：
  * @作者： Lee_yting
- * @时间：2017/2/8 0008
+ * @时间：2017/2/6 0008
  */
 public class RongYunBean {
 

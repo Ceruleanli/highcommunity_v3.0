@@ -2,7 +2,6 @@ package cn.hi028.android.highcommunity.activity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,9 +24,11 @@ import cn.hi028.android.highcommunity.view.LinearForVoteResult;
 
 /**
  * 投票结果展示
+ * @author Lee_yting
+ * @version v2.0
  */
 public class AutoAct_Four extends BaseFragmentActivity {
-    String Tag = "~~~ AutoAct_Four";
+    String Tag = "AutoAct_Four：";
     public static final String ACTIVITYTAG = "AutoAct_Four";
     public static final String INTENTTAG = "AutoAct_Four";
     String vote_id;
@@ -55,30 +56,20 @@ String vote_title="";
         initDtas();
     }
 
-    private void initView() {
-        mListiew.setAdapter(mAdapter);
-
-    }
-
     private void initDtas() {
         HTTPHelper.getVotedData(mIbpi, vote_id);
     }
 
-    Auto_VoteResultBean.VoteResultDataEntity mData;
-    List<Auto_VoteResultBean.VoteResultDataEntity> mBeanList;
     BpiHttpHandler.IBpiHttpHandler mIbpi = new BpiHttpHandler.IBpiHttpHandler() {
         @Override
         public void onError(int id, String message) {
             HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
         }
-
         @Override
         public void onSuccess(Object message) {
             if (null == message) {
-                Log.d(Tag, "onSuccess message null");
                 return;
             }
-            Log.d(Tag, "onSuccess message 不空");
             mList = (List<Auto_VoteResultBean.VoteResultDataEntity>) message;
             setData();
             mAdapter = new ShowVoteResultAdapter(AutoAct_Four.this,mList);

@@ -37,7 +37,6 @@ public class NewHuiCommOrderAdapter extends BaseAdapter {
     public List<NewHuiSuppGdParams> getData() {
         return data;
     }
-
     public void setData(List<NewHuiSuppGdParams> data) {
         this.data = data;
         notifyDataSetChanged();

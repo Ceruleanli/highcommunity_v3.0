@@ -5,7 +5,6 @@
 package cn.hi028.android.highcommunity.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +32,10 @@ public class ShowVoteResultAdapter extends BaseFragmentAdapter {
     Context context;
     LayoutInflater inflater;
 
-
-    public ShowVoteResultAdapter( Context context, List<Auto_VoteResultBean.VoteResultDataEntity> mList) {
+    public ShowVoteResultAdapter(Context context, List<Auto_VoteResultBean.VoteResultDataEntity> mList) {
         this.context = context;
         this.mList = mList;
         inflater = LayoutInflater.from(context);
-
     }
 
     @Override
@@ -58,8 +55,6 @@ public class ShowVoteResultAdapter extends BaseFragmentAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        Log.e(Tag, "getView:" + position);
-
         ViewHolder viewHolder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.showvoteresult_bigitem, null);
@@ -75,10 +70,8 @@ public class ShowVoteResultAdapter extends BaseFragmentAdapter {
         Auto_VoteResultBean.VoteResultDataEntity mBean = mList.get(position);
         viewHolder.tv_merchant.setText(mBean.getTitle());
         List<Auto_VoteResultBean.VoteResultDataEntity.VoteResultOptionsEntity> optionsList = mBean.getOptions();
-        Log.e(Tag, "mInfoList.size:" + optionsList.size());
         LinearLayout infoView = getGoodsInfoView(optionsList);
         viewHolder.listContainer.addView(infoView);
-
         return convertView;
     }
 
@@ -88,36 +81,24 @@ public class ShowVoteResultAdapter extends BaseFragmentAdapter {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layout.setLayoutParams(layoutParams);
         for (int i = 0; i < optionsList.size(); i++) {
-            Log.e(Tag, "mInfoList.i :" + i);
             Auto_VoteResultBean.VoteResultDataEntity.VoteResultOptionsEntity mBean = optionsList.get(i);
             View mListView = inflater.inflate(R.layout.item_showvotedresult_small, null);
             TextView mName = (TextView) mListView.findViewById(R.id.item_votedResult_name);
             TextView mPercent = (TextView) mListView.findViewById(R.id.item_votedResult_percent);
-            ProgressBar mProgress= (ProgressBar) mListView.findViewById(R.id.item_votedResult_progressBar);
-
-          mName.setText(mBean.getOption());
-           mPercent.setText(mBean.getVote_percent());
-            String percentStr=mBean.getVote_percent().replace("%","");
-
-            float percentFloat=Float.parseFloat(percentStr.trim());
+            ProgressBar mProgress = (ProgressBar) mListView.findViewById(R.id.item_votedResult_progressBar);
+            mName.setText(mBean.getOption());
+            mPercent.setText(mBean.getVote_percent());
+            String percentStr = mBean.getVote_percent().replace("%", "");
+            float percentFloat = Float.parseFloat(percentStr.trim());
             float percentFloat2 = (float) (Math.round(percentFloat * 100)) / 100;
-            if (percentStr.contains(".")){
-                Log.d(Tag,"percentStr."+percentStr);
-
-                Log.d(Tag,"contains.");
+            if (percentStr.contains(".")) {
                 String[] split = percentStr.split("\\.");
-
-                Log.d(Tag,"split."+split.length);
-                Log.d(Tag,"split0."+split[0]);
-                Log.d(Tag,"split."+split[1]);
-
-                if (split[1].toString().length()>5){
-                    mPercent.setText(percentFloat2+"%");
+                if (split[1].toString().length() > 5) {
+                    mPercent.setText(percentFloat2 + "%");
                 }
             }
-            int percentInt= (int) percentFloat2;
-            Log.d(Tag,"百分比数--->"+percentStr+"，float percentFloat--->"+percentFloat+"，int 数字--->"+percentInt);
-           mProgress.setProgress(percentInt);
+            int percentInt = (int) percentFloat2;
+            mProgress.setProgress(percentInt);
             layout.addView(mListView);
         }
         return layout;
@@ -137,12 +118,9 @@ public class ShowVoteResultAdapter extends BaseFragmentAdapter {
         mList.clear();
         notifyDataSetChanged();
     }
-
     class ViewHolder {
         TextView tv_merchant, tv_merchantSum;
         LinearLayout listContainer;
-
-
     }
 
 }

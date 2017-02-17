@@ -6,15 +6,19 @@
     android:orientation="vertical">
 
 
+    <!--<include
+        android:id="@+id/title_menuleft_layout"
 
+        layout="@layout/title_secondlevel" />-->
 
     <include
         android:id="@+id/title"
         layout="@layout/title_mainlevel_justformain"
-        android:visibility="gone" />
+       />
 
     <RelativeLayout
         android:layout_width="match_parent"
+
         android:layout_height="match_parent">
 
         <LinearLayout

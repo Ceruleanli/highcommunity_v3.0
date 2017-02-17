@@ -13,7 +13,6 @@ import com.don.tools.BpiHttpHandler;
 
 import net.duohuo.dhroid.activity.BaseFragment;
 import net.duohuo.dhroid.activity.BrowseActivity;
-import net.duohuo.dhroid.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @时间：2016/10/11<br>
  */
 public class AutoFrag_Notice extends BaseFragment {
-    public static final String Tag = "~~~AutonomousMainFrag~~~";
+    public static final String Tag = "AutoFrag_Notice";
     public static final String FRAGMENTTAG = "AutoFrag_Notice";
     @Bind(R.id.frag_Autonotice_listview)
     ListView mListview;
@@ -44,7 +43,6 @@ public class AutoFrag_Notice extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LogUtil.d(Tag + "onCreateView");
         View view = inflater.inflate(R.layout.frag_auto_notice, null);
         ButterKnife.bind(this, view);
         initView();
@@ -52,7 +50,6 @@ public class AutoFrag_Notice extends BaseFragment {
     }
 
     private void initView() {
-        LogUtil.d(Tag + "initView");
         mList = new ArrayList<Auto_NoticeListBean.NoticeListDataEntity>();
         mAdapter = new AutoNoticeAdapter(mList, getActivity());
         mListview.setEmptyView(mNodata);
@@ -64,8 +61,6 @@ public class AutoFrag_Notice extends BaseFragment {
                 BrowseActivity.toBrowseActivity(getActivity(), "公告详情", url);
             }
         });
-
-
     }
 
     private void initDatas() {
@@ -110,11 +105,6 @@ public class AutoFrag_Notice extends BaseFragment {
             }
         }
     };
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
     @Override
     public void onResume() {

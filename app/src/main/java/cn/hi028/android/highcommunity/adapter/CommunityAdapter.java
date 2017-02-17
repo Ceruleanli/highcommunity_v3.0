@@ -59,7 +59,6 @@ public class CommunityAdapter extends BaseFragmentAdapter {
     List<CommunityBean> mList = new ArrayList<CommunityBean>();
     CommunityListBean mBean;
     private PopupWindow mWindow, mWaitingWindow;
-
     public CommunityAdapter(BaseFragmentActivity mContext) {
         this.mContext = mContext;
         String SaveData = HighCommunityApplication.share.getString(HighCommunityApplication.mUserInfo.getId() + CommunityFrag.FRAGMENTTAG, "");

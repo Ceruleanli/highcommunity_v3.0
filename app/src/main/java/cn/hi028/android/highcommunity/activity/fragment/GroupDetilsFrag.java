@@ -43,7 +43,6 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  */
 @EFragment(resName = "frag_groupdetils")
 public class GroupDetilsFrag extends BaseFragment {
-
     public static final String FRAGMENTTAG = "GroupDetilsFrag";
 
     @ViewById(R.id.tv_transTitle_name)

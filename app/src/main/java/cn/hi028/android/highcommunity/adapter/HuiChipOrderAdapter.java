@@ -294,7 +294,6 @@ public class HuiChipOrderAdapter extends BaseAdapter {
                 mIntent.putExtra(MenuLeftSecondAct.ACTIVITYTAG, Constacts.MENU_LEFTSECOND_CHIP_ORDER_DETAIL);
                 LogUtil.d("~~~众筹订单全list adapter中点击item传递的订单号："+data.get(position).getOrder_id());
                 mIntent.putExtra(MenuLeftSecondAct.INTENTTAG, data.get(position).getOrder_id() + "");
-//                mIntent.putExtra(MenuLeftSecondAct.INTENTTAG, data.get(position).getOrder_num());
                 frag.startActivity(mIntent);
             }
         });

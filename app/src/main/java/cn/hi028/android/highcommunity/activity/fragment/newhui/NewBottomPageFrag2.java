@@ -45,42 +45,31 @@ import cn.hi028.android.highcommunity.view.ScrollWebView;
 public class NewBottomPageFrag2 extends BaseFragment {
     public static final String Tag = "NewBottomPageFrag2--->";
     public static final String FRAGMENTTAG = "NewBottomPageFrag2";
-    public static boolean isFistRequest = true;
-    public static boolean isFistRequestHttp = true;
+    RadioGroup mRadioGroup;
+    RadioButton mPicDetail, mCommentDetail;
+    NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity goodsdata;
     View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(Tag, "onCreateView");
         view = inflater.inflate(R.layout.page_bottom_supply2, null);
         ButterKnife.bind(this, view);
         initView();
         return view;
     }
 
-    NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity goodsdata;
-
     private void initView() {
-
-
-        Log.e(Tag, "initView");
         findView(view);
         Bundle bundle = getArguments();
         if (bundle != null) {
             goodsdata = bundle.getParcelable("goodsdata");
             setBottomPageUI(goodsdata);
-            Log.e(Tag, "传过来的对象：" + goodsdata.toString());
         } else {
             Log.e(Tag, "传过来的对象：null");
         }
 
 
     }
-
-    RadioGroup mRadioGroup;
-    RadioButton mPicDetail, mCommentDetail;
-    TextView tv_noData;
-    TextView mHishequTV;
 
     private void findView(View view) {
         mRadioGroup = (RadioGroup) view.findViewById(R.id.ac_shopdetail_RadioGroup);
@@ -99,8 +88,6 @@ public class NewBottomPageFrag2 extends BaseFragment {
     }
 
     private void initPager(NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity msg) {
-
-
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -111,15 +98,13 @@ public class NewBottomPageFrag2 extends BaseFragment {
                     if (currentPo != 1)
                         mPager.setCurrentItem(1);
                 }
-
             }
         });
 
         mPager.setCurrentItem(0);
         proPressList = new ArrayList<View>();
         noDataList = new ArrayList<TextView>();
-        HuiOrderAdapter adapter = new HuiOrderAdapter();//与我相关用
-
+        HuiOrderAdapter adapter = new HuiOrderAdapter();
         List<View> viewList = new ArrayList<View>();
         viewList.add(0, getPicDetail(msg));
         viewList.add(1, getCommentPageView(msg));
@@ -147,7 +132,6 @@ public class NewBottomPageFrag2 extends BaseFragment {
         });
         adapter.setViewList(viewList);
         mPager.setCurrentItem(0);
-
     }
 
     /**
@@ -158,14 +142,13 @@ public class NewBottomPageFrag2 extends BaseFragment {
      * 当前页
      **/
     int currentPo = 0;
-    public List<View> proPressList; // Tab页面列表
-    public List<TextView> noDataList; // Tab页面列表
+    public List<View> proPressList;
+    public List<TextView> noDataList;
 
     /**
      * 评论 view
      **/
     View getCommentPageView(NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity msg) {
-        Log.e(Tag, "getCommentPageView");
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.page_commentlistdetail2, null);
         MyNoScrollListview evaluation_listview = (MyNoScrollListview) view.findViewById(R.id.page2_evaluation_listview);
         TextView tv_Hishequ = (TextView) view.findViewById(R.id.page2_shopdetail_tv_Hishequ);
@@ -209,11 +192,11 @@ public class NewBottomPageFrag2 extends BaseFragment {
         VerticalScrollView mScrollView1 = (VerticalScrollView) view.findViewById(R.id.srcollview_page_picdetail);
         detail_webview = (ScrollWebView) view.findViewById(R.id.page1_good_detail_webview);
         detail_webview.getSettings().setDefaultTextEncodingName("utf-8");
-        detail_webview.getSettings().setAppCacheEnabled(true);// 设置启动缓存
+        detail_webview.getSettings().setAppCacheEnabled(true);//启动缓存
         detail_webview.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         detail_webview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         detail_webview.getSettings().setJavaScriptEnabled(true);
-        detail_webview.getSettings().setDisplayZoomControls(false);// 设置显示缩放按钮
+        detail_webview.getSettings().setDisplayZoomControls(false);//缩放按钮
         detail_webview.getSettings().setSupportZoom(true); // 支持缩放
         detail_webview.getSettings().setBuiltInZoomControls(true);
 
@@ -223,7 +206,6 @@ public class NewBottomPageFrag2 extends BaseFragment {
         detail_webview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         TextView tv_Hishequ = (TextView) view.findViewById(R.id.page1_shopdetail_tv_Hishequ);
         TextView tv_nopicurl = (TextView) view.findViewById(R.id.tv_nopicurl);
-        TextView tv_webview = (TextView) view.findViewById(R.id.tv_webview);
         NoScroolGridView recommendGoodsGview = (NoScroolGridView) view.findViewById(R.id.page1_shopdetail_recommendGoods);
         mProgress.setVisibility(View.GONE);
         boolean iSNoData = true;
@@ -252,8 +234,7 @@ public class NewBottomPageFrag2 extends BaseFragment {
                 }
                 String newsBody = doc.toString();
                 Log.e(Tag, "newsBody:" + newsBody);
-                detail_webview.loadDataWithBaseURL(null, newsBody, "text/html",
-                        "utf-8", null);
+                detail_webview.loadDataWithBaseURL(null, newsBody, "text/html", "utf-8", null);
             }
         } else {
             tv_nopicurl.setVisibility(View.VISIBLE);

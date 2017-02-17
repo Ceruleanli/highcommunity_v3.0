@@ -32,7 +32,7 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 
 /**
  * 联盟订单 全部订单
- * Created by Administrator on 2016/8/11.
+ * Created by Administrator on 2016/8/11. 李金隆
  */
 public class AllianceAllOrderFrag extends BaseFragment implements OnRefreshListener {
 	View mProgress;

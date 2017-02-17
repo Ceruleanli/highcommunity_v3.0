@@ -10,7 +10,6 @@ import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,14 +49,15 @@ public class Auto_MessageDetailAdapter extends BaseFragmentAdapter {
     Auto_InquiryDetailBean.InquiryDetailDataEntity.InquiryDetailReplyEntity.InquiryDetailSubReplyEntity mTempReply = new Auto_InquiryDetailBean.InquiryDetailDataEntity.InquiryDetailReplyEntity.InquiryDetailSubReplyEntity();
     Context mContext;
     private LayoutInflater layoutInflater;
-boolean isRepresent;
+    boolean isRepresent;
+
     public Auto_MessageDetailAdapter(List<Auto_InquiryDetailBean.InquiryDetailDataEntity.InquiryDetailReplyEntity> mList, Context mContext, AutoDetail_Message mFrag, boolean isRepresent) {
         super();
         this.mContext = mContext;
         this.mList = mList;
         this.layoutInflater = LayoutInflater.from(mContext);
         this.mFrag = mFrag;
-this.isRepresent=isRepresent;
+        this.isRepresent = isRepresent;
     }
 
     @Override
@@ -99,13 +99,9 @@ this.isRepresent=isRepresent;
         }
         final Auto_InquiryDetailBean.InquiryDetailDataEntity.InquiryDetailReplyEntity mBean = mList.get(position);
         ImageLoaderUtil.disPlay(Constacts.IMAGEHTTP + mBean.getPic(), mViewHolder.mAvatar);
-        Log.e(Tag, "isRepresent:" + isRepresent);
-
-        if (isRepresent){
-            mViewHolder.mName.setText( "代表回复：");
-
-        }else{
-
+        if (isRepresent) {
+            mViewHolder.mName.setText("代表回复：");
+        } else {
             mViewHolder.mName.setText(mBean.getFrom_name() + "：");
         }
         mViewHolder.mContent.setText(mBean.getContent());
@@ -119,9 +115,9 @@ this.isRepresent=isRepresent;
                 TextView mText = new TextView(mContext);
                 int toNameLength = mBean.getSub_reply().get(i).getTo_name().length();
                 int fromNameLength;
-                if (isRepresent){
-                    fromNameLength="代表".length();
-                }else{
+                if (isRepresent) {
+                    fromNameLength = "代表".length();
+                } else {
 
                     fromNameLength = mBean.getSub_reply().get(i).getFrom_name().length();
                 }
@@ -130,11 +126,11 @@ this.isRepresent=isRepresent;
                 mText.setClickable(true);
                 mText.setFocusable(true);
                 mText.setMovementMethod(LinkMovementMethod.getInstance());//超链接
-                final String From_name ;
-                if (isRepresent){
+                final String From_name;
+                if (isRepresent) {
                     From_name = "代表";
-                }else{
-                   From_name = mBean.getSub_reply().get(i).getFrom_name();
+                } else {
+                    From_name = mBean.getSub_reply().get(i).getFrom_name();
                 }
                 final String To_name = mBean.getSub_reply().get(i).getTo_name();
                 final String To_id = mBean.getSub_reply().get(i).getTo_id() + "";//主评论人id
@@ -146,9 +142,10 @@ this.isRepresent=isRepresent;
                         ds.setColor(mContext.getResources().getColor(R.color.Defult_Color_AppGreen));
                         ds.setUnderlineText(false);
                     }
+
                     @Override
                     public void onClick(View view) {
-                        if (!isRepresent){
+                        if (!isRepresent) {
                             mFrag.setText("回复:" + From_name, From_id, mBean.getId() + "", true);
                             mTempReplies = mBean;
                             avoidHintColor(view);
@@ -156,7 +153,6 @@ this.isRepresent=isRepresent;
                             mTempReply.setFrom_id(HighCommunityApplication.mUserInfo.getId());
                             mTempReply.setFrom_name(HighCommunityApplication.mUserInfo.getNick());
                             mTempReply.setTo_name(From_name);
-                            Log.d(Tag, "点击结束的小回复bean+" + mTempReply.toString());
                         }
                     }
                 }, 0, fromNameLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -170,7 +166,7 @@ this.isRepresent=isRepresent;
 
                     @Override
                     public void onClick(View view) {
-                        if (!isRepresent){
+                        if (!isRepresent) {
                             avoidHintColor(view);
                             mFrag.setText("回复:" + To_name, To_id, mBean.getId() + "", true);
                             mTempReplies = mBean;
@@ -193,7 +189,7 @@ this.isRepresent=isRepresent;
         mViewHolder.mName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isRepresent){
+                if (!isRepresent) {
                     mTempReplies = mBean;
                     mFrag.setText("回复:" + mBean.getFrom_name(), mBean.getFrom_id() + "", mBean.getId() + "", true);
                     mTempReply = new Auto_InquiryDetailBean.InquiryDetailDataEntity.InquiryDetailReplyEntity.InquiryDetailSubReplyEntity();

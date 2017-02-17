@@ -42,7 +42,7 @@ import cn.hi028.android.highcommunity.view.LoadingView;
  */
 public class CommunityFrag extends Fragment {
     public static final String FRAGMENTTAG = "CommunityFrag";
-    final String Tag = "数据流Frag--->";
+    final String Tag = "数据流Frag->";
     private int mCount = -1;
     private PullToRefreshListView mListView;
     private ImageView mChange;
@@ -130,7 +130,6 @@ public class CommunityFrag extends Fragment {
         HTTPHelper.GetMessage2(mIbpi);
         Log.e(Tag, "GetMessage2 ");
     }
-    int isNeedToClearData = -1;
     public static boolean isGetInitMessage;
     public boolean isGetInitMessage() {
         return isGetInitMessage;
@@ -165,24 +164,20 @@ public void setIsClick(boolean isGetInitMessage){
      * @param type 刷新方式（0-下拉刷新，1-加载更多）
      */
     private void RefreshDataForResume(int type) {
-        Log.e(Tag, "RefreshDataForResume  type--- " + type);
         refreshType = type;
         String time = "";
         if (type == 0) {
             mCount = 0;
             if (mAdapter != null && mAdapter.getCount() > 0) {
-                Log.e(Tag, "0  mAdapter.getCount()--- " + mAdapter.getCount());
                 time = mAdapter.getItem(0).getCreate_time();//mList.getData().get(0).getCreate_time();
             }
         } else {
             mCount = 1;
             if (mAdapter != null && mAdapter.getCount() > 0) {
-                Log.e(Tag, "1  mAdapter.getCount()--- " + mAdapter.getCount());
                 time = mAdapter.getItem(mAdapter.getCount() - 1).getCreate_time();//mList.getData().get(mList.getData().size() - 1).getCreate_time();
             }
         }
-        //刷新方式（0-下拉刷新，1-加载更多）
-        HTTPHelper.RefreshMessage2(mIbpi2, type, time);//
+        HTTPHelper.RefreshMessage2(mIbpi2, type, time);
     }
     /**
      * 只做back监听
@@ -252,7 +247,7 @@ public void setIsClick(boolean isGetInitMessage){
         }
     };
     /***
-     * 专为resume刷新
+     * resume刷新
      ***/
     BpiHttpHandler.IBpiHttpHandler mIbpi2 = new BpiHttpHandler.IBpiHttpHandler() {
         @Override

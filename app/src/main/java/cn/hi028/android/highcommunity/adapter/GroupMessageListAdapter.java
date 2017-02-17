@@ -55,7 +55,7 @@ import cn.hi028.android.highcommunity.view.nine.MyNineGridView;
  */
 public class GroupMessageListAdapter extends BaseFragmentAdapter {
 
-	final String  Tag="------------CommunityListAdapter2";
+	final String  Tag="CommunityListAdapter2";
 	BaseFragmentActivity mContext;
 	List<CommunityBean> mList = new ArrayList<CommunityBean>();
 	CommunityListBean mBean;
@@ -342,7 +342,6 @@ public class GroupMessageListAdapter extends BaseFragmentAdapter {
 			bigImgUrlList.add(i,Constacts.IMAGEHTTP +picList.get(i).getBig());
 
 		}
-		LogUtil.d(Tag+"imgUrlList-----"+imgUrlList.size());
 		mViewHolder.mGridView.setUrlList(imgUrlList,bigImgUrlList);
 		mViewHolder.mLocation.setText(mBean.getSite());
 		mViewHolder.mComment.setText(mBean.getD_count() + " 评论");

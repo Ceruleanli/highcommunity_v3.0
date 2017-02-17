@@ -11,7 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import net.duohuo.dhroid.activity.BaseFragment;
-import net.duohuo.dhroid.util.LogUtil;
 
 import java.lang.reflect.Field;
 
@@ -27,9 +26,8 @@ import cn.hi028.android.highcommunity.view.MyCustomViewPager;
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
  */
-
 public class AutoFrag_Motion extends BaseFragment {
-    public static final String Tag = "~~~AutoFrag_Motion~~~";
+    public static final String Tag = "Motion：";
     public static final String FRAGMENTTAG = "AutoFrag_Motion";
     /**
      * 创建提案
@@ -55,7 +53,6 @@ public class AutoFrag_Motion extends BaseFragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        LogUtil.d(Tag+"onDetach");
         try {
             Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
             childFragmentManager.setAccessible(true);
@@ -104,7 +101,7 @@ public class AutoFrag_Motion extends BaseFragment {
         mRadiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.frag_motion_motionlist:
                         setCurrentPage(0);
                         break;
@@ -114,16 +111,17 @@ public class AutoFrag_Motion extends BaseFragment {
                 }
             }
         });
-setCurrentPage(0);
+        setCurrentPage(0);
     }
 
-   public  void setCurrentPage(int page){
-       if (page==0){
-           mViewPager.setCurrentItem(0);
-       }else{
-           mViewPager.setCurrentItem(1);
-       }
-   }
+    public void setCurrentPage(int page) {
+        if (page == 0) {
+            mViewPager.setCurrentItem(0);
+        } else {
+            mViewPager.setCurrentItem(1);
+        }
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

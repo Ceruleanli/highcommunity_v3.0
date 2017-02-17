@@ -1,21 +1,12 @@
-/***************************************************************************
- * Copyright (c) by raythinks.com, Inc. All Rights Reserved
- **************************************************************************/
-
 package cn.hi028.android.highcommunity.adapter;
 
-import android.os.AsyncTask;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
-
-import com.don.tools.BpiHttpHandler;
 
 import net.duohuo.dhroid.util.ListUtils;
 
@@ -24,11 +15,7 @@ import java.util.List;
 
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.activity.fragment.SeriRepairJJFrag;
-import cn.hi028.android.highcommunity.activity.fragment.VallageCityFrag;
 import cn.hi028.android.highcommunity.bean.RepairJJBean;
-import cn.hi028.android.highcommunity.utils.CommonUtils;
-import cn.hi028.android.highcommunity.utils.Constacts;
-import cn.hi028.android.highcommunity.utils.HTTPHelper;
 import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 
 /**

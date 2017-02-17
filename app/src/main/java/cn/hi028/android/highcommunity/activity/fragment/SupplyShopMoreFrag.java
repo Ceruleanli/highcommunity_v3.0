@@ -35,10 +35,10 @@ import cn.hi028.android.highcommunity.view.mynew.SpaceItemDecoration3;
  * @功能：直供商品更多Frag<br>
  * @作者： Lee_yting<br>
  * @时间：2016/11/30<br>
+ *     v2.0
  */
-
 public class SupplyShopMoreFrag extends BaseFragment implements NewSupplyMoreAct3.MySortChangeListener {
-    public static final String Tag = "SupplyShopMoreFrag--->";
+    public static final String Tag = "SupplyShopMoreFrag->";
     public static final String FRAGMENTTAG = "SupplyShopMoreFrag";
     List<SupplyGoodsMoreBean.SupplyGoodsMoreDataEntity.SupplyMoreGoodsEntity> mList
             = new ArrayList<SupplyGoodsMoreBean.SupplyGoodsMoreDataEntity.SupplyMoreGoodsEntity>();

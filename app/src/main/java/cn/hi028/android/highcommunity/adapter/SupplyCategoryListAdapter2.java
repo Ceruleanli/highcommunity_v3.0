@@ -35,11 +35,8 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
 
-
     public SupplyCategoryListAdapter2(List<NewSupplyBean.NewSupplyDataEntity.CategoryEntity> list, Context context) {
         super();
-        Log.e(TAG, "SupplyCategoryListAdapter");
-
         this.mList = list;
         if (this.mList == null) {
             this.mList = new ArrayList<NewSupplyBean.NewSupplyDataEntity.CategoryEntity>();
@@ -49,21 +46,16 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
         bitmapUtils = MBitmapHolder.getBitmapUtils(context);
 
     }
-
     BitmapUtils bitmapUtils;
-
     @Override
     public int getCount() {
         return mList.size();
     }
-
     int n = 0;
-
     @Override
     public NewSupplyBean.NewSupplyDataEntity.CategoryEntity getItem(int position) {
         return mList.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return super.getItemId(position);
@@ -72,7 +64,6 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder mViewHolder = null;
-        Log.e(TAG, "~~~getView");
         if (convertView == null) {
             mViewHolder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.item_supply_coegory2, null);
@@ -83,15 +74,13 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
             mViewHolder.mSmallview1 = (RelativeLayout) convertView.findViewById(R.id.item_category_smallpic1);
             mViewHolder.mSmallview2 = (RelativeLayout) convertView.findViewById(R.id.item_category_smallpic2);
             mViewHolder.itemCateLayout1 = (RelativeLayout) convertView.findViewById(R.id.item_cate_layout_1);
-//1
-
+            //1
             mViewHolder.mBigGoodsimg = (ImageView) convertView.findViewById(R.id.category_big_goodsimg);
             mViewHolder.mbigTvTag = (TextView) convertView.findViewById(R.id.category_big_tv_tag);
             mViewHolder.mbigTitle = (TextView) convertView.findViewById(R.id.category_big_goodsTitle);
             mViewHolder.mbigNowPrice = (TextView) convertView.findViewById(R.id.category_big_nowPrice);
             mViewHolder.mBigShopcart = (ImageView) convertView.findViewById(R.id.category_big_shopcart);
             //2
-
             mViewHolder.msmallGoodsimg1 = (ImageView) convertView.findViewById(R.id.category_small_goodsimg_goodsimg);
             mViewHolder.msmallTvTag1 = (TextView) convertView.findViewById(R.id.category_small_goodsimg_tv_tag);
             mViewHolder.msmallTitle1 = (TextView) convertView.findViewById(R.id.category_small_goodsimg_goodsTitle);
@@ -109,25 +98,15 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
         }
         /**************/
         if (parent instanceof MyNoScrollMeasureListview && ((MyNoScrollMeasureListview) parent).isMeasure) {
-            Log.e(TAG, "~~~isMeasure");
-            Log.e(TAG, "~~~isMeasure position---" + position);
             return convertView;
-
         }
-        Log.e(TAG, "~~!  isMeasure ~position---" + position);
-        Log.e(TAG, "~~~!  isMeasure");
         final NewSupplyBean.NewSupplyDataEntity.CategoryEntity mBean = mList.get(position);
         if (mBean.getGoods().size() == 3) {
-
-            Log.e(TAG, "~~~   size 3");
-
             convertView.setVisibility(View.VISIBLE);
             mViewHolder.mTitle.setText(mBean.getName());
-
             if (mBean.getGoods().get(0).getCover_pic() == null || mBean.getGoods().get(0).getCover_pic().equals("")) {
                 BpiUniveralImage.displayImage("drawable://" + R.mipmap.default_no_pic, mViewHolder.mBigGoodsimg);
             } else {
-//            mViewHolder. mBigGoodsimg.setImageURI(Constacts.IMAGEHTTP + mBean.getGoods().get(0).getCover_pic());
                 BpiUniveralImage.displayImage(Constacts.IMAGEHTTP + mBean.getGoods().get(0).getCover_pic(), mViewHolder.mBigGoodsimg);
             }
             if (mBean.getGoods().get(0).getLabel() != null && !mBean.getGoods().get(0).getLabel().equals("")) {
@@ -141,10 +120,6 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
             mViewHolder.mBigShopcart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                if (HighCommunityUtils.isLogin(context)) {
-//                    waitPop = HighCommunityUtils.GetInstantiation().ShowWaittingPopupWindow(context, mBigShopcart, Gravity.CENTER);
-//                    HTTPHelper.addNewHuiGoodsToCar(mIbpiAddShopCar, mBean.getGoods().get(0).getId(), mBean.getGoods().get(0).getId());
-//                }
                     Intent mIntent = new Intent(context, SupplyGoodsDetailActivity2.class);
                     mIntent.putExtra("id", mBean.getGoods().get(0).getId());
                     context.startActivity(mIntent);
@@ -152,11 +127,9 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
             });
             //第一个小图
             /***********************************/
-
             if (mBean.getGoods().get(1).getCover_pic() == null || mBean.getGoods().get(1).getCover_pic().equals("")) {
                 BpiUniveralImage.displayImage("drawable://" + R.mipmap.default_no_pic, mViewHolder.msmallGoodsimg1);
             } else {
-//            mViewHolder. msmallGoodsimg1.setImageURI(Constacts.IMAGEHTTP + mBean.getGoods().get(1).getCover_pic());
                 BpiUniveralImage.displayImage(Constacts.IMAGEHTTP + mBean.getGoods().get(1).getCover_pic(), mViewHolder.msmallGoodsimg1);
             }
             if (mBean.getGoods().get(1).getLabel() != null && !mBean.getGoods().get(1).getLabel().equals("")) {
@@ -177,8 +150,6 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
             });
             //第2个小图
             /************************************/
-
-
             if (mBean.getGoods().get(2).getCover_pic() == null || mBean.getGoods().get(2).getCover_pic().equals("")) {
                 BpiUniveralImage.displayImage("drawable://" + R.mipmap.default_no_pic, mViewHolder.msmallGoodsimg2);
             } else {
@@ -204,9 +175,7 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
             mViewHolder.itemCateLayout1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "到更多:"+mBean.getId(), Toast.LENGTH_SHORT).show();
                     Intent mIntent_report = new Intent(context, NewSupplyMoreAct3.class);
-//                Intent mIntent_report = new Intent(context, textActivity.class);
                     mIntent_report.putExtra("category_id", mBean.getId());
                     context.startActivity(mIntent_report);
                 }
@@ -214,7 +183,6 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
             mViewHolder.mBigView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "详情:"+mBean.getGoods().get(0).getId(), Toast.LENGTH_SHORT).show();
                     Intent mIntent = new Intent(context, SupplyGoodsDetailActivity2.class);
                     mIntent.putExtra("id", mBean.getGoods().get(0).getId());
                     context.startActivity(mIntent);
@@ -223,7 +191,6 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
             mViewHolder.mSmallview1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "详情:"+mBean.getGoods().get(1).getId(), Toast.LENGTH_SHORT).show();
                     Intent mIntent = new Intent(context, SupplyGoodsDetailActivity2.class);
                     mIntent.putExtra("id", mBean.getGoods().get(1).getId());
                     context.startActivity(mIntent);
@@ -232,28 +199,22 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
             mViewHolder.mSmallview2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "详情:"+mBean.getGoods().get(2).getId(), Toast.LENGTH_SHORT).show();
                     Intent mIntent = new Intent(context, SupplyGoodsDetailActivity2.class);
                     mIntent.putExtra("id", mBean.getGoods().get(2).getId());
                     context.startActivity(mIntent);
                 }
             });
         } else {
-            Log.e(TAG, "~~~   size !3  position:" + position);
-
             convertView.setVisibility(View.GONE);
         }
         return convertView;
-
     }
-
     @Override
     public void AddNewData(Object mObject) {
         if (mObject instanceof List<?>) {
             mList = (List<NewSupplyBean.NewSupplyDataEntity.CategoryEntity>) mObject;
         }
         notifyDataSetChanged();
-//        super.AddNewData(mObject);
     }
 
     public void ClearData() {
@@ -269,8 +230,6 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
         RelativeLayout mBigView;
         RelativeLayout mSmallview1;
         RelativeLayout mSmallview2;
-
-
         ImageView mBigGoodsimg;
         TextView mbigTvTag;
         TextView mbigTitle;
@@ -286,9 +245,5 @@ public class SupplyCategoryListAdapter2 extends BaseFragmentAdapter {
         TextView msmallNowPrice2;
         ImageView msmallShopcart2;
         ImageView mBigShopcart;
-
-
     }
-
-
 }

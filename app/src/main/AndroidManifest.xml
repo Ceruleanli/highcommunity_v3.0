@@ -48,15 +48,11 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!--  -->
     <uses-permission android:name="android.permission.GET_TASKS" />
-
     <permission
         android:name="cn.hi028.android.highcommunity.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
-
-    <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="cn.hi028.android.highcommunity.permission.JPUSH_MESSAGE" />
-
     <!-- Optional for location -->
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -66,14 +62,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
-
-
     <!-- 二维码 -->
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <!-- 接收开机广播权限 -->
@@ -86,7 +78,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <!-- meta-data需要写在application中 -->
         <!-- 百度地图//key:开发者申请的Key -->
         <!-- 原来的      android:value="ome6RKGb08ZugrZwxgTQVm0iFETfycEc" -->
@@ -251,11 +242,6 @@
             android:name=".activity.alliance.AllianceOrder"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.GoodImageDetailOrEvaluationActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
             android:name=".activity.GroupMessageAct_"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
@@ -398,11 +384,6 @@
         -->
         <activity
             android:name=".activity.NewSupplyMoreAct3"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name=".activity.alliance.SupplyGoodsDetailActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
@@ -559,13 +540,6 @@
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
-        <!--
-          <receiver android:name="cn.hi028.android.highcommunity.utils.NetworkReceiver">
-              <intent-filter>
-                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-              </intent-filter>
-          </receiver>
-        -->
 
 
         <!-- Required  . Enable it you can get statistics data with channel -->

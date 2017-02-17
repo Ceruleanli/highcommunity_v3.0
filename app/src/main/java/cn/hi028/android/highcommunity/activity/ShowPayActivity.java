@@ -19,8 +19,6 @@ import android.widget.Toast;
 import com.don.tools.BpiHttpHandler.IBpiHttpHandler;
 import com.don.tools.GeneratedClassUtils;
 
-import net.duohuo.dhroid.util.LogUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +46,7 @@ import cn.hi028.android.highcommunity.utils.wchatpay.WchatPayUtils;
 
 /**
  * 联盟商品详情 支付跳转过来的界面
- * @author Administrator
- *
+ * @author Administrator 李金隆
  */
 public class ShowPayActivity extends BaseFragmentActivity implements
 OnClickListener, OnItemClickListener {
@@ -183,7 +180,7 @@ OnClickListener, OnItemClickListener {
 		isChecked = R.mipmap.img_payment_checked;
 		isNotChecked = R.mipmap.img_payment_uncheck;
 
-		mBtnWeiXin.setChecked(true);// 设置默认微信选中img_payment_checked
+		mBtnWeiXin.setChecked(true);// 设置默认微信选中
 		witchType = WECHAT;
 		mBtnWeiXin.setOnClickListener(new OnClickListener() {
 
@@ -298,7 +295,7 @@ OnClickListener, OnItemClickListener {
 			case WECHAT:
 
 				mWechatBean = (WechatParamBean) message;
-				Log.d("------=-====------",mWechatBean.getOut_trade_no());
+				Log.d("---",mWechatBean.getOut_trade_no());
 				if (mWechatBean != null) {
 					WchatPayUtils
 					.getInstance()
@@ -325,58 +322,41 @@ OnClickListener, OnItemClickListener {
 
 						@Override
 						public void onPay(PayResult payResult) {
-							// 这里就是你支付过后返回的消息 成功or失败
 							payResult.getResult();
 							String resultStatus = payResult
 									.getResultStatus();
-							// 判断resultStatus
-							// 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
+							// 判断resultStatus “9000”代表支付成功
 							if (TextUtils.equals(resultStatus, "9000")) {
 								Toast.makeText(ShowPayActivity.this,
 										"支付成功", Toast.LENGTH_SHORT)
 										.show();									
-								// TODO支付成功后跳转，并传递相应的数据过去
 								if (isAllianceOrder) {
 									finish();
 								} else {
-									Intent intent = new Intent(ShowPayActivity.this,
-											ShangJiaOrderDetailAct.class);
-									intent.putExtra("out_trade_no",
-											mAliBean.getOut_trade_no());
-									LogUtil.d("~~~联盟商品详情页支付成功，传递订单号到商家订单详情页：订单号为："+mAliBean.getOut_trade_no());
+									Intent intent = new Intent(ShowPayActivity.this,ShangJiaOrderDetailAct.class);
+									intent.putExtra("out_trade_no", mAliBean.getOut_trade_no());
 									startActivityForResult(intent, 1010);
 									finish();
 								}
 							} else {
-								// 判断resultStatus 为非"9000"则代表可能支付失败
-								// "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
-								if (TextUtils.equals(resultStatus,
-										"8000")) {
+								if (TextUtils.equals(resultStatus, "8000")) {
 									Toast.makeText(
-											ShowPayActivity.this,
-											"支付结果确认中",
-											Toast.LENGTH_SHORT).show();
+											ShowPayActivity.this, "支付结果确认中", Toast.LENGTH_SHORT).show();
 
 								} else {
-									// 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-									Toast.makeText(
-											ShowPayActivity.this,
-											"支付失败", Toast.LENGTH_SHORT)
-											.show();
+									Toast.makeText(ShowPayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
 								}
 							}
 
 						}
 					});
 				} else {
-					Toast.makeText(ShowPayActivity.this, "支付失败请重试",
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(ShowPayActivity.this, "支付失败请重试", Toast.LENGTH_LONG).show();
 				}
 
 				break;
 			default:
-				Toast.makeText(ShowPayActivity.this, "支付失败请重试",
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(ShowPayActivity.this, "支付失败请重试", Toast.LENGTH_LONG).show();
 				break;
 			}
 		}

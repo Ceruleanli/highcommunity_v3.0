@@ -41,8 +41,8 @@ import cn.hi028.android.highcommunity.view.MyNoScrollListview;
  * @功能：自治大厅 留言详情Frag<br>
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
+ * 备注： 需求变动后新加 fragment 切换太麻烦 后续改
  */
-
 public class AutoDetail_Message extends BaseFragment {
     public static final String Tag = "AutoDetail_Message：";
     public static final String FRAGMENTTAG = "AutoDetail_Message";

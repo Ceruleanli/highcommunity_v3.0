@@ -33,15 +33,11 @@ import java.util.List;
 import cn.hi028.android.highcommunity.HighCommunityApplication;
 import cn.hi028.android.highcommunity.R;
 import cn.hi028.android.highcommunity.activity.BaseFragmentActivity;
-import cn.hi028.android.highcommunity.activity.GoodImageDetailOrEvaluationActivity;
 import cn.hi028.android.highcommunity.activity.MenuLeftAct;
 import cn.hi028.android.highcommunity.activity.fragment.newhui.NewBottomPageFrag2;
 import cn.hi028.android.highcommunity.activity.fragment.newhui.NewTopPageFrag;
-import cn.hi028.android.highcommunity.adapter.PicPageAdapter;
 import cn.hi028.android.highcommunity.bean.Autonomous.NewSupplyCarlistBean;
-import cn.hi028.android.highcommunity.bean.GoodsData;
 import cn.hi028.android.highcommunity.bean.Goods_info;
-import cn.hi028.android.highcommunity.bean.MerchantEvaluationInfoListBean;
 import cn.hi028.android.highcommunity.bean.NewSupplyGoodsDetailBean;
 import cn.hi028.android.highcommunity.lisenter.PayPop2FragFace;
 import cn.hi028.android.highcommunity.utils.Constacts;
@@ -49,17 +45,14 @@ import cn.hi028.android.highcommunity.utils.HTTPHelper;
 import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 
 /**
- * 新版直供商品详情2  换了框架
- * v2.0版本用
+ * 新版直供商品详情2
  * @author Lee_yting
+ * @version v2.0版本用
  */
 public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
         OnClickListener, PayPop2FragFace, NewTopPageFrag.StandardChangeListener {
 
-    static String Tag = "SupplyGoodsDetailActivity";
-    private static final int TAB_PICDETAIL = 0;
-    public static final int TAB_COMMENTDETAIL = 1;
-    int currentTab = 0;
+    static String Tag = "SupplyGoodsDetailActivity2";
     int good_count;
     ImageView back;
     TextView conttv;
@@ -70,11 +63,6 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
     LinearLayout payrl;
     RelativeLayout layout_hasData;
     RadioGroup mRadioGroup;
-
-
-    /**
-     * 接口获取的data
-     **/
     NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity goodsdata;
     ArrayList<Goods_info> goodslist;
     private String goods_price;
@@ -87,8 +75,6 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
     String id = -1 + "";
     String goodsId;
     String standardId = "";
-
-//    Handler mHandler = new Handler();
     /**
      * 购物车价格合计
      **/
@@ -101,7 +87,6 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e(Tag, "~~~啦啦啦  进入详情onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_detail_activity_supply2);
         id = getIntent().getStringExtra("id");
@@ -122,7 +107,6 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
         back = (ImageView) findViewById(R.id.ac_good_title_go_back);
         payrl = (LinearLayout) findViewById(R.id.shop_deatil_bottom_pay_rl);
         progress_layout = (LinearLayout) findViewById(R.id.progress_layout);
-
 
         layout_hasData = (RelativeLayout) findViewById(R.id.layout_hasData);
         mAllprice = (TextView) findViewById(R.id.ac_shop_car_price);
@@ -176,28 +160,13 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
     Runnable mRunable = new Runnable() {
         @Override
         public void run() {
-            Log.d(Tag, "mRunable   run");
-
             if (progress_layout!=null&&layout_hasData!=null){
-
     progress_layout.setVisibility(View.GONE);
     layout_hasData.setVisibility(View.VISIBLE);
 }
-
-
-
-//            if (mWaittingPop!=null){
-//
-//                mWaittingPop.dismiss();
-//            }
         }
     };
     private void initData() {
-//        popupHandler.sendEmptyMessageDelayed(0, 50);
-
-//        if (SupplyGoodsDetailActivity2.this.hasWindowFocus() && back != null) {
-//            mWaittingPop = HighCommunityUtils.GetInstantiation().ShowWaittingPopupWindow(SupplyGoodsDetailActivity2.this, back, Gravity.CENTER);
-//        }
         HTTPHelper.getGdCarList2(mGetCarIbpi);
     }
 
@@ -213,22 +182,15 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
             tv_mynodata.setText(message);
             tv_mynodata.setVisibility(View.VISIBLE);
 
-
             HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
         }
 
         @Override
         public void onSuccess(Object message) {
             Log.d(Tag, "onSuccess");
-//            if (mWaittingPop != null) {
-//                mWaittingPop.dismiss();
-//            }
             if (null == message) {
                 return;
             }
-//            progress_layout.setVisibility(View.GONE);
-//            layout_hasData.setVisibility(View.VISIBLE);
-
             mCarPriceSum = 0.00f;
             List<NewSupplyCarlistBean.SupplyCarlistDataEntity> mlist = (List<NewSupplyCarlistBean.SupplyCarlistDataEntity>) message;
             for (int i = 0; i < mlist.size(); i++) {
@@ -236,9 +198,6 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
             }
 
             HTTPHelper.GetNewSupplyGoodsDetail(mIbpi, id);
-//            setCarAmount();
-//            adapter.setData(mlist);
-//            mListView.onRefreshComplete();
         }
 
         @Override
@@ -279,15 +238,12 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
     };
 
 
-    Bundle bundle = new Bundle();
 
     private void registerListener() {
         back.setOnClickListener(this);
         shopcar.setOnClickListener(this);
 
         addToCar.setOnClickListener(this);
-//        call.setOnClickListener(this);
-//        telephone.setOnClickListener(this);
 
     }
     AutoScrollViewPager mViewPager;
@@ -313,21 +269,14 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
         }
         @Override
         public void onSuccess(Object message) {
-//            if (mWaittingPop != null) {
-//                mWaittingPop.dismiss();
-//            }
             tv_mynodata.setVisibility(View.GONE);
             if (message == null) return;
             goodsdata = (NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity) message;
-            Log.e(Tag, "商品详情数据message-" + message);
             Log.e(Tag, "商品详情数据-" + goodsdata.toString());
             goodsId = goodsdata.getId();
             mHandler.postDelayed(mRunable,300);
             setCarAmount(goodsdata);
             initViewNew();
-
-//            setUi(goodsdata);
-//            mPicDetail.setChecked(true);
         }
 
         @Override
@@ -335,13 +284,10 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
             return HTTPHelper.ResolveSupplyGoodsDetailEntity(result);
         }
 
-
-
         @Override
         public void cancleAsyncTask() {
             if (mWaittingPop != null) {
                 mWaittingPop.dismiss();
-
             }
         }
 
@@ -358,25 +304,6 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
             }
         }
     };
-    /**
-     * 传递给商品评价的列表
-     **/
-    private List<MerchantEvaluationInfoListBean> comment;
-    public PicPageAdapter pagerAdapter;
-
-
-    List<NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity.StandardEntity> mStandardList = new ArrayList<NewSupplyGoodsDetailBean.SupplyGoodsDetailDataEntity.StandardEntity>();
-
-
-    private void aboutCallService(GoodsData msg) {
-        if (null != msg.getTel()) {
-            telephone.setText("客服电话：" + msg.getTel());
-            telPhone = msg.getTel();
-        }
-        if (null != msg.getDelivery())
-            time.setText("服务时间：" + msg.getDelivery());
-    }
-
 
     /**
      * 返回
@@ -391,15 +318,11 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this,
-                GoodImageDetailOrEvaluationActivity.class);
-        Bundle bundle = new Bundle();
         switch (v.getId()) {
             case R.id.ac_good_title_go_back:
-//                goBack();
                 onBackPressed();
                 break;
-            case R.id.ac_shop_car_fl://点击购物车跳转购物车列表
+            case R.id.ac_shop_car_fl:
                 Intent mIntent = new Intent(this, GeneratedClassUtils.get(MenuLeftAct.class));
                 mIntent.putExtra(MenuLeftAct.ACTIVITYTAG,
                         Constacts.MENU_LEFT_GDCAR);
@@ -409,10 +332,6 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
             case R.id.ac_shop_car_addtocar:
                 addCarGoods();
                 break;
-//            case R.id.call:
-//                Intent intent2 = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + telPhone));
-//                startActivity(intent2);
-//                break;
 
         }
     }
@@ -463,7 +382,6 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
         public Object onResolve(String result) {
             Log.e(Tag, "onResolve result" + result);
             return result;
-//            return HTTPHelper.ResolveHuiSupportList(result);
         }
 
         @Override
@@ -518,14 +436,8 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
             caramount.setText(msg.getCartNum());
         }
         mAllprice.setText("购物车合计 ￥:" + mCarPriceSum);
-//        if (msg.getStandard().get(0).getPrice()!=null||!msg.getStandard().get(0).getPrice().equals("")){
-//            mAllprice.setText("购物车合计 ￥:" + Float.parseFloat(msg.getStandard().get(0).getPrice())*Integer.parseInt(caramount.getText().toString().trim()));
-//        }else{
-//        }
-
     }
 
-    // Popupwindow 关闭后返回列表数据，更新rightlist 列表数据
     @Override
     public void backAllList(List<Goods_info> glist) {
         payrl.setVisibility(View.VISIBLE);
@@ -558,9 +470,12 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
     public void setNumAndAmount(int num, double amount) {
     }
 
+    /**
+     * v2.0 不能直接支付  必须加入购物车
+     * @param popBackList
+     */
     @Override
     public void goPay(ArrayList<Goods_info> popBackList) {
-        // popwindow 点击去支付，
         StringBuffer sb = new StringBuffer();
         sb.append("[");
         for (int i = 0; i < popBackList.size(); i++) {
@@ -590,31 +505,12 @@ public class SupplyGoodsDetailActivity2 extends BaseFragmentActivity implements
             }
         }
         sb.append("]");
-//        HTTPHelper.GetOrderNo(getOrderNo, getAllPrice(popBackList), sb.toString(), storeId);
-    }
-
-    public String getAllPrice(ArrayList<Goods_info> popBackList) {
-        DecimalFormat df = new DecimalFormat("0.00");
-        double price = 0.0;
-        for (Goods_info bean : popBackList) {
-            price += bean.getCounts() * Double.parseDouble(bean.getPrice());
-        }
-        return df.format(price);
     }
 
 
     @Override
     public void onPause() {
         super.onPause();
-//        mViewPager.stopAutoScroll();
     }
-
-
-    /**
-     * 当前页
-     **/
-    int currentPo = 0;
-    public List<View> proPressList; // Tab页面列表
-    public List<TextView> noDataList; // Tab页面列表
 
 }

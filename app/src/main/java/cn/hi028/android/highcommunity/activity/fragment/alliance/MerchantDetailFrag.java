@@ -24,7 +24,6 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
 
 /**
  * 惠生活-商家联盟-item点击 -详情
- *
  * @author Administrator
  */
 public class MerchantDetailFrag extends BaseFragment {
@@ -35,7 +34,6 @@ public class MerchantDetailFrag extends BaseFragment {
     TextView time;
     TextView telephone;
     private String id;
-
     public void setMyId(String id2) {
         this.id = id2;
     }

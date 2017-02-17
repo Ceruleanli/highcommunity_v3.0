@@ -112,7 +112,7 @@ public class CommunityListAdapter extends BaseFragmentAdapter {
                     .findViewById(R.id.tv_communityItem_comment);
             mViewHolder.mAssist = (TextView) convertView
                     .findViewById(R.id.tv_communityItem_Assist);
-//创建群组的图片和内容
+            //创建群组的图片和内容
             mViewHolder.tv_community = (TextView) convertView
                     .findViewById(R.id.tv_community);
             mViewHolder.img_community_pic = (ImageView) convertView
@@ -146,26 +146,25 @@ public class CommunityListAdapter extends BaseFragmentAdapter {
             mViewHolder.mContent.setText(spanString);
             mViewHolder.mContent.append("  " + mBean.getWelcome());
             mViewHolder.tv_community.setText(mBean.getContent());
-           //显示群组容器
+            //显示群组容器
             mViewHolder.ll_act.setVisibility(View.VISIBLE);
             ImageLoaderUtil.disPlay(Constacts.IMAGEHTTP + mBean.getAg_pic(), mViewHolder.img_community_pic);
             mViewHolder.mFrom.setVisibility(View.VISIBLE);
             mViewHolder.mFrom.setText("" + mBean.getTitle());
 
         } else {
-        	//显示用户发动态的情况
+            //显示用户发动态的情况
             mViewHolder.ll_act.setVisibility(View.GONE);
             mViewHolder.mGridView.setVisibility(View.VISIBLE);
             mViewHolder.mMore.setVisibility(View.VISIBLE);
-           
-            
+
+
             mViewHolder.mImageAdapter.AddNewData(mBean.getPic());
             mViewHolder.mGridView.setAdapter(mViewHolder.mImageAdapter);
             HighCommunityUtils.GetInstantiation().setGridViewHeightBasedOnChildren(mViewHolder.mGridView, mViewHolder.mImageAdapter, 3);
             mViewHolder.mGridView.setClickable(false);
-           
-            
-            
+
+
             mViewHolder.mLocation.setText(mBean.getSite());
             mViewHolder.mComment.setText(mBean.getD_count() + " 评论");
             mViewHolder.mAssist.setText(mBean.getP_count() + " 点赞");
@@ -186,9 +185,8 @@ public class CommunityListAdapter extends BaseFragmentAdapter {
         mViewHolder.mGridView.setAdapter(mViewHolder.mImageAdapter);
         HighCommunityUtils.GetInstantiation().setGridViewHeightBasedOnChildren(mViewHolder.mGridView, mViewHolder.mImageAdapter, 3);
         mViewHolder.mGridView.setClickable(false);
-       
-        
-        
+
+
         if (mBean.getHead_pic() == null || mBean.getHead_pic().equals("")) {
             BpiUniveralImage.displayImage("drawable://" + R.mipmap.defult_avatar, mViewHolder.mAvatar);
         } else {
@@ -257,7 +255,7 @@ public class CommunityListAdapter extends BaseFragmentAdapter {
 
                     @Override
                     public void shouldLoginAgain(boolean isShouldLogin, String msg) {
-                        if (isShouldLogin){
+                        if (isShouldLogin) {
                             HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
                             HighCommunityApplication.toLoginAgain(mContext);
                         }
@@ -322,7 +320,7 @@ public class CommunityListAdapter extends BaseFragmentAdapter {
 
                     @Override
                     public void shouldLoginAgain(boolean isShouldLogin, String msg) {
-                        if (isShouldLogin){
+                        if (isShouldLogin) {
                             HighCommunityUtils.GetInstantiation().ShowToast(msg, 0);
                             HighCommunityApplication.toLoginAgain(mContext);
                         }
@@ -334,21 +332,21 @@ public class CommunityListAdapter extends BaseFragmentAdapter {
             @Override
             public void onClick(View view) {
                 if (mBean.getType() == 2) {
-                	//跳转到活动详情
+                    //跳转到活动详情
                     Intent ActCreate = new Intent(mContext, GeneratedClassUtils.get(ActiveAct.class));
                     ActCreate.putExtra(ActiveAct.ACTIVITYTAG, Constacts.ACTIVITY_DETAILS);
                     ActCreate.putExtra(ActiveAct.INTENTTAG, mBean.getId() + "");
                     mContext.startActivity(ActCreate);
 
                 } else if (mBean.getType() == 3) {
-                	//跳转到群资料
+                    //跳转到群资料
                     Intent mInt = new Intent(mContext, GeneratedClassUtils.get(GroupDataAct.class));
                     mInt.putExtra(GroupDataAct.ACTIVITYTAG, "Detils");
                     mInt.putExtra(GroupDataAct.INTENTTAG, mBean.getId() + "");
                     mContext.startActivity(mInt);
 
                 } else {
-                	//跳转到帖子
+                    //跳转到帖子
                     Intent mCommunity = new Intent(mContext, GeneratedClassUtils.get(CommunityDetailAct.class));
                     mCommunity.putExtra(CommunityDetailAct.ACTIVITYTAG, "Details");
                     mCommunity.putExtra(CommunityDetailAct.INTENTTAG, mBean.getMid());

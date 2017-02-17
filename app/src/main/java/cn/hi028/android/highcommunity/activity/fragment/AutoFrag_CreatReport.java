@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.don.tools.BpiHttpHandler;
 
 import net.duohuo.dhroid.activity.BaseFragment;
-import net.duohuo.dhroid.util.LogUtil;
 
 import butterknife.ButterKnife;
 import cn.hi028.android.highcommunity.HighCommunityApplication;
@@ -23,17 +22,16 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @功能：自治大厅认证完成 创建汇报Frag<br>
  * @作者： Lee_yting<br>
  * @时间：2016/10/11<br>
+ *     备注：麻烦  后续需改
  */
-
 public class AutoFrag_CreatReport extends BaseFragment {
-    public static final String Tag = "~~~AutoFrag_CreatReport~~~";
+    public static final String Tag = "CreatReport：";
     public static final String FRAGMENTTAG = "AutoFrag_CreatReport";
     EditText mTitle, mContent;
     TextView mCommit;
     int owner_id;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LogUtil.d(Tag + "onCreateView");
         View view = inflater.inflate(R.layout.frag_auto_creat_report, null);
         Bundle bundle = getArguments();
         owner_id = bundle.getInt("owner_id", -1);
@@ -63,10 +61,8 @@ public class AutoFrag_CreatReport extends BaseFragment {
     BpiHttpHandler.IBpiHttpHandler mIbpi = new BpiHttpHandler.IBpiHttpHandler() {
         @Override
         public void onError(int id, String message) {
-            LogUtil.d(Tag + "---~~~onError");
             HighCommunityUtils.GetInstantiation().ShowToast(message, 0);
         }
-
         @Override
         public void onSuccess(Object message) {
             HighCommunityUtils.GetInstantiation().ShowToast(message.toString(), 0);
@@ -76,7 +72,6 @@ public class AutoFrag_CreatReport extends BaseFragment {
 
         @Override
         public Object onResolve(String result) {
-            LogUtil.d(Tag + " ~~~result" + result);
             return result;
         }
 
@@ -102,22 +97,6 @@ public class AutoFrag_CreatReport extends BaseFragment {
             }
         }
     };
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.d(Tag + "onPause");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtil.d(Tag + "onResume");
-
-
-    }
-
 
     @Override
     public void onDestroyView() {

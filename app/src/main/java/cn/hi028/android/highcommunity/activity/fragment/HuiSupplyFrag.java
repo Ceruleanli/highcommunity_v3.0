@@ -80,7 +80,6 @@ public class HuiSupplyFrag extends BaseFragment implements ViewPager.OnPageChang
     PopupWindow waitPop;
     View layoutContainer;
     private LoadingView mLoadingView;
-    private PopupWindow mWatingWindow;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -98,8 +97,6 @@ public class HuiSupplyFrag extends BaseFragment implements ViewPager.OnPageChang
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
-    private int childCount;
 
     void initView() {
         findView();
@@ -298,7 +295,6 @@ public class HuiSupplyFrag extends BaseFragment implements ViewPager.OnPageChang
             }
         }
     };
-    private int picCount;
     TextView original_price;
 
     /**
@@ -406,9 +402,7 @@ public class HuiSupplyFrag extends BaseFragment implements ViewPager.OnPageChang
                     isNoNetwork = false;
                 } else {
                     Toast.makeText(getActivity(), "没有网络", Toast.LENGTH_SHORT).show();
-                    //					if(nextPage == 1){
                     mLoadingView.noNetwork();
-                    //					}
                     isNoNetwork = true;
                 }
             }

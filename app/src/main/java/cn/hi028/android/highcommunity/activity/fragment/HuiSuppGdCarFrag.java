@@ -43,7 +43,7 @@ import cn.hi028.android.highcommunity.utils.HighCommunityUtils;
  * @功能：购物车<br>
  * @作者： 赵海<br>
  * @版本：1.0<br>
- * @时间：2016-01-26<br>
+ * @时间：2016-01-26<br> 2.0作废
  */
 @EFragment(R.layout.frag_huisupp_gdcar)
 public class HuiSuppGdCarFrag extends BaseFragment {
